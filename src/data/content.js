@@ -108,7 +108,7 @@ export const highlightCards = [
 ];
 
 export const team = [
-  { name: "Phạm Viết Quang Huy", major: "Khoa học Máy tính - UIT" },
+  { name: "Phạm Viết Quang Huy", major: "Khoa học Máy tính" },
   { name: "Thành viên nhóm 2", major: "Kỹ thuật Phần mềm" },
   { name: "Thành viên nhóm 3", major: "Công nghệ Thông tin" },
   { name: "Thành viên nhóm 4", major: "Hệ thống Thông tin" },

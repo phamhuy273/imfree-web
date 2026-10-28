@@ -23,7 +23,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10 py-6 text-center text-sm text-white/50">
-        © {new Date().getFullYear()} {brand.name}. Đề tài nghiên cứu khoa học sinh viên UIT.
+        © {new Date().getFullYear()} {brand.name}. Bản quyền thuộc về {brand.name}.
       </div>
     </footer>
   );

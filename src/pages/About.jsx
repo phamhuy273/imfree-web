@@ -12,7 +12,7 @@ export default function About() {
         <div className="container-x text-center">
           <h1 className="h1 mx-auto max-w-3xl">Về chúng tôi</h1>
           <p className="lead mx-auto mt-6">
-            Dự án nghiên cứu xuất phát từ nhu cầu thực tế của sinh viên trong việc tiếp cận và chia sẻ tài nguyên học tập hiệu quả.
+            Dự án xuất phát từ nhu cầu thực tế của người dùng trong việc tiếp cận và chia sẻ tài nguyên hiệu quả.
           </p>
           <Button to="/tinh-nang" className="mt-8">
             Xem sản phẩm
@@ -21,7 +21,7 @@ export default function About() {
         <div className="container-x mt-14">
           <div className="relative rounded-card overflow-hidden shadow-lift bg-white border border-brand-100 p-2">
             <ImagePlaceholder
-              label="Ảnh banner / Ảnh tập thể nhóm nghiên cứu (tỉ lệ 21:9)"
+              label="Ảnh banner / Ảnh tập thể nhóm phát triển (tỉ lệ 21:9)"
               className="aspect-[16/9] w-full md:aspect-[21/9]"
             />
           </div>
@@ -37,7 +37,7 @@ export default function About() {
           <div className="mt-10 grid gap-10 md:grid-cols-2">
             <Reveal>
               <div className="rounded-2xl border border-line bg-brand-50/40 p-8 h-full">
-                <h3 className="text-xl font-bold text-ink">Mục tiêu đề tài</h3>
+                <h3 className="text-xl font-bold text-ink">Mục tiêu dự án</h3>
                 <p className="mt-4 max-w-[60ch] text-muted leading-relaxed">
                   Xây dựng một nền tảng kinh tế chia sẻ an toàn và minh bạch dành cho sinh viên; giảm thiểu gánh nặng tài chính trong việc mua sắm trang thiết bị công nghệ và nâng cao tinh thần học hỏi lẫn nhau trong môi trường học thuật.
                 </p>
@@ -61,7 +61,7 @@ export default function About() {
           <Reveal>
             <SectionHeading
               title="Đội ngũ của chúng tôi"
-              text="Những thành viên nhiệt huyết nghiên cứu và phát triển sản phẩm."
+              text="Những thành viên nhiệt huyết xây dựng và phát triển sản phẩm."
             />
           </Reveal>
           <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
