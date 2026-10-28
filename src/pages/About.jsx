@@ -19,11 +19,19 @@ export default function About() {
           </Button>
         </div>
         <div className="container-x mt-8 sm:mt-10">
-          <div className="relative mx-auto max-w-[720px] overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-2 sm:p-2.5 shadow-card">
-            <div className="overflow-hidden rounded-2xl">
+          <div className="relative mx-auto max-w-[720px] p-[2px] rounded-3xl bg-gradient-to-b from-brand-300/80 via-brand-100/50 to-slate-200/80 shadow-[0_20px_50px_-15px_rgba(42,86,204,0.14)]">
+            <div className="relative overflow-hidden rounded-[22px] bg-slate-100">
+              {/* Tag Đội ngũ phát triển ImFree */}
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 flex items-center gap-2 rounded-full bg-white/95 backdrop-blur-md border border-white/80 px-3.5 py-1.5 text-xs text-ink shadow-[0_4px_16px_rgba(0,0,0,0.08)]">
+                <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-bold text-slate-800">Đội ngũ phát triển ImFree</span>
+                <span className="text-slate-400 font-normal hidden sm:inline">• UIT</span>
+              </div>
+
+              {/* Ảnh tự nhiên khuôn viên UIT và 5 thành viên */}
               <img
                 src="/team-uit-campus.jpg"
-                alt="Đội ngũ 5 thành viên UIT sáng lập nền tảng ImFree tại khuôn viên trường"
+                alt="Đội ngũ phát triển ImFree tại khuôn viên trường UIT"
                 className="w-full h-auto object-cover block"
               />
             </div>
