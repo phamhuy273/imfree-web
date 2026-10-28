@@ -43,17 +43,24 @@ export default function FeatureShowcase() {
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="relative z-10 max-w-xl space-y-4">
-              <div className="inline-flex items-center gap-2 text-xs font-semibold px-2.5 py-1 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Bản xem trước nguyên mẫu v1.0</span>
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="max-w-xl space-y-4">
+                <div className="inline-flex items-center gap-2 text-xs font-semibold px-2.5 py-1 rounded bg-blue-500/20 text-blue-300 border border-blue-400/30">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Bản xem trước nguyên mẫu v1.0</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                  Không gian làm việc & Tương tác tập trung
+                </h2>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Tất cả công cụ cần thiết cho việc xử lý bài toán đề tài đều được quy về một trung tâm chỉ huy duy nhất, giảm thiểu tối đa các bước thao tác thừa.
+                </p>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-                Không gian làm việc & Tương tác tập trung
-              </h2>
-              <p className="text-sm text-slate-300 leading-relaxed">
-                Tất cả công cụ cần thiết cho việc xử lý bài toán đề tài đều được quy về một trung tâm chỉ huy duy nhất, giảm thiểu tối đa các bước thao tác thừa.
-              </p>
+
+              <div className="hidden md:flex flex-col items-center justify-center p-6 bg-slate-800/80 rounded-2xl border border-slate-700/80 shadow-lg min-w-[160px]">
+                <img src={siteConfig.logo} alt="Logo" className="w-20 h-20 object-contain drop-shadow-md" />
+                <span className="mt-3 text-xs font-bold text-slate-200 tracking-wide">{siteConfig.name}</span>
+              </div>
             </div>
 
             <div className="relative z-10 pt-6 mt-6 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs text-slate-300">

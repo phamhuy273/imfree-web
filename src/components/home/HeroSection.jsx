@@ -86,8 +86,8 @@ export default function HeroSection() {
                 {/* Inner screen content */}
                 <div className="p-6 bg-slate-900 rounded-xl space-y-4 text-slate-300">
                   <div className="h-32 bg-slate-800/80 rounded-lg flex flex-col items-center justify-center border border-dashed border-slate-700">
-                    <Sparkles className="w-8 h-8 text-blue-400 mb-2 animate-pulse" />
-                    <span className="text-xs text-slate-400 font-medium">Demo Giao Diện Sản Phẩm</span>
+                    <img src={siteConfig.logo} alt="Logo Preview" className="w-12 h-12 mb-2 object-contain filter drop-shadow-md animate-bounce" />
+                    <span className="text-xs text-slate-300 font-semibold tracking-wide">Hệ Thống {siteConfig.name}</span>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div className="p-3 bg-slate-800/60 rounded-lg border border-slate-700/50">

@@ -10,8 +10,12 @@ export default function Footer() {
           {/* Logo & Intro */}
           <div className="md:col-span-1 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md">
-                <Sparkles className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                <img
+                  src={siteConfig.logo}
+                  alt={siteConfig.name}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="text-xl font-bold tracking-tight text-white">
                 {siteConfig.name}
