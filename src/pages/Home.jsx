@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Camera, CheckCircle2, Star } from "lucide-react";
+import { ArrowRight, Clock, Heart } from "lucide-react";
 import Button from "../components/Button";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
@@ -54,76 +54,60 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* 2 Cánh logo chuyển màu trôi nhẹ nhàng */}
+            {/* 2 Cánh logo chuyển màu trôi nhẹ nhàng - Đặt z-0 và đẩy ra xa để tuyệt đối không che nội dung */}
             <Wing
               variant="blue"
-              className="absolute -left-8 -top-8 z-10 w-28 animate-float sm:w-36 pointer-events-none drop-shadow-md"
+              className="absolute -left-10 -top-10 sm:-left-14 sm:-top-12 z-0 w-28 animate-float sm:w-36 pointer-events-none drop-shadow-md"
             />
             <Wing
               variant="pink"
-              className="absolute -bottom-8 -right-6 z-10 w-24 animate-float-slow sm:w-32 pointer-events-none drop-shadow-md"
+              className="absolute -bottom-10 -right-8 sm:-bottom-12 sm:-right-12 z-0 w-24 animate-float-slow sm:w-32 pointer-events-none drop-shadow-md"
             />
 
-            {/* Khung Card chính: Giao diện thực tế ImFree Asset Sharing */}
-            <div className="relative rounded-card bg-white border border-line shadow-lift p-5 sm:p-6 overflow-hidden">
-              {/* Header card */}
-              <div className="flex items-center justify-between pb-3.5 border-b border-line mb-4">
-                <div className="flex items-center gap-2">
-                  <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">
-                    Sẵn sàng cho thuê
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-semibold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full">
-                    Asset Sharing (MVP)
-                  </span>
-                </div>
+            {/* Khung Card chính: Thẻ Máy ảnh chuẩn xác 100% theo giao diện ứng dụng ImFree */}
+            <div className="relative z-10 rounded-3xl bg-white border border-line/80 shadow-[0_20px_50px_-10px_rgba(15,26,51,0.09),0_10px_20px_-5px_rgba(15,26,51,0.04)] p-4 sm:p-5 flex items-center gap-4 sm:gap-5 transition-all duration-300 hover:shadow-[0_25px_60px_-10px_rgba(42,86,204,0.14)]">
+              {/* Hình ảnh máy ảnh thực tế */}
+              <div className="size-28 sm:size-32 rounded-2xl overflow-hidden shrink-0 bg-slate-100 border border-slate-100 shadow-xs">
+                <img
+                  src="/camera.png"
+                  alt="Máy ảnh"
+                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                />
               </div>
 
-              {/* Product preview box */}
-              <div className="rounded-2xl bg-gradient-to-br from-brand-50 to-white border border-brand-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden mb-4">
-                <div className="size-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mb-2.5 shadow-xs">
-                  <Camera className="size-7" />
-                </div>
-                <h4 className="text-base font-bold text-ink">
-                  Máy ảnh Sony A7 IV / Canon EOS
-                </h4>
-                <p className="text-xs text-muted mt-1">
-                  Kèm thẻ nhớ tốc độ cao, 2 pin & phụ kiện bảo quản
-                </p>
-                <div className="mt-3 inline-flex items-baseline gap-1 text-brand-700">
-                  <span className="text-xl font-extrabold">100.000đ</span>
-                  <span className="text-xs text-muted">/ ngày (Cọc Deposit: 500.000đ)</span>
-                </div>
-              </div>
-
-              {/* Provider & Trust Profile (Đánh giá bằng sao) */}
-              <div className="flex items-center justify-between pt-1">
-                <div className="flex items-center gap-2.5">
-                  <div className="size-9 rounded-full bg-brand-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">
-                    H
+              {/* Thông tin chi tiết tài sản */}
+              <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch py-0.5">
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-base sm:text-lg font-bold text-ink truncate">
+                      Máy ảnh
+                    </h3>
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 shrink-0">
+                      Còn trống
+                    </span>
                   </div>
-                  <div>
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-ink">
-                      <span>Phạm Huy</span>
-                      <CheckCircle2 className="size-3.5 text-brand-600" />
-                    </div>
-                    <span className="text-[11px] text-muted">Sinh viên UIT • Đã xác minh</span>
+
+                  <p className="text-xs sm:text-sm font-medium text-slate-500 mt-1">
+                    Quận 1, TP.HCM
+                  </p>
+
+                  <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1.5">
+                    <Clock className="size-3.5 text-slate-400 shrink-0" />
+                    <span>Cập nhật 2 giờ trước</span>
                   </div>
                 </div>
 
-                {/* Trust Profile */}
-                <div className="text-right">
-                  <div className="inline-flex items-center gap-1 text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200/70">
-                    <div className="flex items-center text-amber-500">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="size-3 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
-                    <span className="ml-1 text-ink font-semibold">5.0</span>
+                <div className="flex items-center justify-between mt-3 pt-1">
+                  <div className="text-lg sm:text-xl font-extrabold text-brand-600">
+                    500.000đ/ngày
                   </div>
-                  <div className="text-[10px] text-muted mt-0.5">Trust Profile • 14 giao dịch</div>
+
+                  <button
+                    className="size-8 sm:size-9 rounded-full bg-slate-50 hover:bg-rose-50 border border-slate-200/70 flex items-center justify-center text-slate-400 hover:text-rose-500 transition-colors shadow-2xs cursor-pointer group"
+                    aria-label="Yêu thích"
+                  >
+                    <Heart className="size-4 sm:size-4.5 group-hover:scale-110 transition-transform" />
+                  </button>
                 </div>
               </div>
             </div>
