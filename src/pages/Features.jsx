@@ -91,6 +91,8 @@ export default function Features() {
     }
   };
 
+  const currentStageIndex = STAGES.findIndex((s) => s.id === activeStageId);
+
   return (
     <>
       {/* ───────── 1. TIÊU ĐỀ + KHUNG APP SIMULATOR (SLIDE 8-16) ───────── */}
@@ -110,51 +112,77 @@ export default function Features() {
         </div>
       </section>
 
-      {/* ───────── 2. HỆ THỐNG 3 GIAI ĐOẠN CUỘN LIÊN TỤC VỚI THANH ĐIỀU HƯỚNG DÍNH TỰ ĐỘNG CHẠY ───────── */}
+      {/* ───────── 2. HỆ THỐNG 3 GIAI ĐOẠN CUỘN LIÊN TỤC VỚI THANH TIẾN TRÌNH STEPPER DÍNH TỰ ĐỘNG CHẠY ───────── */}
       <section className="section bg-gradient-to-b from-white via-brand-50/40 to-white relative pb-24">
-        {/* Thanh Điều Hướng Dính Nổi: Tự động tránh Navbar khi kéo lên */}
+        {/* Thanh Điều Hướng Dính Dạng Stepper Vòng Tròn (Thay cho ô chữ nhật theo đúng ảnh người dùng) */}
         <div
           className={`sticky z-40 mb-16 transition-all duration-300 ease-out ${
             navHidden ? "top-4 sm:top-5" : "top-20 sm:top-22"
           }`}
         >
           <div className="container-x">
-            <div className="max-w-3xl mx-auto p-1.5 rounded-2xl bg-white/90 backdrop-blur-xl border border-line shadow-soft">
-              <div className="flex items-center justify-between gap-1 sm:gap-2">
-                {STAGES.map((stage) => {
-                  const isActive = stage.id === activeStageId;
-                  const Icon = stage.icon;
+            <div className="max-w-2xl mx-auto relative rounded-2xl bg-white/90 backdrop-blur-xl border border-line shadow-soft px-6 sm:px-10 py-3.5 sm:py-4">
+              {/* Đường ray nền & Vạch chạy tiến trình kết nối 3 mốc */}
+              <div className="absolute left-10 sm:left-14 right-10 sm:right-14 top-8 sm:top-8.5 h-1 bg-slate-200/90 rounded-full z-0 overflow-hidden">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-brand-600 to-brand-500 rounded-full"
+                  initial={false}
+                  animate={{
+                    width:
+                      currentStageIndex === 0
+                        ? "0%"
+                        : currentStageIndex === 1
+                        ? "50%"
+                        : "100%",
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 28 }}
+                />
+              </div>
+
+              {/* 3 Mốc Vòng Tròn Giai Đoạn (01, 02, 03) */}
+              <div className="relative z-10 flex items-center justify-between">
+                {STAGES.map((stage, idx) => {
+                  const isCurrent = idx === currentStageIndex;
+                  const isPast = idx < currentStageIndex;
+                  const isPastOrCurrent = idx <= currentStageIndex;
 
                   return (
                     <button
                       key={stage.id}
                       onClick={() => scrollToStage(stage.id)}
-                      className={`relative flex-1 py-2.5 px-3 sm:px-4 rounded-xl text-left transition-colors duration-200 focus:outline-none flex items-center gap-2.5 sm:gap-3 cursor-pointer ${
-                        isActive ? "text-white" : "text-muted hover:text-ink hover:bg-slate-50/80"
-                      }`}
+                      className="flex flex-col items-center group cursor-pointer focus:outline-none"
                     >
-                      {/* Nền Active trượt lò xo theo từng giai đoạn khi lướt trang */}
-                      {isActive && (
-                        <motion.div
-                          layoutId="activeScrollSpyTab"
-                          className="absolute inset-0 rounded-xl bg-gradient-to-r from-brand-600 to-brand-700 shadow-md shadow-brand-500/25"
-                          transition={{ type: "spring", stiffness: 450, damping: 35 }}
-                        />
-                      )}
-
-                      <div
-                        className={`relative z-10 hidden sm:flex size-8 rounded-lg items-center justify-center transition-colors ${
-                          isActive ? "bg-white/20 text-white" : "bg-slate-100 text-muted"
-                        }`}
+                      {/* Vòng tròn số 01, 02, 03 */}
+                      <motion.div
+                        animate={{
+                          scale: isCurrent ? 1.15 : 1,
+                          backgroundColor: isPastOrCurrent ? "#2A56CC" : "#ffffff",
+                          borderColor: isPastOrCurrent ? "#2A56CC" : "#e2e8f0",
+                        }}
+                        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                        className={`size-9 sm:size-10 rounded-full border-2 flex items-center justify-center text-xs sm:text-sm font-bold transition-all duration-300 ${
+                          isPastOrCurrent
+                            ? "text-white shadow-soft"
+                            : "text-slate-400 bg-white"
+                        } ${isCurrent ? "ring-4 ring-brand-100 shadow-md" : ""}`}
                       >
-                        <Icon className="size-4 shrink-0" />
-                      </div>
+                        <span>{stage.num}</span>
+                      </motion.div>
 
-                      <div className="relative z-10 min-w-0">
-                        <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider opacity-80">
-                          Giai đoạn {stage.num}
+                      {/* Tên giai đoạn đúng chuẩn thiết kế */}
+                      <div className="mt-2 text-center">
+                        <div
+                          className={`text-xs sm:text-sm font-bold tracking-tight transition-colors duration-200 ${
+                            isCurrent
+                              ? "text-brand-700"
+                              : isPast
+                              ? "text-ink"
+                              : "text-muted group-hover:text-ink"
+                          }`}
+                        >
+                          {stage.shortLabel}
                         </div>
-                        <div className="text-xs sm:text-sm font-bold truncate">
+                        <div className="text-[10px] font-mono text-muted/70 uppercase tracking-wider hidden sm:block mt-0.5">
                           {stage.name}
                         </div>
                       </div>
