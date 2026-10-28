@@ -13,7 +13,7 @@ export default function Layout() {
   }, [pathname]);
 
   return (
-    <div className="relative min-h-screen bg-[#FBFDFF] text-ink selection:bg-brand-100 overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#FBFDFF] text-ink selection:bg-brand-100">
       {/* 1. Lớp hình nền Ambient Glow & Tech Grid cố định toàn bộ website */}
       <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
         {/* Vầng hào quang xanh thương hiệu ImFree phía trên bên phải */}

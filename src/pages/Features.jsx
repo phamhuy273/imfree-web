@@ -62,16 +62,16 @@ export default function Features() {
       // Kiểm tra nếu cuộn xuống gần cuối trang thì tự động chọn giai đoạn cuối cùng
       const isBottom =
         window.innerHeight + currentScrollY >=
-        document.documentElement.scrollHeight - 60;
+        document.documentElement.scrollHeight - 100;
       if (isBottom) {
         setActiveStageId("stage-3");
         return;
       }
 
       // ScrollSpy: Dùng getBoundingClientRect() để đo vị trí thực tế so với khung nhìn (Viewport)
-      // Điểm kích hoạt chuẩn: 200px từ đỉnh màn hình (ngay dưới thanh Stepper đang neo)
+      // Điểm kích hoạt chuẩn: khoảng 30% - 35% từ đỉnh màn hình (vừa vặn ngay dưới thanh Stepper đang neo)
       const stageIds = ["stage-1", "stage-2", "stage-3"];
-      const triggerPoint = 200;
+      const triggerPoint = Math.min(280, Math.max(180, window.innerHeight * 0.35));
 
       let currentActive = "stage-1";
       for (let i = 0; i < stageIds.length; i++) {
