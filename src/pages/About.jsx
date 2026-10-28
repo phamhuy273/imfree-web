@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+import { GraduationCap, ShieldCheck, CheckCircle2, Sparkles } from "lucide-react";
 import Button from "../components/Button";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
@@ -8,7 +10,7 @@ export default function About() {
   return (
     <>
       {/* ───────── 1. TIÊU ĐỀ + BANNER ĐỘI NGŨ (SLIDE 1 & SLIDE 29) ───────── */}
-      <section className="bg-[radial-gradient(60%_40%_at_50%_0%,var(--color-brand-100),transparent)] pb-12 pt-32 sm:pt-40">
+      <section className="bg-[radial-gradient(60%_40%_at_50%_0%,var(--color-brand-100),transparent)] pb-12 pt-32 sm:pt-40 overflow-hidden">
         <div className="container-x text-center">
           <h1 className="h1 mx-auto max-w-3xl">Về dự án ImFree</h1>
           <p className="lead mx-auto mt-4">
@@ -18,22 +20,140 @@ export default function About() {
             Xem sản phẩm
           </Button>
         </div>
-        <div className="container-x mt-8 sm:mt-10">
-          <div className="relative mx-auto max-w-[720px] p-[2px] rounded-3xl bg-gradient-to-b from-brand-300/80 via-brand-100/50 to-slate-200/80 shadow-[0_20px_50px_-15px_rgba(42,86,204,0.14)]">
-            <div className="relative overflow-hidden rounded-[22px] bg-slate-100">
-              {/* Tag Đội ngũ phát triển ImFree */}
-              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 flex items-center gap-2 rounded-full bg-white/95 backdrop-blur-md border border-white/80 px-3.5 py-1.5 text-xs text-ink shadow-[0_4px_16px_rgba(0,0,0,0.08)]">
-                <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-bold text-slate-800">Đội ngũ phát triển ImFree</span>
-                <span className="text-slate-400 font-normal hidden sm:inline">• UIT</span>
+
+        {/* Khu vực Banner đội ngũ trung tâm kết hợp các thẻ thông tin sinh động 2 bên */}
+        <div className="container-x mt-10 sm:mt-12">
+          <div className="relative mx-auto max-w-6xl">
+            {/* Vầng hào quang chuyển động mờ ảo phía sau 2 bên */}
+            <div className="absolute -left-16 top-1/4 size-80 rounded-full bg-brand-300/25 blur-3xl pointer-events-none -z-10" />
+            <div className="absolute -right-16 top-1/3 size-80 rounded-full bg-accent-400/20 blur-3xl pointer-events-none -z-10" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center">
+              {/* CỘT TRÁI (2 thẻ: Khởi nguồn từ UIT & Khảo sát sinh viên) */}
+              <div className="lg:col-span-3 space-y-4 order-2 lg:order-1">
+                {/* Thẻ 1: Xuất phát từ UIT */}
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  className="rounded-2xl border border-brand-100 bg-white/95 p-4 sm:p-4.5 shadow-soft backdrop-blur-md transition-all hover:border-brand-300 hover:shadow-card cursor-default"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600 border border-brand-100/80 shrink-0">
+                      <GraduationCap className="size-5" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-ink">UIT Campus Hub</div>
+                      <div className="text-[11px] text-muted">ĐH Công nghệ Thông tin</div>
+                    </div>
+                  </div>
+                  <p className="mt-2.5 text-xs text-muted leading-relaxed">
+                    Ý tưởng đề tài xuất phát từ chính nhu cầu mượn thiết bị học tập thực tế trong khuôn viên trường.
+                  </p>
+                  <div className="mt-3 flex items-center gap-1.5 text-[11px] font-semibold text-brand-700 bg-brand-50/90 px-2.5 py-1 rounded-lg border border-brand-200/50">
+                    <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Pilot có kiểm soát 2026</span>
+                  </div>
+                </motion.div>
+
+                {/* Thẻ 2: Dữ liệu thực tế */}
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  className="rounded-2xl border border-brand-100 bg-white/95 p-4 sm:p-4.5 shadow-soft backdrop-blur-md transition-all hover:border-brand-300 hover:shadow-card cursor-default"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-muted">Khảo sát 105 SV UIT</span>
+                    <span className="text-xs font-extrabold text-brand-600 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-100">
+                      58.1%
+                    </span>
+                  </div>
+                  <div className="mt-2 text-xs font-semibold text-ink leading-snug">
+                    Từng phát sinh nhu cầu thuê mượn thiết bị ngắn hạn
+                  </div>
+                  <div className="mt-3 h-2 w-full rounded-full bg-slate-100 overflow-hidden">
+                    <div className="h-full rounded-full bg-gradient-to-r from-brand-500 to-accent-500 w-[58.1%]" />
+                  </div>
+                  <p className="mt-2 text-[11px] text-muted italic">
+                    * Nhu cầu sẵn có, ImFree tháo gỡ rào cản niềm tin
+                  </p>
+                </motion.div>
               </div>
 
-              {/* Ảnh tự nhiên khuôn viên UIT và 5 thành viên */}
-              <img
-                src="/team-uit-campus.jpg"
-                alt="Đội ngũ phát triển ImFree tại khuôn viên trường UIT"
-                className="w-full h-auto object-cover block"
-              />
+              {/* CỘT GIỮA: ẢNH ĐỘI NGŨ 5 THÀNH VIÊN */}
+              <div className="lg:col-span-6 order-1 lg:order-2">
+                <div className="relative mx-auto max-w-[620px] p-[2px] rounded-3xl bg-gradient-to-b from-brand-300/80 via-brand-100/50 to-slate-200/80 shadow-[0_20px_50px_-15px_rgba(42,86,204,0.16)]">
+                  <div className="relative overflow-hidden rounded-[22px] bg-slate-100">
+                    {/* Tag Đội ngũ phát triển ImFree */}
+                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 flex items-center gap-2 rounded-full bg-white/95 backdrop-blur-md border border-white/80 px-3.5 py-1.5 text-xs text-ink shadow-[0_4px_16px_rgba(0,0,0,0.08)]">
+                      <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="font-bold text-slate-800">Đội ngũ phát triển ImFree</span>
+                      <span className="text-slate-400 font-normal hidden sm:inline">• UIT</span>
+                    </div>
+
+                    {/* Ảnh tự nhiên khuôn viên UIT và 5 thành viên */}
+                    <img
+                      src="/team-uit-campus.jpg"
+                      alt="Đội ngũ phát triển ImFree tại khuôn viên trường UIT"
+                      className="w-full h-auto object-cover block"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* CỘT PHẢI (2 thẻ: Cơ chế an tâm & 3 Trụ cột nguồn lực) */}
+              <div className="lg:col-span-3 space-y-4 order-3">
+                {/* Thẻ 3: Trust Architecture */}
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  className="rounded-2xl border border-brand-100 bg-white/95 p-4 sm:p-4.5 shadow-soft backdrop-blur-md transition-all hover:border-brand-300 hover:shadow-card cursor-default"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100/80 shrink-0">
+                      <ShieldCheck className="size-5" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-ink">Trust-First Platform</div>
+                      <div className="text-[11px] text-muted">Hồ sơ Trust Profile</div>
+                    </div>
+                  </div>
+                  <p className="mt-2.5 text-xs text-muted leading-relaxed">
+                    Minh bạch với xác thực sinh viên UIT KYC, bảo chứng tiền cọc và đánh giá 2 chiều.
+                  </p>
+                  <div className="mt-3 flex items-center justify-between text-[11px] text-muted pt-2 border-t border-slate-100">
+                    <span className="text-emerald-700 font-semibold flex items-center gap-1">
+                      <CheckCircle2 className="size-3.5 text-emerald-600" /> An tâm giao dịch
+                    </span>
+                    <span className="font-mono text-[10px] text-slate-400">2-Way Rating</span>
+                  </div>
+                </motion.div>
+
+                {/* Thẻ 4: 3 Trụ cột chia sẻ */}
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  className="rounded-2xl border border-brand-100 bg-white/95 p-4 sm:p-4.5 shadow-soft backdrop-blur-md transition-all hover:border-brand-300 hover:shadow-card cursor-default"
+                >
+                  <div className="flex items-center gap-2 text-xs font-bold text-ink">
+                    <Sparkles className="size-4 text-amber-500" />
+                    <span>3 Trụ cột nguồn lực</span>
+                  </div>
+                  <div className="mt-2.5 flex items-center gap-1.5 flex-wrap">
+                    <span className="text-[11px] font-medium text-brand-700 bg-brand-50 px-2.5 py-1 rounded-lg border border-brand-200/60">
+                      📸 Thiết bị (MVP)
+                    </span>
+                    <span className="text-[11px] font-medium text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg">
+                      🎨 Kỹ năng
+                    </span>
+                    <span className="text-[11px] font-medium text-slate-700 bg-slate-100 px-2.5 py-1 rounded-lg">
+                      ⏱ Thời gian
+                    </span>
+                  </div>
+                  <p className="mt-2 text-[11px] text-muted leading-relaxed">
+                    Tối ưu hóa nguồn lực nhàn rỗi, tạo thêm thu nhập bền vững cho sinh viên.
+                  </p>
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>
