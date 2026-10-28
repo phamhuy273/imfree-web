@@ -1,29 +1,28 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Camera, CheckCircle2, Star, ShieldCheck } from "lucide-react";
 import Button from "../components/Button";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import ImagePlaceholder from "../components/ImagePlaceholder";
-import Wing from "../components/Wing";
 import { brand, highlights, modules, benefits } from "../data/content";
 
 // Hero vào lần lượt: đây là "khoảnh khắc nổi bật" duy nhất khi tải trang
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } };
+const container = { hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } } };
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
 
 export default function Home() {
   return (
     <>
       {/* ───────── HERO ───────── */}
-      <section className="relative overflow-hidden bg-[radial-gradient(60%_50%_at_85%_0%,var(--color-brand-100),transparent)] pb-20 pt-32 sm:pt-40">
-        <div className="container-x grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
+      <section className="relative overflow-hidden bg-[radial-gradient(60%_50%_at_85%_0%,var(--color-brand-100),transparent)] pb-16 pt-24 sm:pt-28 lg:pt-32">
+        <div className="container-x grid items-center gap-10 lg:gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <motion.div variants={container} initial="hidden" animate="show">
             <motion.span
               variants={item}
-              className="inline-block rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-6"
+              className="inline-block rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-4"
             >
               Nền tảng chia sẻ nguồn lực nhàn rỗi cho sinh viên
             </motion.span>
@@ -32,11 +31,11 @@ export default function Home() {
               Biến Nguồn Lực Nhàn Rỗi Thành Giá Trị Thực
             </motion.h1>
 
-            <motion.p variants={item} className="lead mt-6">
+            <motion.p variants={item} className="lead mt-4">
               ImFree kết nối sinh viên sở hữu tài sản, kỹ năng và thời gian nhàn rỗi với những ai đang có nhu cầu. Giao dịch an tâm với hệ thống xác thực sinh viên, giữ cọc và tích lũy điểm uy tín.
             </motion.p>
 
-            <motion.div variants={item} className="mt-9 flex flex-wrap gap-3">
+            <motion.div variants={item} className="mt-7 flex flex-wrap gap-3">
               <Button to="/tinh-nang">
                 Khám phá tính năng <ArrowRight className="size-4" />
               </Button>
@@ -46,23 +45,80 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Ảnh hero + cánh logo trôi nhẹ */}
+          {/* Card xem trước sản phẩm thực tế ImFree (Gọn gàng, tinh tế, không tràn màn hình) */}
           <motion.div
-            className="relative mx-auto w-full max-w-md lg:max-w-none"
-            initial={{ opacity: 0, scale: 0.94 }}
+            className="relative mx-auto w-full max-w-lg lg:max-w-none"
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Wing variant="blue" className="absolute -left-10 -top-8 z-10 w-32 animate-float sm:w-40 pointer-events-none drop-shadow-md" />
-            <Wing variant="pink" className="absolute -bottom-8 -right-6 z-10 w-28 animate-float-slow sm:w-36 pointer-events-none drop-shadow-md" />
-            <div className="relative rounded-2xl overflow-hidden shadow-lift bg-white border border-brand-100 p-2">
-              <ImagePlaceholder label="Ảnh hero / Mockup ứng dụng ImFree (tỉ lệ 4:5)" className="aspect-[4/5] w-full" />
+            {/* Card chính: Listing cho thuê máy ảnh theo câu chuyện đề tài */}
+            <div className="relative rounded-2xl bg-white border border-line shadow-lift p-5 sm:p-6 overflow-hidden">
+              {/* Header card */}
+              <div className="flex items-center justify-between pb-3.5 border-b border-line mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">
+                    Sẵn sàng bàn giao
+                  </span>
+                </div>
+                <span className="text-xs font-medium text-muted">
+                  Khuôn viên Campus • KTX
+                </span>
+              </div>
+
+              {/* Product preview box */}
+              <div className="rounded-xl bg-gradient-to-br from-brand-50 to-white border border-brand-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden mb-4">
+                <div className="size-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mb-2.5 shadow-xs">
+                  <Camera className="size-7" />
+                </div>
+                <h4 className="text-base font-bold text-ink">
+                  Canon EOS 700D + Lens 18-55mm
+                </h4>
+                <p className="text-xs text-muted mt-1">
+                  Kèm thẻ nhớ 64GB, 2 pin & túi chống sốc
+                </p>
+                <div className="mt-3 inline-flex items-baseline gap-1 text-brand-700">
+                  <span className="text-xl font-extrabold">70.000đ</span>
+                  <span className="text-xs text-muted">/ ngày</span>
+                </div>
+              </div>
+
+              {/* Provider & Trust Score */}
+              <div className="flex items-center justify-between pt-1">
+                <div className="flex items-center gap-2.5">
+                  <div className="size-9 rounded-full bg-brand-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">
+                    H
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-ink">
+                      <span>Phạm Huy</span>
+                      <CheckCircle2 className="size-3.5 text-brand-600" />
+                    </div>
+                    <span className="text-[11px] text-muted">Sinh viên UIT</span>
+                  </div>
+                </div>
+
+                <div className="text-right">
+                  <div className="inline-flex items-center gap-1 text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200/60">
+                    <Star className="size-3 fill-amber-500 text-amber-500" />
+                    <span>Trust Score 98</span>
+                  </div>
+                  <div className="text-[10px] text-muted mt-0.5">14 giao dịch thành công</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating Trust Badge */}
+            <div className="hidden sm:flex absolute -bottom-3 -left-3 items-center gap-2 bg-ink text-white px-3.5 py-2 rounded-xl shadow-lg border border-white/10 text-xs font-medium">
+              <ShieldCheck className="size-4 text-emerald-400 shrink-0" />
+              <span>Bảo chứng giữ cọc (Deposit)</span>
             </div>
           </motion.div>
         </div>
 
         {/* Hàng 4 chip */}
-        <div className="container-x mt-16">
+        <div className="container-x mt-12">
           <ul className="grid grid-cols-2 gap-3 md:grid-cols-4">
             {highlights.map(({ icon: Icon, label }) => (
               <li
