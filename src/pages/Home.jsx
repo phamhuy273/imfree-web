@@ -21,12 +21,19 @@ export default function Home() {
       <section className="relative overflow-hidden bg-[radial-gradient(60%_50%_at_85%_0%,var(--color-brand-100),transparent)] pb-20 pt-32 sm:pt-40">
         <div className="container-x grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div variants={container} initial="hidden" animate="show">
+            <motion.span
+              variants={item}
+              className="inline-block rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-6"
+            >
+              Nền tảng chia sẻ nguồn lực nhàn rỗi cho sinh viên
+            </motion.span>
+
             <motion.h1 variants={item} className="h1">
-              Giải pháp kết nối & tối ưu hóa tài nguyên
+              Biến Nguồn Lực Nhàn Rỗi Thành Giá Trị Thực
             </motion.h1>
 
             <motion.p variants={item} className="lead mt-6">
-              {brand.slogan}. Nền tảng chia sẻ thiết bị, trao đổi kỹ năng và đồng hành học tập dành riêng cho sinh viên và giới trẻ.
+              ImFree kết nối sinh viên sở hữu tài sản, kỹ năng và thời gian nhàn rỗi với những ai đang có nhu cầu. Giao dịch an tâm với hệ thống xác thực sinh viên, giữ cọc và tích lũy điểm uy tín.
             </motion.p>
 
             <motion.div variants={item} className="mt-9 flex flex-wrap gap-3">

@@ -36,18 +36,24 @@ export default function About() {
           </Reveal>
           <div className="mt-10 grid gap-10 md:grid-cols-2">
             <Reveal>
-              <div className="rounded-2xl border border-line bg-brand-50/40 p-8 h-full">
+              <div className="rounded-2xl border border-line bg-brand-50/40 p-8 h-full space-y-3">
                 <h3 className="text-xl font-bold text-ink">Mục tiêu dự án</h3>
-                <p className="mt-4 max-w-[60ch] text-muted leading-relaxed">
-                  Xây dựng một nền tảng kinh tế chia sẻ an toàn và minh bạch dành cho sinh viên; giảm thiểu gánh nặng tài chính trong việc mua sắm trang thiết bị công nghệ và nâng cao tinh thần học hỏi lẫn nhau trong môi trường học thuật.
+                <p className="max-w-[60ch] text-muted leading-relaxed text-[15px]">
+                  Khởi nguồn từ bài toán thực tế: làm thế nào để sinh viên tận dụng chiếc máy ảnh, laptop hay những kỹ năng nhàn rỗi để tạo ra thu nhập mà không phải lo sợ rủi ro mất mát hay thiếu tin cậy khi giao dịch với người lạ?
+                </p>
+                <p className="max-w-[60ch] text-muted leading-relaxed text-[15px]">
+                  ImFree ra đời với sứ mệnh xây dựng nền tảng chia sẻ nguồn lực P2P chuyên biệt, lấy việc xác thực sinh viên, bảo chứng tiền cọc (Deposit) và chấm điểm uy tín (Trust Score) làm cốt lõi an toàn.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="rounded-2xl border border-line bg-brand-50/40 p-8 h-full">
-                <h3 className="text-xl font-bold text-ink">Thị trường mục tiêu</h3>
-                <p className="mt-4 max-w-[60ch] text-muted leading-relaxed">
-                  Tập trung vào cộng đồng sinh viên tại các trường đại học, cao đẳng (đặc biệt là khối ngành kỹ thuật, công nghệ), các câu lạc bộ học thuật và giới trẻ có nhu cầu sử dụng công cụ ngắn hạn với chi phí hợp lý.
+              <div className="rounded-2xl border border-line bg-brand-50/40 p-8 h-full space-y-3">
+                <h3 className="text-xl font-bold text-ink">Thị trường & Cơ hội</h3>
+                <p className="max-w-[60ch] text-muted leading-relaxed text-[15px]">
+                  Khảo sát cho thấy hơn <strong>66,7%</strong> sinh viên có từ 2–4 giờ nhàn rỗi mỗi ngày và <strong>41,4%</strong> có kỹ năng làm thêm. Trong khi đó, nhu cầu thuê thiết bị ngắn hạn (camera, máy quay, âm thanh, máy chiếu) luôn rất lớn.
+                </p>
+                <p className="max-w-[60ch] text-muted leading-relaxed text-[15px]">
+                  ImFree áp dụng chiến lược <em>Campus-first</em>, khởi đầu từ các khuôn viên đại học và ký túc xá tập trung, từng bước hình thành mạng lưới chia sẻ nguồn lực liên trường (cross-campus) bền vững.
                 </p>
               </div>
             </Reveal>
