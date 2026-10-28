@@ -19,44 +19,43 @@ export default function About() {
           </Button>
         </div>
         <div className="container-x mt-10 sm:mt-12">
-          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl border border-brand-200/80 bg-gradient-to-b from-brand-50/70 via-white to-brand-50/30 p-5 sm:p-7 shadow-[0_20px_50px_-15px_rgba(42,86,204,0.12)]">
-            {/* Vòng hào quang sáng màu xanh nhạt thương hiệu phía sau */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-96 rounded-full bg-brand-400/10 blur-3xl pointer-events-none" />
-
-            {/* Header thông tin nhanh của card */}
-            <div className="relative z-20 flex items-center justify-between gap-3 pb-3.5 border-b border-brand-100 flex-wrap">
-              <div className="flex items-center gap-2.5">
-                <span className="flex size-2 rounded-full bg-brand-600 animate-pulse" />
-                <span className="text-xs sm:text-sm font-bold text-ink">Đội ngũ sáng lập ImFree</span>
-                <span className="text-xs text-muted hidden sm:inline">• Đại học Công nghệ Thông tin (UIT)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] font-semibold text-brand-700 bg-brand-100/70 px-2.5 py-0.5 rounded-full border border-brand-200/80">
-                  5 Thành viên
-                </span>
-                <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">
-                  Pilot Campus 2026
-                </span>
-              </div>
-            </div>
-
-            {/* Hình ảnh đội ngũ 5 thành viên UIT (Nền sáng, to rõ, chiếm trọn khung hình) */}
-            <div className="relative z-10 flex justify-center pt-4 sm:pt-6">
+          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-2 sm:p-3 shadow-card">
+            <div className="relative overflow-hidden rounded-2xl group">
+              {/* Ảnh gốc đầy đủ khuôn viên trường UIT và 5 thành viên */}
               <img
-                src="/team-uit.png"
-                alt="Đội ngũ 5 thành viên UIT sáng lập nền tảng ImFree"
-                className="max-h-[380px] sm:max-h-[460px] md:max-h-[500px] w-auto max-w-full object-contain drop-shadow-[0_15px_30px_rgba(42,86,204,0.14)]"
+                src="/team-uit-campus.jpg"
+                alt="Đội ngũ 5 thành viên UIT sáng lập nền tảng ImFree tại khuôn viên trường"
+                className="w-full h-auto object-cover block transition duration-500 group-hover:scale-[1.01]"
               />
-            </div>
 
-            {/* Chân thẻ: Thông điệp giá trị */}
-            <div className="relative z-20 mt-3 rounded-2xl bg-white/95 backdrop-blur-xs border border-brand-100/90 p-3.5 sm:p-4 text-center shadow-xs">
-              <p className="text-xs sm:text-sm font-semibold text-ink">
-                Nhóm sinh viên UIT tiên phong xây dựng giải pháp kinh tế chia sẻ nguồn lực trong khuôn viên đại học
-              </p>
-              <p className="text-[11px] sm:text-xs text-muted mt-1">
-                Xuất phát từ nhu cầu thực tế của 105 sinh viên UIT — Kết nối thiết bị, kỹ năng & thời gian an tâm và minh bạch
-              </p>
+              {/* Huy hiệu góc trên bên trái: Tên đội ngũ */}
+              <div className="absolute top-3 left-3 sm:top-5 sm:left-5 z-20 flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-md border border-white/80 px-3.5 py-1.5 text-xs text-ink shadow-soft">
+                <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-bold">Đội ngũ ImFree</span>
+                <span className="text-muted hidden sm:inline">• UIT - ĐHQG-HCM</span>
+              </div>
+
+              {/* Huy hiệu góc trên bên phải: Giai đoạn dự án */}
+              <div className="absolute top-3 right-3 sm:top-5 sm:right-5 z-20 flex items-center gap-1.5 rounded-full bg-brand-600/90 backdrop-blur-md border border-white/20 px-3.5 py-1.5 text-xs font-semibold text-white shadow-soft">
+                <span>Pilot Campus 2026</span>
+              </div>
+
+              {/* Thanh phụ đề nổi mờ ở chân ảnh */}
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-transparent p-4 sm:p-6 pt-14 flex flex-wrap items-end justify-between gap-3 text-white">
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold text-white drop-shadow-xs">
+                    Đội ngũ 5 thành viên sáng lập ImFree
+                  </h3>
+                  <p className="text-xs text-slate-200/95 mt-0.5 drop-shadow-xs">
+                    Sinh viên Trường Đại học Công nghệ Thông tin — ĐHQG-HCM
+                  </p>
+                </div>
+                <div className="hidden sm:flex items-center gap-2">
+                  <span className="text-xs bg-white/20 backdrop-blur-md px-3 py-1 rounded-full border border-white/30 font-medium">
+                    Kinh tế chia sẻ nguồn lực sinh viên
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
