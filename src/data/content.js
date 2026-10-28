@@ -207,11 +207,41 @@ export const stage3Resolution = [
 // 3. TRANG VỀ CHÚNG TÔI: ĐỘI NGŨ & GIÁ TRỊ CỐT LÕI (SLIDE 1, 27, 28)
 // =========================================================================
 export const team = [
-  { name: "Phạm Viết Quang Huy", major: "Khoa học Máy tính - UIT", role: "Đồng sáng lập / Trưởng nhóm" },
-  { name: "Thành viên nhóm 2", major: "Kỹ thuật Phần mềm - UIT", role: "Frontend & Mobile Developer" },
-  { name: "Thành viên nhóm 3", major: "Công nghệ Thông tin - UIT", role: "UI/UX Designer" },
-  { name: "Thành viên nhóm 4", major: "Hệ thống Thông tin - UIT", role: "Backend & Data Architect" },
-  { name: "Thành viên nhóm 5", major: "An toàn Thông tin - UIT", role: "Trust & Safety Specialist" },
+  {
+    name: "Phạm Viết Quang Huy",
+    initials: "QH",
+    major: "Kỹ thuật Phần mềm - UIT",
+    role: "Thành viên",
+    isLead: false,
+  },
+  {
+    name: "Phạm Tuyết Ngân",
+    initials: "TN",
+    major: "Thương mại điện tử - UIT",
+    role: "Thành viên",
+    isLead: false,
+  },
+  {
+    name: "Nguyễn Đặng Phước",
+    initials: "ĐP",
+    major: "Thương mại điện tử - UIT",
+    role: "Trưởng nhóm",
+    isLead: true,
+  },
+  {
+    name: "Nguyễn Ngọc Thu Trâm",
+    initials: "TT",
+    major: "Thương mại điện tử - UIT",
+    role: "Thành viên",
+    isLead: false,
+  },
+  {
+    name: "Phạm Lê Công Thanh",
+    initials: "CT",
+    major: "Thương mại điện tử - UIT",
+    role: "Thành viên",
+    isLead: false,
+  },
 ];
 
 export const values = [

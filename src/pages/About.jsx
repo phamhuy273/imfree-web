@@ -3,7 +3,6 @@ import teamCampusPhoto from "../assets/team-uit-campus.jpg";
 import Button from "../components/Button";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
-import ImagePlaceholder from "../components/ImagePlaceholder";
 import { team, values } from "../data/content";
 
 export default function About() {
@@ -230,21 +229,36 @@ export default function About() {
               text="Nhóm sinh viên trường Đại học Công nghệ Thông tin (UIT) chủ động phát triển phiên bản MVP phục vụ Pilot có kiểm soát."
             />
           </Reveal>
-          <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4.5">
             {team.map((m, i) => (
-              <Reveal key={m.name} delay={i * 0.06}>
-                <article className="group text-center bg-white p-5 rounded-2xl border border-line shadow-xs transition duration-300 hover:-translate-y-1 hover:shadow-soft flex flex-col justify-between h-full">
-                  <div>
-                    <ImagePlaceholder
-                      label="Ảnh"
-                      className="aspect-[4/5] w-full transition duration-300 group-hover:scale-[1.02] mb-4"
-                    />
-                    <h3 className="font-bold text-ink text-base">{m.name}</h3>
-                    <p className="text-xs text-brand-600 font-medium mt-1">{m.major}</p>
+              <Reveal key={m.name} delay={i * 0.05}>
+                <article className="group text-center bg-white p-5 rounded-2xl border border-line shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-card hover:border-brand-200 flex flex-col justify-between items-center h-full">
+                  <div className="w-full">
+                    {/* Chữ cái viết tắt đại diện tên */}
+                    <div className="size-12 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100/60 border border-brand-200/60 flex items-center justify-center text-brand-700 font-bold text-sm mx-auto mb-3.5 shadow-2xs group-hover:scale-105 transition-transform">
+                      {m.initials}
+                    </div>
+                    {/* Tên thành viên */}
+                    <h3 className="font-bold text-ink text-base leading-snug group-hover:text-brand-600 transition-colors">
+                      {m.name}
+                    </h3>
+                    {/* Ngành học */}
+                    <p className="text-xs text-muted font-medium mt-1.5 leading-relaxed">
+                      {m.major}
+                    </p>
                   </div>
-                  <span className="mt-3 text-[11px] text-muted bg-slate-100 py-1 px-2 rounded-full inline-block">
-                    {m.role}
-                  </span>
+                  {/* Vai trò */}
+                  <div className="mt-4 pt-3 border-t border-slate-100 w-full flex justify-center">
+                    <span
+                      className={`text-xs px-3 py-1 rounded-full font-semibold transition-colors ${
+                        m.isLead
+                          ? "bg-brand-600 text-white shadow-soft"
+                          : "bg-slate-100 text-slate-600 group-hover:bg-brand-50 group-hover:text-brand-700"
+                      }`}
+                    >
+                      {m.role}
+                    </span>
+                  </div>
                 </article>
               </Reveal>
             ))}
