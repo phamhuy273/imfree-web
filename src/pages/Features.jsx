@@ -59,19 +59,32 @@ export default function Features() {
       }
       lastScrollY = currentScrollY;
 
-      // ScrollSpy: Tự động cập nhật giai đoạn theo vị trí cuộn
-      const stageIds = ["stage-1", "stage-2", "stage-3"];
-      const scrollPosition = currentScrollY + 240;
+      // Kiểm tra nếu cuộn xuống gần cuối trang thì tự động chọn giai đoạn cuối cùng
+      const isBottom =
+        window.innerHeight + currentScrollY >=
+        document.documentElement.scrollHeight - 60;
+      if (isBottom) {
+        setActiveStageId("stage-3");
+        return;
+      }
 
-      for (let i = stageIds.length - 1; i >= 0; i--) {
+      // ScrollSpy: Dùng getBoundingClientRect() để đo vị trí thực tế so với khung nhìn (Viewport)
+      // Điểm kích hoạt chuẩn: 200px từ đỉnh màn hình (ngay dưới thanh Stepper đang neo)
+      const stageIds = ["stage-1", "stage-2", "stage-3"];
+      const triggerPoint = 200;
+
+      let currentActive = "stage-1";
+      for (let i = 0; i < stageIds.length; i++) {
         const el = document.getElementById(stageIds[i]);
         if (el) {
-          if (scrollPosition >= el.offsetTop) {
-            setActiveStageId(stageIds[i]);
-            break;
+          const rect = el.getBoundingClientRect();
+          // Chỉ khi giai đoạn đó thực sự cuộn lên tới điểm đọc (triggerPoint) thì mới chuyển
+          if (rect.top <= triggerPoint) {
+            currentActive = stageIds[i];
           }
         }
       }
+      setActiveStageId(currentActive);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
