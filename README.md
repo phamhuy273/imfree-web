@@ -48,22 +48,11 @@ npm run dev
 ```
 Trình duyệt sẽ mở tại `http://localhost:5173`. Bạn có thể vừa sửa vừa xem trực tiếp kết quả (Hot Reloading).
 
-### 2. Đóng gói để đưa lên Hosting BKNS
+### 2. Đóng gói dự án (Build Production)
 ```bash
 npm run build
 ```
 Lệnh này sẽ tạo ra thư mục **`dist/`** chứa các file HTML, CSS và JavaScript hoàn chỉnh (chỉ nặng khoảng ~350 KB).
-
----
-
-## 🌐 Hướng Dẫn Đưa Lên Hosting BKNS (Không Cần Vercel)
-
-1. Đăng nhập vào trang quản trị **BKNS Control Panel** (màn hình bạn đã có).
-2. Nhấp vào biểu tượng **File Manager**.
-3. Mở thư mục **`public_html`**.
-4. Xóa các file mặc định có sẵn trong `public_html` (nếu có).
-5. Tải toàn bộ các file và thư mục nằm **bên trong thư mục `dist`** lên thư mục `public_html`.
-6. Quay lại trang chủ BKNS Control Panel -> Bấm vào **SSL Certificates** -> Chọn bật SSL miễn phí (Let's Encrypt) cho tên miền `imfree.id.vn`.
 
 ---
 
