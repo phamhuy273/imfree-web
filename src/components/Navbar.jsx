@@ -75,18 +75,18 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Huy hiệu giá trị cốt lõi: Connect • Share • Value với hiệu ứng radar ping */}
-        <div className="hidden md:flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-brand-50/50 via-white to-emerald-50/40 border border-slate-200/90 shadow-[0_1px_3px_rgba(15,26,51,0.06),0_1px_2px_rgba(15,26,51,0.03)] text-xs select-none backdrop-blur-md hover:border-brand-200/80 transition-all duration-300">
+        {/* Huy hiệu giá trị cốt lõi: Connect • Share • Value đồng bộ, tinh tế */}
+        <div className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100/80 border border-slate-200/80 shadow-2xs text-xs select-none backdrop-blur-md hover:bg-white hover:border-brand-200/80 transition-all duration-200">
           <span className="relative flex size-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 duration-1000" />
-            <span className="relative inline-flex size-2 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
+            <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
           </span>
-          <div className="flex items-center gap-1.5 text-xs font-bold tracking-tight">
-            <span className="text-brand-700">Connect</span>
-            <span className="text-slate-300 text-[10px]">•</span>
-            <span className="text-accent-600">Share</span>
-            <span className="text-slate-300 text-[10px]">•</span>
-            <span className="text-emerald-600">Value</span>
+          <div className="flex items-center gap-1.5 text-xs font-semibold tracking-tight text-slate-600">
+            <span>Connect</span>
+            <span className="text-slate-300 font-normal">•</span>
+            <span>Share</span>
+            <span className="text-slate-300 font-normal">•</span>
+            <span>Value</span>
           </div>
         </div>
 
@@ -124,17 +124,17 @@ export default function Navbar() {
                   {l.label}
                 </NavLink>
               ))}
-              <div className="mt-3 flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-gradient-to-r from-brand-50/50 via-white to-emerald-50/40 border border-slate-200/80 text-xs shadow-2xs">
+              <div className="mt-3 flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs shadow-2xs">
                 <span className="relative flex size-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
+                  <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
                 </span>
-                <div className="flex items-center gap-1.5 text-xs font-bold tracking-tight">
-                  <span className="text-brand-700">Connect</span>
-                  <span className="text-slate-300 text-[10px]">•</span>
-                  <span className="text-accent-600">Share</span>
-                  <span className="text-slate-300 text-[10px]">•</span>
-                  <span className="text-emerald-600">Value</span>
+                <div className="flex items-center gap-1.5 text-xs font-semibold tracking-tight text-slate-600">
+                  <span>Connect</span>
+                  <span className="text-slate-300 font-normal">•</span>
+                  <span>Share</span>
+                  <span className="text-slate-300 font-normal">•</span>
+                  <span>Value</span>
                 </div>
               </div>
             </div>
