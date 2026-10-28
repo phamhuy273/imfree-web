@@ -163,7 +163,7 @@ export default function AppWindow() {
         </div>
 
         {/* Danh sách 3 thẻ sản phẩm đúng chuẩn hình ảnh cung cấp */}
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filteredItems.map((item) => {
             const isLiked = likedItems[item.id];
 
@@ -171,13 +171,13 @@ export default function AppWindow() {
               <motion.article
                 key={item.id}
                 layout
-                whileHover={{ y: -4 }}
+                whileHover={{ y: -3 }}
                 transition={{ duration: 0.2 }}
                 onClick={() => setSelectedItem(item)}
-                className="group relative flex items-center gap-3.5 rounded-2xl border border-line bg-white p-3.5 sm:p-4 shadow-xs hover:border-brand-300 hover:shadow-card transition-all cursor-pointer overflow-hidden"
+                className="group relative flex items-center gap-3 rounded-2xl border border-line bg-white p-3 sm:p-3.5 shadow-xs hover:border-brand-300 hover:shadow-card transition-all cursor-pointer overflow-hidden"
               >
                 {/* Ảnh đại diện sản phẩm */}
-                <div className="size-20 sm:size-22 rounded-xl overflow-hidden shrink-0 bg-slate-50 border border-slate-100 shadow-2xs">
+                <div className="size-18 sm:size-20 rounded-xl overflow-hidden shrink-0 bg-slate-50 border border-slate-100 shadow-2xs">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -189,29 +189,29 @@ export default function AppWindow() {
                 <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch py-0.5">
                   {/* Hàng 1: Tiêu đề + Nút thả tim */}
                   <div className="flex items-start justify-between gap-1">
-                    <h4 className="text-sm sm:text-base font-bold text-ink truncate group-hover:text-brand-600 transition-colors">
+                    <h4 className="text-sm font-bold text-ink truncate group-hover:text-brand-600 transition-colors">
                       {item.title}
                     </h4>
                     <button
                       onClick={(e) => toggleItemLike(item.id, e)}
-                      className={`size-7 sm:size-8 rounded-full flex items-center justify-center shrink-0 transition-colors cursor-pointer ${
+                      className={`size-7 rounded-full flex items-center justify-center shrink-0 transition-colors cursor-pointer ${
                         isLiked
                           ? "bg-rose-50 text-rose-500"
                           : "bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-500"
                       }`}
                       aria-label="Yêu thích"
                     >
-                      <Heart className={`size-3.5 sm:size-4 ${isLiked ? "fill-rose-500" : ""}`} />
+                      <Heart className={`size-3.5 ${isLiked ? "fill-rose-500" : ""}`} />
                     </button>
                   </div>
 
                   {/* Hàng 2: Giá thuê */}
-                  <div className="text-sm sm:text-base font-extrabold text-brand-600 -mt-0.5">
-                    {item.price} <span className="text-xs font-semibold text-brand-500/90">{item.unit}</span>
+                  <div className="text-sm font-extrabold text-brand-600 -mt-0.5">
+                    {item.price} <span className="text-[11px] font-semibold text-brand-500/90">{item.unit}</span>
                   </div>
 
                   {/* Hàng 3: Đánh giá sao bên trái + Địa điểm bên phải */}
-                  <div className="flex items-center justify-between text-[11px] sm:text-xs text-muted mt-1 pt-1 border-t border-slate-100">
+                  <div className="flex items-center justify-between text-[11px] text-muted mt-1 pt-1 border-t border-slate-100">
                     <div className="flex items-center gap-1 text-amber-600 font-semibold">
                       <Star className="size-3 fill-amber-400 text-amber-400" />
                       <span>{item.rating}</span>
@@ -220,7 +220,7 @@ export default function AppWindow() {
 
                     <div className="flex items-center gap-1 text-slate-500">
                       <MapPin className="size-3 text-slate-400 shrink-0" />
-                      <span className="truncate">{item.location}</span>
+                      <span className="truncate max-w-[80px]">{item.location}</span>
                     </div>
                   </div>
                 </div>
@@ -230,7 +230,7 @@ export default function AppWindow() {
         </div>
 
         {/* Hướng dẫn tương tác nhanh */}
-        <div className="mt-6 flex items-center justify-between text-xs text-muted pt-4 border-t border-line/50 flex-wrap gap-2">
+        <div className="mt-5 flex items-center justify-between text-xs text-muted pt-3.5 border-t border-line/50 flex-wrap gap-2">
           <div className="flex items-center gap-1.5 text-brand-700 font-medium">
             <Sparkles className="size-3.5 text-brand-600" />
             <span>Mô phỏng ứng dụng thực tế: Bạn có thể lọc danh mục hoặc tìm kiếm để tương tác trực tiếp!</span>
@@ -239,53 +239,60 @@ export default function AppWindow() {
         </div>
       </div>
 
-      {/* 3. MODAL CHI TIẾT KHI BẤM CHỌN TÀI SẢN (Interactive Detail Drawer) */}
+      {/* 3. MODAL CHI TIẾT KHI BẤM CHỌN TÀI SẢN (Interactive Detail Drawer) - Nhỏ gọn, tinh tế */}
       <AnimatePresence>
         {selectedItem && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div
+            onClick={() => setSelectedItem(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs"
+          >
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              initial={{ opacity: 0, scale: 0.95, y: 12 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
-              className="relative w-full max-w-md rounded-3xl bg-white p-6 shadow-card border border-line"
+              exit={{ opacity: 0, scale: 0.95, y: 12 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-[360px] rounded-2xl bg-white p-4.5 shadow-2xl border border-slate-200"
             >
-              <div className="flex items-start justify-between">
-                <div className="size-16 rounded-2xl overflow-hidden bg-slate-50 border border-slate-200/80 shrink-0">
-                  <img src={selectedItem.image} alt="" className="size-full object-cover" />
+              {/* Header: Thumbnail + Tên + Badge + Nút đóng */}
+              <div className="flex items-start gap-3">
+                <div className="size-13 rounded-xl overflow-hidden bg-slate-50 border border-slate-200/80 shrink-0 shadow-2xs">
+                  <img src={selectedItem.image} alt={selectedItem.title} className="size-full object-cover" />
+                </div>
+                <div className="flex-1 min-w-0 pr-1">
+                  <span className="inline-block text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full mb-1 border border-emerald-100">
+                    {selectedItem.status}
+                  </span>
+                  <h3 className="text-sm sm:text-base font-bold text-ink truncate leading-snug">{selectedItem.title}</h3>
+                  <p className="text-[11px] text-muted line-clamp-1 mt-0.5">{selectedItem.subtitle}</p>
                 </div>
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="size-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:text-ink cursor-pointer"
+                  className="size-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-400 hover:text-ink transition cursor-pointer shrink-0 -mt-0.5 -mr-0.5"
+                  aria-label="Đóng"
                 >
                   ✕
                 </button>
               </div>
 
-              <div className="mt-4">
-                <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">
-                  {selectedItem.status}
-                </span>
-                <h3 className="text-lg font-bold text-ink mt-2">{selectedItem.title}</h3>
-                <p className="text-xs text-muted mt-1">{selectedItem.subtitle}</p>
-              </div>
-
-              <div className="mt-4 p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 space-y-2 text-xs">
-                <div className="flex justify-between">
+              {/* Thông số giao dịch */}
+              <div className="mt-3 p-3 rounded-xl bg-slate-50/80 border border-slate-200/70 space-y-1.5 text-xs">
+                <div className="flex justify-between items-center">
                   <span className="text-muted">Giá niêm yết:</span>
-                  <span className="font-bold text-brand-600">{selectedItem.price}{selectedItem.unit}</span>
+                  <span className="font-bold text-brand-600">{selectedItem.price} <span className="font-normal text-muted">{selectedItem.unit}</span></span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <span className="text-muted">Tiền đặt cọc (Deposit):</span>
                   <span className="font-semibold text-ink">{selectedItem.deposit}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <span className="text-muted">Địa điểm bàn giao:</span>
                   <span className="font-semibold text-ink flex items-center gap-1">
                     <MapPin className="size-3 text-slate-400" />
                     {selectedItem.location}
                   </span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <span className="text-muted">Chủ tài sản / Cung cấp:</span>
                   <span className="font-semibold text-ink flex items-center gap-1">
                     {selectedItem.provider} <CheckCircle2 className="size-3 text-brand-600" />
@@ -293,19 +300,20 @@ export default function AppWindow() {
                 </div>
               </div>
 
-              <div className="mt-5 flex gap-3">
+              {/* Nút hành động */}
+              <div className="mt-3.5 flex gap-2">
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="flex-1 py-2.5 rounded-full border border-line text-sm font-semibold text-ink hover:bg-slate-50 transition cursor-pointer"
+                  className="flex-1 py-2 rounded-xl border border-line text-xs font-semibold text-ink hover:bg-slate-50 transition cursor-pointer"
                 >
                   Đóng
                 </button>
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="flex-1 py-2.5 rounded-full bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700 transition shadow-soft cursor-pointer flex items-center justify-center gap-1.5"
+                  className="flex-1 py-2 rounded-xl bg-brand-600 text-white text-xs font-semibold hover:bg-brand-700 transition shadow-soft cursor-pointer flex items-center justify-center gap-1.5"
                 >
                   <span>Gửi Booking</span>
-                  <ArrowRight className="size-4" />
+                  <ArrowRight className="size-3.5" />
                 </button>
               </div>
             </motion.div>
