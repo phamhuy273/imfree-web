@@ -63,9 +63,6 @@ function AnimatedMetric({ item, index }) {
             <span className="grid size-11 place-items-center rounded-xl bg-accent-500/10 text-accent-600 group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300 shadow-2xs">
               <Icon className="size-5" aria-hidden="true" />
             </span>
-            <span className="text-[11px] font-semibold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-100/60 font-mono">
-              UIT Survey
-            </span>
           </div>
 
           <div className="flex items-baseline gap-1">

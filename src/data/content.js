@@ -64,22 +64,22 @@ export const modules = [
   {
     icon: Camera,
     title: "Asset Sharing — Trọng tâm phiên bản MVP",
-    text: "Tập trung giải quyết bài toán cho thuê tài sản nhàn rỗi (máy ảnh, camera, thiết bị âm thanh, máy chiếu...) nhằm kiểm chứng mô hình ban đầu tại trường đại học.",
+    text: "Tập trung giải quyết bài toán chia sẻ tài sản nhàn rỗi (máy ảnh, thiết bị học tập, công nghệ) nhằm tối ưu chi phí và kiểm chứng mô hình trong khuôn viên trường.",
   },
   {
     icon: ShieldCheck,
-    title: "Quy trình giao dịch có kiểm soát rủi ro",
-    text: "Kiểm soát xuyên suốt: Trước giao dịch (xác minh & thỏa thuận) → Trong giao dịch (ghi nhận bằng chứng) → Sau giao dịch (đối chiếu tình trạng) → Khi có tranh chấp (hỗ trợ xử lý).",
+    title: "Quy trình giao dịch kiểm soát rủi ro",
+    text: "Bảo vệ toàn diện qua 4 mốc: Thỏa thuận điều khoản minh bạch, ghi nhận ảnh hiện trạng trước khi dùng, đối chiếu khi hoàn trả và hỗ trợ hòa giải nếu phát sinh tranh chấp.",
   },
   {
     icon: Star,
     title: "Xây dựng niềm tin trong cộng đồng sinh viên",
-    text: "Chu trình uy tín khép kín: Giao dịch → Hoàn tất & Đánh giá 5 sao → Lịch sử giao dịch → Trust Profile → Tạo độ tin cậy vững chắc cho các giao dịch tiếp theo.",
+    text: "Chu trình uy tín khép kín: Mỗi giao dịch hoàn tất được ghi nhận vào hồ sơ Trust Profile 5 sao, tạo cơ sở bảo chứng vững chắc cho các giao dịch tiếp theo.",
   },
   {
     icon: Clock,
     title: "Skill & Time Sharing — Định hướng mở rộng sau",
-    text: "Sau khi Pilot thành công tại UIT, hệ thống sẽ mở rộng khai thác thêm 2 nguồn lực nhàn rỗi: Dịch vụ kỹ năng chuyên môn và 2–4 giờ thời gian rảnh mỗi ngày của sinh viên.",
+    text: "Mở rộng khai thác 2 nguồn lực nhàn rỗi tiềm năng: Dịch vụ kỹ năng chuyên môn (gia sư, thiết kế, lập trình) và thời gian rảnh mỗi ngày của sinh viên.",
   },
 ];
 
