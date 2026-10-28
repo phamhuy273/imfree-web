@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import AppWindow from "../components/AppWindow";
 import Reveal from "../components/Reveal";
 import { stage1Discover, stage2Exchange, stage3Resolution } from "../data/content";
-import { Search, ShieldCheck, Scale, AlertCircle } from "lucide-react";
+import { Search, ShieldCheck, Scale } from "lucide-react";
 
 const STAGES = [
   {
@@ -258,8 +258,7 @@ export default function Features() {
               <p className="lead mt-3 mx-auto">{STAGES[1].headingText}</p>
             </div>
 
-            <div className="space-y-6">
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
                 {stage2Exchange.map((item, idx) => {
                   // Hàng 1 (3 card đầu): mỗi card chiếm 2/6 cột (33.3%)
                   // Hàng 2 (2 card sau): mỗi card chiếm 3/6 cột (50%) -> lấp đầy 100% hàng, không bao giờ bị lệch
@@ -298,22 +297,6 @@ export default function Features() {
                     </Reveal>
                   );
                 })}
-              </div>
-
-              {/* Banner Quy Chuẩn Đối Chiếu Before & After Verification (Slide 16) */}
-              <Reveal delay={0.2}>
-                <div className="p-5 rounded-2xl bg-gradient-to-r from-brand-50/80 via-white to-brand-50/80 border border-brand-200/80 shadow-xs flex items-start sm:items-center gap-4 text-sm text-ink">
-                  <div className="size-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center shrink-0">
-                    <ShieldCheck className="size-5" />
-                  </div>
-                  <div className="flex-1">
-                    <strong className="text-brand-900 font-semibold">Quy chuẩn đối chiếu Before & After Verification (Slide 16):</strong>{" "}
-                    <span className="text-muted">
-                      Bắt buộc đối chiếu ảnh và checklist trước khi nhận và sau khi hoàn trả. Nếu phát hiện hư hỏng ở bước kiểm tra sau hoàn trả, hệ thống chuyển sang giai đoạn <strong>Protection & Resolution</strong> — tuyệt đối không tự động đóng giao dịch.
-                    </span>
-                  </div>
-                </div>
-              </Reveal>
             </div>
           </section>
 
@@ -327,8 +310,7 @@ export default function Features() {
               <p className="lead mt-3 mx-auto">{STAGES[2].headingText}</p>
             </div>
 
-            <div className="space-y-6">
-              <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2">
                 {stage3Resolution.map((item, idx) => (
                   <Reveal key={item.title} delay={idx * 0.06}>
                     <article className="group flex flex-col justify-between p-6 rounded-2xl border border-line bg-white shadow-xs hover:border-brand-300 hover:shadow-card hover:-translate-y-1 transition-all duration-300 h-full">
@@ -357,22 +339,6 @@ export default function Features() {
                     </article>
                   </Reveal>
                 ))}
-              </div>
-
-              {/* Banner Lưu ý Chờ xử lý (Slide 20) */}
-              <Reveal delay={0.2}>
-                <div className="p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 shadow-xs flex items-start sm:items-center gap-4 text-sm text-ink">
-                  <div className="size-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
-                    <AlertCircle className="size-5" />
-                  </div>
-                  <div className="flex-1">
-                    <strong className="text-amber-900 font-semibold">Lưu ý / Trạng thái Chờ xử lý (Slide 20):</strong>{" "}
-                    <span className="text-ink/80">
-                      Nếu bằng chứng chưa đủ hoặc hai bên chưa đạt được phương án giải quyết, vụ việc tiếp tục duy trì trạng thái <em>“Chờ xử lý”</em> — không tự động đóng vụ việc nhằm đảm bảo quyền lợi tối đa cho sinh viên.
-                    </span>
-                  </div>
-                </div>
-              </Reveal>
             </div>
           </section>
         </div>
