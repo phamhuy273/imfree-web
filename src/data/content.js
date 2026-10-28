@@ -17,8 +17,11 @@ import {
   FileCheck,
   Clock,
   Users,
-  Compass,
   Zap,
+  AlertTriangle,
+  MessageSquare,
+  ShieldAlert,
+  ClipboardCheck,
 } from "lucide-react";
 
 export const brand = {
@@ -107,105 +110,102 @@ export const benefits = [
 ];
 
 // =========================================================================
-// 2. TRANG TÍNH NĂNG: LUỒNG GIAO DỊCH 3 GIAI ĐOẠN CHÍNH (SLIDE 7-20)
+// 2. TRANG TÍNH NĂNG: TOÀN BỘ 3 GIAI ĐOẠN ĐẦY ĐỦ (SLIDE 7-20)
 // =========================================================================
 
-// Lưới 4 ô (2x2): Giai đoạn 1 Discover & Trust (Slide 8-11)
-export const discoverSteps = [
+// GIAI ĐOẠN 01: DISCOVER & TRUST (SLIDE 8-11)
+export const stage1Discover = [
   {
     icon: Search,
-    step: "01",
-    title: "1. Search & Filter — Tìm kiếm tài sản",
+    title: "Search & Filter — Tìm kiếm tài sản",
     text: "Nhập từ khóa 'camera', lọc theo mức giá, thời gian thuê và tiêu chí phù hợp. Hệ thống hiển thị danh sách tài sản đang được đăng cho thuê thay vì tìm kiếm rời rạc qua người quen.",
     tag: "Tiếp cận nguồn cung phù hợp",
   },
   {
     icon: Layers,
-    step: "02",
-    title: "2. Asset Detail — Xem chi tiết tài sản",
-    text: "Chọn tài sản để xem hình ảnh, mô tả, tình trạng, giá thuê, thời gian khả dụng và các điều kiện thuê do Provider cung cấp trước khi quyết định gửi yêu cầu.",
+    title: "Asset Detail — Xem chi tiết tài sản",
+    text: "Chọn tài sản để xem hình ảnh thực tế, mô tả thông số, tình trạng, giá thuê, thời gian khả dụng và các điều kiện thuê do Provider cung cấp trước khi gửi yêu cầu.",
     tag: "Đầy đủ thông tin đánh giá",
   },
   {
     icon: Star,
-    step: "03",
-    title: "3. Provider's Trust Profile — Đánh giá độ tin cậy",
-    text: "Xem hồ sơ Provider: trạng thái xác minh sinh viên UIT, đánh giá số sao, lịch sử giao dịch hoàn tất nhằm giảm bất cân xứng thông tin trước khi bàn giao hoặc đặt cọc.",
+    title: "Provider's Trust Profile — Đánh giá độ tin cậy",
+    text: "Xem hồ sơ Provider: trạng thái xác minh sinh viên UIT, đánh giá số sao và lịch sử giao dịch hoàn tất nhằm giảm bất cân xứng thông tin trước khi bàn giao hoặc đặt cọc.",
     tag: "Giảm bất cân xứng thông tin",
   },
   {
     icon: FileCheck,
-    step: "04",
-    title: "4. Booking Request — Gửi yêu cầu thuê",
+    title: "Booking Request — Gửi yêu cầu thuê",
     text: "Chọn thời gian thuê, gửi lời nhắn và đề xuất các thông tin cần xác nhận. Yêu cầu chuyển đến Provider để chuyển nhu cầu tìm kiếm thành yêu cầu giao dịch cụ thể.",
-    tag: "Chuyển thành giao dịch cụ thể",
+    tag: "Chuyển thành yêu cầu cụ thể",
   },
 ];
 
-// Lưới 3 card lớn: 3 Giai đoạn cốt lõi theo quy trình Slide 7
-export const transactionStages = [
+// GIAI ĐOẠN 02: SECURE EXCHANGE (SLIDE 12-16)
+export const stage2Exchange = [
   {
-    icon: Search,
-    stageNum: "Giai đoạn 01",
-    title: "Discover & Trust (Khám phá & Tin cậy)",
-    text: "Giúp người dùng tìm kiếm tài sản nhàn rỗi phù hợp và đánh giá độ tin cậy của đối tác thông qua bộ lọc thông minh và hồ sơ Trust Profile sinh viên.",
-    featurePoint: "Kết nối cung - cầu minh bạch",
+    icon: CheckCircle2,
+    title: "Agreement — Xác nhận thỏa thuận",
+    text: "Provider chấp nhận yêu cầu. Hai bên thống nhất thời gian, địa điểm bàn giao/hoàn trả, giá thuê, tiền đặt cọc (Deposit) và điều kiện liên quan trên ứng dụng trước khi thanh toán.",
+    tag: "Thống nhất điều khoản rõ ràng",
+  },
+  {
+    icon: Camera,
+    title: "Before Verification — Tình trạng ban đầu",
+    text: "Provider chụp ảnh và hoàn thành checklist phụ kiện. Seeker kiểm tra khi nhận rồi xác nhận đã nhận tài sản — mốc ghi nhận chính thức trước khi sử dụng.",
+    tag: "Mốc quan trọng: Trước sử dụng",
+  },
+  {
+    icon: Clock,
+    title: "Usage & Grace Period — Sử dụng & đối soát",
+    text: "Thời gian thuê bắt đầu sau khi xác nhận nhận tài sản. Grace Period là khoảng thời gian quy định trước để kiểm tra hoạt động và báo lỗi sau bàn giao.",
+    tag: "Khoảng thời gian kiểm tra an tâm",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "After Verification & Return — Ghi nhận & hoàn trả",
+    text: "Seeker chụp ảnh, hoàn thành checklist trước khi trả. Provider đối chiếu ảnh và checklist ban đầu rồi xác nhận đã nhận lại tài sản.",
+    tag: "Mốc quan trọng: Đối chiếu khi trả",
   },
   {
     icon: ShieldCheck,
-    stageNum: "Giai đoạn 02",
-    title: "Secure Exchange (Giao dịch an toàn)",
-    text: "Quản lý xuyên suốt: Xác nhận thỏa thuận (Agreement) → Tình trạng ban đầu (Before Verification) → Sử dụng & Grace Period → Đối chiếu khi hoàn trả (After Verification) → Kiểm tra hoàn tất.",
-    featurePoint: "Ghi nhận mốc trước & sau khi dùng",
+    title: "Inspection & Completion — Kiểm tra & hoàn tất",
+    text: "Provider kiểm tra sau hoàn trả. Không có vấn đề: hai bên đánh giá sao và kết thúc giao dịch, giải phóng tiền cọc. Có hư hỏng: chuyển sang Protection & Resolution.",
+    tag: "Nghiệm thu & Giải phóng cọc",
+  },
+];
+
+// GIAI ĐOẠN 03: PROTECTION & RESOLUTION (SLIDE 17-20)
+export const stage3Resolution = [
+  {
+    icon: AlertTriangle,
+    title: "Open Dispute — Mở tranh chấp",
+    text: "Gửi yêu cầu, mô tả sự cố phát sinh và cung cấp ảnh, video, checklist hoặc thời điểm phát hiện. Đầu vào: loại sự cố, mô tả chi tiết và bằng chứng ban đầu.",
+    tag: "Tiếp nhận khiếu nại minh bạch",
+  },
+  {
+    icon: Layers,
+    title: "Evidence Review — Đối chiếu & phân loại",
+    text: "Đối chiếu tình trạng trước-sau (Before vs After Verification), điều khoản thỏa thuận và phản hồi hai bên; phân loại lỗi sau khi nhận, hư hỏng khi hoàn trả hoặc thiếu phụ kiện.",
+    tag: "Xác định bản chất bằng chứng",
   },
   {
     icon: Scale,
-    stageNum: "Giai đoạn 03",
-    title: "Protection & Resolution (Bảo vệ & Xử lý)",
-    text: "Tiếp nhận và hỗ trợ xử lý các sự cố, tranh chấp phát sinh (Open Dispute → Evidence Review → Negotiation & Mediation → Resolution & Settlement) có căn cứ bằng chứng rõ ràng.",
-    featurePoint: "Bảo vệ giao dịch bằng bằng chứng",
+    title: "Negotiation & Mediation — Thương lượng",
+    text: "Hai bên trao đổi phương án giải quyết. Nếu chưa thống nhất, ImFree xem xét hồ sơ, đối chiếu chính sách nền tảng và đề xuất hướng xử lý phù hợp dựa trên bằng chứng.",
+    tag: "Hòa giải dựa trên bằng chứng",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Resolution & Case Closure — Kết quả & đóng vụ việc",
+    text: "Ghi nhận trạng thái; lập settlement gồm khắc phục hoặc bồi hoàn (nếu có). Hoàn tất thì đóng và lưu vào lịch sử, hồ sơ uy tín. Nếu chưa đủ bằng chứng: giữ trạng thái 'Chờ xử lý'.",
+    tag: "Lập Settlement & Cập nhật uy tín",
   },
 ];
 
 // =========================================================================
-// 3. TRANG VỀ CHÚNG TÔI: TÍNH KHẢ THI, COLD-START & KẾT LUẬN (SLIDE 21-29)
+// 3. TRANG VỀ CHÚNG TÔI: ĐỘI NGŨ & GIÁ TRỊ CỐT LÕI (SLIDE 1, 27, 28)
 // =========================================================================
-
-// Động cơ thanh khoản xử lý Cold-start của P2P (Slide 25)
-export const liquidityEngineSteps = [
-  {
-    step: "01",
-    code: "CHOOSE MICRO-MARKET",
-    title: "Khoanh vùng tại UIT",
-    desc: "Tập trung trước mắt vào các câu lạc bộ, đội thi học thuật và ban tổ chức sự kiện sinh viên tại trường.",
-  },
-  {
-    step: "02",
-    code: "DEMAND MAP FIRST",
-    title: "Gom nhu cầu thực tế trước",
-    desc: "Xác định các thiết bị có nhu cầu thuê thực tế cao (máy ảnh, camera, âm thanh) thay vì kêu gọi đăng đồ đại trà.",
-  },
-  {
-    step: "03",
-    code: "SEED MATCHING SUPPLY",
-    title: "Chủ động tuyển Provider",
-    desc: "Khi có nhu cầu cụ thể mới chủ động tìm kiếm các bạn sinh viên đang có tài sản nhàn rỗi phù hợp.",
-  },
-  {
-    step: "04",
-    code: "CONCIERGE MATCHING",
-    title: "Ghép nối & hỗ trợ trực tiếp",
-    desc: "Nhóm sáng lập trực tiếp mai mối, hướng dẫn bàn giao, kiểm tra tình trạng ban đầu để đảm bảo giao dịch an toàn.",
-  },
-  {
-    step: "05",
-    code: "EXPAND ONLY WHEN LIQUID",
-    title: "Mở rộng khi cụm đã trơn tru",
-    desc: "Chỉ mở rộng sang các trường thuộc ĐHQG-HCM và KTX khi cụm giao dịch tại UIT vận hành ổn định và có khách quay lại.",
-  },
-];
-
-// Đội ngũ sáng lập: Đội ngũ 5 thành viên UIT (Slide 28)
 export const team = [
   { name: "Phạm Viết Quang Huy", major: "Khoa học Máy tính - UIT", role: "Đồng sáng lập / Trưởng nhóm" },
   { name: "Thành viên nhóm 2", major: "Kỹ thuật Phần mềm - UIT", role: "Frontend & Mobile Developer" },
@@ -214,7 +214,6 @@ export const team = [
   { name: "Thành viên nhóm 5", major: "An toàn Thông tin - UIT", role: "Trust & Safety Specialist" },
 ];
 
-// Giá trị cốt lõi & Tính khả thi (Slide 1, 27, 28)
 export const values = [
   {
     icon: Layers,
