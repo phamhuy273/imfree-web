@@ -239,7 +239,7 @@ export default function AppWindow() {
         </div>
       </div>
 
-      {/* 3. MODAL CHI TIẾT KHI BẤM CHỌN TÀI SẢN (Interactive Detail Drawer) - Nhỏ gọn, tinh tế */}
+      {/* 3. MODAL CHI TIẾT KHI BẤM CHỌN TÀI SẢN (Interactive Detail Drawer) - Vừa vặn, đầy đủ thông tin uy tín */}
       <AnimatePresence>
         {selectedItem && (
           <div
@@ -252,34 +252,47 @@ export default function AppWindow() {
               exit={{ opacity: 0, scale: 0.95, y: 12 }}
               transition={{ duration: 0.18, ease: "easeOut" }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-[360px] rounded-2xl bg-white p-4.5 shadow-2xl border border-slate-200"
+              className="relative w-full max-w-[420px] rounded-2xl bg-white p-5 sm:p-5.5 shadow-2xl border border-slate-200"
             >
-              {/* Header: Thumbnail + Tên + Badge + Nút đóng */}
-              <div className="flex items-start gap-3">
-                <div className="size-13 rounded-xl overflow-hidden bg-slate-50 border border-slate-200/80 shrink-0 shadow-2xs">
+              {/* Header: Thumbnail + Tên + Badge + Đánh giá sao + Nút đóng */}
+              <div className="flex items-start gap-3.5">
+                <div className="size-15 sm:size-16 rounded-xl overflow-hidden bg-slate-50 border border-slate-200/80 shrink-0 shadow-2xs">
                   <img src={selectedItem.image} alt={selectedItem.title} className="size-full object-cover" />
                 </div>
                 <div className="flex-1 min-w-0 pr-1">
-                  <span className="inline-block text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full mb-1 border border-emerald-100">
-                    {selectedItem.status}
-                  </span>
-                  <h3 className="text-sm sm:text-base font-bold text-ink truncate leading-snug">{selectedItem.title}</h3>
-                  <p className="text-[11px] text-muted line-clamp-1 mt-0.5">{selectedItem.subtitle}</p>
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="inline-block text-[10.5px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                      {selectedItem.status}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/70">
+                      <Star className="size-3 fill-amber-400 text-amber-400" />
+                      {selectedItem.rating}
+                      <span className="font-normal text-muted/80">({selectedItem.reviews})</span>
+                    </span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold text-ink truncate leading-snug mt-1.5">
+                    {selectedItem.title}
+                  </h3>
+                  <p className="text-xs text-muted leading-relaxed line-clamp-2 mt-0.5">
+                    {selectedItem.subtitle}
+                  </p>
                 </div>
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="size-7 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-400 hover:text-ink transition cursor-pointer shrink-0 -mt-0.5 -mr-0.5"
+                  className="size-7 sm:size-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-400 hover:text-ink transition cursor-pointer shrink-0 -mt-0.5 -mr-0.5"
                   aria-label="Đóng"
                 >
                   ✕
                 </button>
               </div>
 
-              {/* Thông số giao dịch */}
-              <div className="mt-3 p-3 rounded-xl bg-slate-50/80 border border-slate-200/70 space-y-1.5 text-xs">
+              {/* Thông số giao dịch & Đánh giá người cho thuê */}
+              <div className="mt-3.5 p-3.5 rounded-xl bg-slate-50/80 border border-slate-200/70 space-y-2 text-xs">
                 <div className="flex justify-between items-center">
                   <span className="text-muted">Giá niêm yết:</span>
-                  <span className="font-bold text-brand-600">{selectedItem.price} <span className="font-normal text-muted">{selectedItem.unit}</span></span>
+                  <span className="font-bold text-brand-600 text-sm">
+                    {selectedItem.price} <span className="font-normal text-xs text-muted">{selectedItem.unit}</span>
+                  </span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-muted">Tiền đặt cọc (Deposit):</span>
@@ -294,23 +307,37 @@ export default function AppWindow() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-muted">Chủ tài sản / Cung cấp:</span>
-                  <span className="font-semibold text-ink flex items-center gap-1">
-                    {selectedItem.provider} <CheckCircle2 className="size-3 text-brand-600" />
+                  <span className="font-semibold text-ink flex items-center gap-1.5">
+                    {selectedItem.provider}
+                    <span className="inline-flex items-center text-[10px] font-semibold text-brand-700 bg-brand-50 px-1.5 py-0.5 rounded border border-brand-200/60">
+                      UIT KYC
+                    </span>
+                    <CheckCircle2 className="size-3.5 text-brand-600" />
                   </span>
+                </div>
+                <div className="flex justify-between items-center pt-2 border-t border-slate-200/60">
+                  <span className="text-muted">Đánh giá người đó:</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="inline-flex items-center gap-1 font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200/70">
+                      <Star className="size-3.5 fill-amber-400 text-amber-400" />
+                      {selectedItem.rating} / 5.0
+                    </span>
+                    <span className="text-[11px] text-muted font-medium">({selectedItem.reviews} đánh giá uy tín)</span>
+                  </div>
                 </div>
               </div>
 
               {/* Nút hành động */}
-              <div className="mt-3.5 flex gap-2">
+              <div className="mt-4 flex gap-2.5">
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="flex-1 py-2 rounded-xl border border-line text-xs font-semibold text-ink hover:bg-slate-50 transition cursor-pointer"
+                  className="flex-1 py-2.5 rounded-xl border border-line text-xs sm:text-sm font-semibold text-ink hover:bg-slate-50 transition cursor-pointer"
                 >
                   Đóng
                 </button>
                 <button
                   onClick={() => setSelectedItem(null)}
-                  className="flex-1 py-2 rounded-xl bg-brand-600 text-white text-xs font-semibold hover:bg-brand-700 transition shadow-soft cursor-pointer flex items-center justify-center gap-1.5"
+                  className="flex-1 py-2.5 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-semibold hover:bg-brand-700 transition shadow-soft cursor-pointer flex items-center justify-center gap-1.5"
                 >
                   <span>Gửi Booking</span>
                   <ArrowRight className="size-3.5" />
