@@ -444,192 +444,101 @@ export default function Home() {
             />
           </Reveal>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {modules.map((m, i) => {
-              // Hàng 1: to + nhỏ, hàng 2: nhỏ + to (đúng wireframe)
-              const wide = i === 0 || i === 3;
-              return (
-                <Reveal key={m.title} delay={i * 0.08} className={wide ? "md:col-span-2" : ""}>
-                  <BentoSpotlightCard className="h-full flex flex-col justify-between p-6 sm:p-7.5">
-                    {wide ? (
-                      /* Ô RỘNG (HÌNH 1: ASSET SHARING & HÌNH 3: SKILL & TIME) */
-                      <div className="flex flex-col md:flex-row items-center justify-between gap-6 lg:gap-8 h-full">
-                        {/* Cột thông tin văn bản bên trái */}
-                        <div className="flex-1 flex flex-col justify-between h-full">
-                          <div>
-                            <div className="flex items-center gap-2 mb-3">
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200">
-                                <span className="size-1.5 rounded-full bg-brand-600 animate-pulse" />
-                                {m.badge}
-                              </span>
-                            </div>
-
-                            <div className="flex items-center gap-3">
-                              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white shadow-2xs">
-                                <m.icon className="size-5" aria-hidden="true" />
-                              </span>
-                              <h3 className="text-xl font-bold tracking-tight text-ink group-hover:text-brand-600 transition-colors">
-                                {m.title}
-                              </h3>
-                            </div>
-
-                            <p className="mt-3 text-muted text-sm leading-relaxed">
-                              {m.text}
-                            </p>
-
-                            {m.highlights && (
-                              <ul className="mt-4 space-y-2">
-                                {m.highlights.map((h) => (
-                                  <li key={h} className="flex items-center gap-2 text-xs font-medium text-slate-600">
-                                    <CheckCircle2 className="size-3.5 text-brand-600 shrink-0" />
-                                    <span>{h}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </div>
-
-                          <div className="mt-6 pt-3.5 border-t border-slate-100 flex items-center justify-between">
-                            <button
-                              type="button"
-                              onClick={() => setSelectedMockupIndex(i)}
-                              className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition-colors cursor-pointer group/btn"
-                            >
-                              <Maximize2 className="size-3.5 transition-transform group-hover/btn:scale-110" />
-                              <span>Xem giao diện chi tiết</span>
-                            </button>
-                            <span className="text-[11px] text-slate-400">Ấn ảnh để phóng to</span>
-                          </div>
+          {/* Lưới 2x2 cân xứng hoàn hảo, tối ưu không gian, không còn ô to trống trải */}
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {modules.map((m, i) => (
+              <Reveal key={m.title} delay={i * 0.08} className="h-full">
+                <BentoSpotlightCard className="h-full flex flex-col justify-between p-6 sm:p-7">
+                  <div className="flex flex-col sm:flex-row items-center sm:items-stretch justify-between gap-5 sm:gap-6 h-full">
+                    {/* Cột thông tin bên trái (chiếm ~58% không gian) */}
+                    <div className="flex-1 flex flex-col justify-between min-w-0">
+                      <div>
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200">
+                            <span className="size-1.5 rounded-full bg-brand-600 animate-pulse" />
+                            {m.badge}
+                          </span>
                         </div>
 
-                        {/* Cột Mockup Điện thoại bên phải: TRỌN VẸN 100%, KHÔNG CẮT NỬA */}
-                        <div className="shrink-0 flex justify-center items-center py-1">
-                          <div
-                            role="button"
-                            tabIndex={0}
-                            onClick={() => setSelectedMockupIndex(i)}
-                            onKeyDown={(e) => e.key === "Enter" && setSelectedMockupIndex(i)}
-                            className="group/phone relative cursor-zoom-in rounded-[30px] p-2 bg-slate-900 shadow-[0_16px_36px_-8px_rgba(15,26,51,0.25)] ring-1 ring-slate-800 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_20px_45px_-6px_rgba(42,86,204,0.3)]"
-                          >
-                            {/* Dynamic Island */}
-                            <div className="w-12 h-2.5 bg-black rounded-full mx-auto mb-1.5 flex items-center justify-end pr-1">
-                              <span className="size-0.5 rounded-full bg-slate-700" />
-                            </div>
-
-                            {/* Màn hình hiển thị trọn vẹn */}
-                            <div className="relative overflow-hidden rounded-[22px] w-[170px] sm:w-[185px] lg:w-[195px] aspect-[393/852] bg-slate-100 shadow-inner">
-                              <img
-                                src={MOCKUP_IMAGES[i]}
-                                alt={m.title}
-                                className="w-full h-full object-cover object-top select-none pointer-events-none"
-                              />
-
-                              {/* Hover overlay hint */}
-                              <div className="absolute inset-0 bg-slate-950/25 backdrop-blur-[1px] opacity-0 group-hover/phone:opacity-100 transition-opacity flex flex-col items-center justify-center text-white gap-1">
-                                <div className="size-8 rounded-full bg-white/90 text-brand-700 flex items-center justify-center shadow-md">
-                                  <Maximize2 className="size-4" />
-                                </div>
-                                <span className="text-[11px] font-bold bg-slate-900/80 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
-                                  Phóng to
-                                </span>
-                              </div>
-                            </div>
-
-                            {/* Home Indicator bar */}
-                            <div className="w-14 h-1 bg-slate-700/80 rounded-full mx-auto mt-1.5 mb-0.5" />
-                          </div>
+                        <div className="flex items-center gap-3">
+                          <span className="grid size-10 sm:size-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white shadow-2xs">
+                            <m.icon className="size-5" aria-hidden="true" />
+                          </span>
+                          <h3 className="text-lg sm:text-xl font-bold tracking-tight text-ink group-hover:text-brand-600 transition-colors">
+                            {m.title}
+                          </h3>
                         </div>
+
+                        <p className="mt-3 text-muted text-xs sm:text-sm leading-relaxed">
+                          {m.text}
+                        </p>
+
+                        {m.highlights && (
+                          <ul className="mt-3.5 space-y-1.5">
+                            {m.highlights.map((h) => (
+                              <li key={h} className="flex items-center gap-2 text-xs font-medium text-slate-600">
+                                <CheckCircle2 className="size-3.5 text-brand-600 shrink-0" />
+                                <span>{h}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
-                    ) : (
-                      /* Ô NHỎ (HÌNH 4: QUY TRÌNH KIỂM SOÁT RỦI RO & HÌNH 2: XÂY DỰNG NIỀM TIN) */
-                      <div className="flex flex-col justify-between h-full">
-                        <div>
-                          <div className="flex items-center gap-2 mb-3">
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200">
-                              <span className="size-1.5 rounded-full bg-brand-600 animate-pulse" />
-                              {m.badge}
+
+                      <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedMockupIndex(i)}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition-colors cursor-pointer group/btn"
+                        >
+                          <Maximize2 className="size-3.5 transition-transform group-hover/btn:scale-110" />
+                          <span>Xem giao diện</span>
+                        </button>
+                        <span className="text-[11px] text-slate-400">Ấn ảnh phóng to</span>
+                      </div>
+                    </div>
+
+                    {/* Cột Mockup Điện thoại bên phải (chiếm ~42% không gian, vừa vặn không khoảng trống) */}
+                    <div className="shrink-0 flex justify-center items-center py-1">
+                      <div
+                        role="button"
+                        tabIndex={0}
+                        onClick={() => setSelectedMockupIndex(i)}
+                        onKeyDown={(e) => e.key === "Enter" && setSelectedMockupIndex(i)}
+                        className="group/phone relative cursor-zoom-in rounded-[28px] p-2 bg-slate-900 shadow-[0_16px_36px_-8px_rgba(15,26,51,0.22)] ring-1 ring-slate-800 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_20px_45px_-6px_rgba(42,86,204,0.3)]"
+                      >
+                        {/* Dynamic Island */}
+                        <div className="w-12 h-2.5 bg-black rounded-full mx-auto mb-1.5 flex items-center justify-end pr-1">
+                          <span className="size-0.5 rounded-full bg-slate-700" />
+                        </div>
+
+                        {/* Màn hình hiển thị trọn vẹn */}
+                        <div className="relative overflow-hidden rounded-[20px] w-[155px] sm:w-[170px] lg:w-[185px] aspect-[393/852] bg-slate-100 shadow-inner">
+                          <img
+                            src={MOCKUP_IMAGES[i]}
+                            alt={m.title}
+                            className="w-full h-full object-cover object-top select-none pointer-events-none"
+                          />
+
+                          {/* Hover overlay hint */}
+                          <div className="absolute inset-0 bg-slate-950/25 backdrop-blur-[1px] opacity-0 group-hover/phone:opacity-100 transition-opacity flex flex-col items-center justify-center text-white gap-1">
+                            <div className="size-8 rounded-full bg-white/90 text-brand-700 flex items-center justify-center shadow-md">
+                              <Maximize2 className="size-4" />
+                            </div>
+                            <span className="text-[11px] font-bold bg-slate-900/80 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
+                              Phóng to
                             </span>
                           </div>
-
-                          <div className="flex items-start gap-3">
-                            <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white shadow-2xs">
-                              <m.icon className="size-5" aria-hidden="true" />
-                            </span>
-                            <div>
-                              <h3 className="text-lg font-bold tracking-tight text-ink group-hover:text-brand-600 transition-colors">
-                                {m.title}
-                              </h3>
-                            </div>
-                          </div>
-
-                          <p className="mt-3 text-muted text-xs sm:text-sm leading-relaxed">
-                            {m.text}
-                          </p>
-
-                          {m.highlights && (
-                            <ul className="mt-3 space-y-1.5">
-                              {m.highlights.map((h) => (
-                                <li key={h} className="flex items-center gap-2 text-xs font-medium text-slate-600">
-                                  <CheckCircle2 className="size-3.5 text-brand-600 shrink-0" />
-                                  <span>{h}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
                         </div>
 
-                        {/* Mockup Điện thoại trọn vẹn ở đáy (Không cắt nửa) */}
-                        <div className="mt-5 flex flex-col items-center justify-center">
-                          <div
-                            role="button"
-                            tabIndex={0}
-                            onClick={() => setSelectedMockupIndex(i)}
-                            onKeyDown={(e) => e.key === "Enter" && setSelectedMockupIndex(i)}
-                            className="group/phone relative cursor-zoom-in rounded-[28px] p-2 bg-slate-900 shadow-[0_16px_36px_-8px_rgba(15,26,51,0.25)] ring-1 ring-slate-800 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_20px_45px_-6px_rgba(42,86,204,0.3)]"
-                          >
-                            {/* Dynamic Island */}
-                            <div className="w-10 h-2 bg-black rounded-full mx-auto mb-1 flex items-center justify-end pr-1">
-                              <span className="size-0.5 rounded-full bg-slate-700" />
-                            </div>
-
-                            {/* Màn hình hiển thị trọn vẹn */}
-                            <div className="relative overflow-hidden rounded-[20px] w-[145px] sm:w-[155px] aspect-[393/852] bg-slate-100 shadow-inner">
-                              <img
-                                src={MOCKUP_IMAGES[i]}
-                                alt={m.title}
-                                className="w-full h-full object-cover object-top select-none pointer-events-none"
-                              />
-
-                              {/* Hover overlay hint */}
-                              <div className="absolute inset-0 bg-slate-950/25 backdrop-blur-[1px] opacity-0 group-hover/phone:opacity-100 transition-opacity flex flex-col items-center justify-center text-white gap-1">
-                                <div className="size-7 rounded-full bg-white/90 text-brand-700 flex items-center justify-center shadow-md">
-                                  <Maximize2 className="size-3.5" />
-                                </div>
-                                <span className="text-[10px] font-bold bg-slate-900/80 px-2 py-0.5 rounded-full backdrop-blur-xs">
-                                  Phóng to
-                                </span>
-                              </div>
-                            </div>
-
-                            {/* Home Indicator bar */}
-                            <div className="w-12 h-1 bg-slate-700/80 rounded-full mx-auto mt-1 mb-0.5" />
-                          </div>
-
-                          <button
-                            type="button"
-                            onClick={() => setSelectedMockupIndex(i)}
-                            className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition-colors cursor-pointer"
-                          >
-                            <Maximize2 className="size-3" />
-                            <span>Phóng to giao diện</span>
-                          </button>
-                        </div>
+                        {/* Home Indicator bar */}
+                        <div className="w-14 h-1 bg-slate-700/80 rounded-full mx-auto mt-1.5 mb-0.5" />
                       </div>
-                    )}
-                  </BentoSpotlightCard>
-                </Reveal>
-              );
-            })}
+                    </div>
+                  </div>
+                </BentoSpotlightCard>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -652,61 +561,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────── LIGHTBOX MODAL: PHÓNG TO XEM RIÊNG GIAO DIỆN APP THỰC TẾ ───────── */}
+      {/* ───────── LIGHTBOX MODAL: CHỈ HIỆN MÀN HÌNH ĐIỆN THOẠI GIAO DIỆN (THEO YÊU CẦU NGƯỜI DÙNG) ───────── */}
       <AnimatePresence>
         {selectedMockupIndex !== null && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-            {/* Lớp nền mờ tối màu */}
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6">
+            {/* Lớp nền tối mờ kính, bấm vào nền để đóng */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setSelectedMockupIndex(null)}
-              className="fixed inset-0 bg-slate-950/80 backdrop-blur-md cursor-pointer"
+              className="fixed inset-0 bg-slate-950/85 backdrop-blur-md cursor-pointer"
               aria-hidden="true"
             />
 
-            {/* Khung Modal chính */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94, y: 16 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.94, y: 16 }}
-              transition={{ type: "spring", damping: 28, stiffness: 340 }}
-              className="relative z-10 w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-2xl overflow-hidden my-auto"
-            >
-              {/* Header Modal */}
-              <div className="flex items-center justify-between px-5 sm:px-7 py-3.5 sm:py-4 border-b border-slate-100 bg-white/80 shrink-0">
-                <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="shrink-0 size-2.5 rounded-full bg-brand-600 animate-pulse" />
-                  <div className="min-w-0">
-                    <h4 className="text-sm sm:text-base font-bold text-ink truncate">
-                      {MOCKUP_DETAILS[selectedMockupIndex].title}
-                    </h4>
-                    <p className="text-xs text-muted truncate hidden sm:block">
-                      {MOCKUP_DETAILS[selectedMockupIndex].subtitle}
-                    </p>
-                  </div>
-                </div>
+            {/* Nút đóng ở góc trên bên phải */}
+            <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-30 flex items-center gap-2">
+              <span className="text-xs text-white/70 font-medium hidden sm:inline bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-xs border border-white/10">
+                Nhấn ESC để đóng • Phím ← → chuyển ảnh
+              </span>
+              <button
+                type="button"
+                onClick={() => setSelectedMockupIndex(null)}
+                className="size-10 sm:size-11 rounded-full bg-white/15 hover:bg-white/25 text-white flex items-center justify-center backdrop-blur-md transition-colors cursor-pointer border border-white/20 shadow-lg"
+                aria-label="Đóng xem giao diện"
+              >
+                <X className="size-5 sm:size-6" />
+              </button>
+            </div>
 
-                <div className="flex items-center gap-3 shrink-0">
-                  <span className="text-[11px] font-medium text-slate-400 hidden md:inline">
-                    Nhấn ESC để đóng • Phím ← → chuyển ảnh
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedMockupIndex(null)}
-                    className="size-8.5 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 hover:text-ink transition-colors cursor-pointer"
-                    aria-label="Đóng xem giao diện"
-                  >
-                    <X className="size-4.5" />
-                  </button>
-                </div>
+            {/* Khung trung tâm CHỈ HIỆN MÀN HÌNH ĐT GIAO DIỆN */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 15 }}
+              transition={{ type: "spring", damping: 28, stiffness: 350 }}
+              className="relative z-20 flex flex-col items-center max-h-[96vh] select-none"
+            >
+              {/* Tiêu đề ngắn gọn dạng Pill phía trên điện thoại */}
+              <div className="mb-3 text-center">
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-white/15 text-white border border-white/20 backdrop-blur-md shadow-lg">
+                  <span className="size-2 rounded-full bg-brand-400 animate-pulse" />
+                  {MOCKUP_DETAILS[selectedMockupIndex].title}
+                </span>
               </div>
 
-              {/* Body Modal: Điện thoại lớn + Thông tin giải thích */}
-              <div className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col md:flex-row items-center justify-center gap-6 lg:gap-10">
-                {/* Nút mũi tên Trái */}
+              {/* Hàng chứa Nút Trái + Điện thoại lớn + Nút Phải */}
+              <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-8">
+                {/* Mũi tên Trái */}
                 <button
                   type="button"
                   onClick={() =>
@@ -714,33 +617,33 @@ export default function Home() {
                       prev > 0 ? prev - 1 : MOCKUP_DETAILS.length - 1
                     )
                   }
-                  className="hidden md:flex size-11 rounded-full bg-white border border-slate-200/90 shadow-md items-center justify-center text-slate-700 hover:text-brand-600 hover:border-brand-300 transition-all hover:scale-105 cursor-pointer shrink-0"
-                  aria-label="Xem giao diện trước"
+                  className="size-10 sm:size-12 rounded-full bg-white/10 hover:bg-white/25 text-white border border-white/15 shadow-2xl flex items-center justify-center backdrop-blur-md transition-all hover:scale-110 cursor-pointer shrink-0"
+                  aria-label="Giao diện trước"
                 >
-                  <ChevronLeft className="size-6" />
+                  <ChevronLeft className="size-6 sm:size-7" />
                 </button>
 
-                {/* Khung điện thoại kích thước lớn */}
-                <div className="relative shrink-0 rounded-[36px] sm:rounded-[42px] p-2.5 sm:p-3 bg-slate-900 shadow-[0_25px_60px_-15px_rgba(15,26,51,0.35)] ring-1 ring-slate-800">
+                {/* Khung điện thoại kích thước lớn siêu nét, không có nội dung chữ rườm rà */}
+                <div className="relative rounded-[36px] sm:rounded-[44px] p-2.5 sm:p-3 bg-slate-900 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85)] ring-1 ring-white/15 max-h-[78vh] sm:max-h-[82vh] flex flex-col">
                   {/* Dynamic Island */}
-                  <div className="w-20 h-4 bg-black rounded-full mx-auto mb-2 flex items-center justify-end pr-2">
+                  <div className="w-16 sm:w-20 h-3.5 sm:h-4 bg-black rounded-full mx-auto mb-1.5 sm:mb-2 flex items-center justify-end pr-2 shrink-0">
                     <span className="size-1 rounded-full bg-slate-700" />
                   </div>
 
-                  {/* Màn hình hiển thị độ nét cao */}
-                  <div className="relative overflow-hidden rounded-[26px] sm:rounded-[32px] w-[260px] sm:w-[285px] md:w-[305px] aspect-[393/852] bg-white shadow-inner">
+                  {/* Màn hình hiển thị ảnh nguyên bản */}
+                  <div className="relative overflow-hidden rounded-[26px] sm:rounded-[34px] w-[260px] sm:w-[310px] md:w-[340px] aspect-[393/852] bg-white shadow-inner">
                     <img
                       src={MOCKUP_DETAILS[selectedMockupIndex].image}
                       alt={MOCKUP_DETAILS[selectedMockupIndex].title}
-                      className="w-full h-full object-contain select-none"
+                      className="w-full h-full object-contain select-none pointer-events-none"
                     />
                   </div>
 
                   {/* Home bar */}
-                  <div className="w-24 h-1 bg-slate-700/80 rounded-full mx-auto mt-2 mb-0.5" />
+                  <div className="w-20 sm:w-24 h-1 bg-slate-700/80 rounded-full mx-auto mt-1.5 sm:mt-2 mb-0.5 shrink-0" />
                 </div>
 
-                {/* Nút mũi tên Phải */}
+                {/* Mũi tên Phải */}
                 <button
                   type="button"
                   onClick={() =>
@@ -748,47 +651,24 @@ export default function Home() {
                       prev < MOCKUP_DETAILS.length - 1 ? prev + 1 : 0
                     )
                   }
-                  className="hidden md:flex size-11 rounded-full bg-white border border-slate-200/90 shadow-md items-center justify-center text-slate-700 hover:text-brand-600 hover:border-brand-300 transition-all hover:scale-105 cursor-pointer shrink-0"
-                  aria-label="Xem giao diện tiếp theo"
+                  className="size-10 sm:size-12 rounded-full bg-white/10 hover:bg-white/25 text-white border border-white/15 shadow-2xl flex items-center justify-center backdrop-blur-md transition-all hover:scale-110 cursor-pointer shrink-0"
+                  aria-label="Giao diện tiếp theo"
                 >
-                  <ChevronRight className="size-6" />
+                  <ChevronRight className="size-6 sm:size-7" />
                 </button>
-
-                {/* Cột thông tin chi tiết */}
-                <div className="max-w-xs sm:max-w-sm text-left">
-                  <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200 mb-3">
-                    {MOCKUP_DETAILS[selectedMockupIndex].badge}
-                  </span>
-                  <h5 className="text-lg font-bold text-ink">
-                    {MOCKUP_DETAILS[selectedMockupIndex].title}
-                  </h5>
-                  <p className="mt-2.5 text-xs sm:text-sm text-muted leading-relaxed">
-                    {MOCKUP_DETAILS[selectedMockupIndex].description}
-                  </p>
-
-                  <div className="mt-5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-600 space-y-2">
-                    <div className="font-semibold text-ink flex items-center gap-1.5">
-                      <span className="size-1.5 rounded-full bg-emerald-500" />
-                      <span>Trải nghiệm di động thực tế</span>
-                    </div>
-                    <p className="text-slate-500 text-[11px] leading-relaxed">
-                      Màn hình thiết kế theo chuẩn tỉ lệ di động 9:19.5, phục vụ thử nghiệm Pilot khép kín tại trường Đại học Công nghệ Thông tin (UIT).
-                    </p>
-                  </div>
-                </div>
               </div>
 
-              {/* Footer Modal: 4 Tab chuyển nhanh */}
-              <div className="px-4 sm:px-6 py-3 border-t border-slate-100 bg-slate-50/80 flex items-center justify-center gap-2 overflow-x-auto shrink-0">
+              {/* Thanh 4 Tab chuyển nhanh dưới đáy */}
+              <div className="mt-4 flex items-center gap-1.5 sm:gap-2 bg-black/50 p-1.5 rounded-full border border-white/15 backdrop-blur-md overflow-x-auto max-w-full">
                 {MOCKUP_DETAILS.map((item, idx) => (
                   <button
                     key={item.title}
                     type="button"
                     onClick={() => setSelectedMockupIndex(idx)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
+                    className={`px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
                       selectedMockupIndex === idx
-                        ? "bg-brand-600 text-white shadow-xs"
-                        : "bg-white text-slate-600 hover:text-ink border border-slate-200"
+                        ? "bg-brand-500 text-white shadow-md scale-105"
+                        : "text-white/70 hover:text-white hover:bg-white/10"
                     }`}
                   >
                     <span>{`0${idx + 1}. ${item.title.split("—")[0].trim()}`}</span>
