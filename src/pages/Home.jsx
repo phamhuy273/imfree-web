@@ -41,36 +41,32 @@ const MOCKUP_IMAGES = [
 const MOCKUP_DETAILS = [
   {
     index: 0,
-    title: "Asset Sharing — Trọng tâm phiên bản MVP",
-    subtitle: "Màn hình tìm kiếm, lọc danh mục và danh sách thiết bị cho thuê P2P",
-    badge: "MVP Core • Trọng tâm triển khai",
+    title: "Asset Sharing",
+    subtitle: "Trọng tâm phiên bản MVP",
     image: mockupAssetSharing,
     description:
       "Giao diện giải quyết bài toán chia sẻ tài sản nhàn rỗi cho sinh viên UIT: Bộ lọc thông minh theo danh mục (Máy ảnh, Xe điện, Đồ dùng học tập), mức giá thuê rõ ràng theo ngày, trạng thái sẵn sàng và vị trí giao nhận gần trường.",
   },
   {
     index: 1,
-    title: "Quy trình giao dịch kiểm soát rủi ro",
-    subtitle: "Checklist đối soát phụ kiện & Ảnh xác nhận hiện trạng trước bàn giao",
-    badge: "Kiểm soát rủi ro • 4 Mốc an tâm",
+    title: "Kiểm soát rủi ro",
+    subtitle: "Quy trình an toàn 4 mốc",
     image: mockupRiskControl,
     description:
       "Bảo vệ 2 chiều minh bạch: Bên cho thuê và bên thuê cùng kiểm tra danh mục phụ kiện (thân máy, lens, thẻ nhớ, pin), ghi chú hiện trạng ban đầu và chụp ảnh đối soát trước khi lưu biên bản giao nhận vào hệ thống.",
   },
   {
     index: 2,
-    title: "Xây dựng niềm tin trong cộng đồng sinh viên",
-    subtitle: "Màn hình Đánh giá 2 chiều & Chấm điểm Trust Profile 5 sao",
-    badge: "Trust Profile • Đánh giá 2 chiều",
+    title: "Xây dựng niềm tin",
+    subtitle: "Cộng đồng & Trust Profile",
     image: mockupTrustProfile,
     description:
       "Chu trình uy tín khép kín: Sau khi hoàn trả thiết bị, cả 2 bên thực hiện đánh giá sao và gửi bình luận khách quan. Điểm uy tín được tích lũy vào hồ sơ cá nhân để bảo chứng cho mọi giao dịch tiếp theo.",
   },
   {
     index: 3,
-    title: "Skill & Time Sharing — Định hướng mở rộng sau",
-    subtitle: "Mô hình mở rộng: Khai thác Kỹ năng chuyên môn & Thời gian nhàn rỗi",
-    badge: "Roadmap mở rộng • Giai đoạn tiếp theo",
+    title: "Skill & Time Sharing",
+    subtitle: "Định hướng mở rộng sau",
     image: mockupSkillSharing,
     description:
       "Tầm nhìn tương lai của ImFree: Mở rộng chia sẻ kỹ năng học tập (Gia sư đồ án CNTT, Thiết kế Poster, Slide thuyết trình) và khai thác thời gian rảnh mỗi ngày giúp sinh viên tạo thêm thu nhập chính đáng.",
@@ -453,13 +449,20 @@ export default function Home() {
                     {/* Cột thông tin bên trái (chiếm ~58% không gian, đã bỏ tag theo yêu cầu) */}
                     <div className="flex-1 flex flex-col justify-between min-w-0">
                       <div>
-                        <div className="flex items-center gap-3">
-                          <span className="grid size-10 sm:size-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white shadow-2xs">
+                        <div className="flex items-start gap-3">
+                          <span className="grid size-10 sm:size-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white shadow-2xs mt-0.5">
                             <m.icon className="size-5" aria-hidden="true" />
                           </span>
-                          <h3 className="text-lg sm:text-xl font-bold tracking-tight text-ink group-hover:text-brand-600 transition-colors">
-                            {m.title}
-                          </h3>
+                          <div className="min-w-0">
+                            <h3 className="text-lg sm:text-xl font-bold tracking-tight text-ink group-hover:text-brand-600 transition-colors">
+                              {m.title}
+                            </h3>
+                            {m.subtitle && (
+                              <p className="text-xs font-semibold text-brand-600 mt-0.5">
+                                {m.subtitle}
+                              </p>
+                            )}
+                          </div>
                         </div>
 
                         <p className="mt-3 text-muted text-xs sm:text-sm leading-relaxed">
@@ -595,7 +598,9 @@ export default function Home() {
               <div className="mb-3 text-center">
                 <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-white/15 text-white border border-white/20 backdrop-blur-md shadow-lg">
                   <span className="size-2 rounded-full bg-brand-400 animate-pulse" />
-                  {MOCKUP_DETAILS[selectedMockupIndex].title}
+                  <span>{MOCKUP_DETAILS[selectedMockupIndex].title}</span>
+                  <span className="text-white/50">•</span>
+                  <span className="text-white/80 font-normal">{MOCKUP_DETAILS[selectedMockupIndex].subtitle}</span>
                 </span>
               </div>
 
