@@ -247,32 +247,32 @@ export const team = [
 export const values = [
   {
     icon: Layers,
-    title: "Kết nối (Connection)",
+    title: "Connection",
     text: "Kết nối sinh viên sở hữu tài sản nhàn rỗi với sinh viên đang có nhu cầu sử dụng thực tế trong khuôn viên trường.",
   },
   {
     icon: Camera,
-    title: "Chia sẻ (Sharing)",
+    title: "Sharing",
     text: "Khởi đầu từ việc giúp sinh viên chia sẻ những tài sản đang nhàn rỗi một cách thuận tiện và tối ưu chi phí.",
   },
   {
     icon: ShieldCheck,
-    title: "Tin cậy (Trust-first)",
-    text: "Lấy xác thực sinh viên, hồ sơ Trust Profile và cơ chế bảo chứng đặt cọc làm nền tảng an toàn cho mọi giao dịch.",
+    title: "Trust-First",
+    text: "Lấy xác thực sinh viên, hồ sơ Trust Profile và cơ chế bảo chứng đặt cọc làm nền tảng gia tăng độ an toàn và tin cậy cho giao dịch.",
   },
   {
     icon: Users,
-    title: "Cộng đồng (Community)",
+    title: "Community",
     text: "Xây dựng môi trường giao dịch văn minh, uy tín được tích lũy qua chính lịch sử giao dịch thực tế của sinh viên.",
   },
   {
     icon: Target,
-    title: "Khả thi về Công nghệ",
+    title: "Technology Feasibility",
     text: "MVP tập trung vào Asset Sharing tại UIT, phát triển phiên bản phục vụ Pilot có kiểm soát trước khi mở rộng.",
   },
   {
     icon: Zap,
-    title: "Khả thi về Vận hành",
-    text: "Áp dụng Concierge Matching hỗ trợ thủ công ban đầu, theo dõi → phản hồi → điều chỉnh → ổn định.",
+    title: "Operational Feasibility",
+    text: "Áp dụng Concierge Matching hỗ trợ thủ công ban đầu, theo dõi, tiếp nhận phản hồi, điều chỉnh và từng bước ổn định quy trình.",
   },
 ];

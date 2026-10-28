@@ -20,7 +20,7 @@ export const homeFeatureHighlights = [
   {
     id: "f3",
     title: "Bảo mật & Ổn định",
-    description: "Áp dụng các tiêu chuẩn an toàn dữ liệu tiên tiến, bảo vệ thông tin người dùng an toàn tuyệt đối.",
+    description: "Áp dụng các tiêu chuẩn an toàn dữ liệu tiên tiến, tăng cường bảo vệ thông tin người dùng an toàn và bảo mật.",
     icon: "ShieldCheck",
     tag: "Tin cậy"
   }

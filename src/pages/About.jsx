@@ -116,7 +116,7 @@ export default function About() {
                   </p>
                   <div className="mt-3.5 flex items-center justify-between text-[11px] text-muted pt-2 border-t border-slate-100">
                     <span className="text-emerald-700 font-semibold">
-                      An tâm giao dịch 100%
+                      Giao dịch tin cậy & minh bạch
                     </span>
                     <span className="text-[10px] text-slate-400 font-medium">
                       2-Way Rating
@@ -272,7 +272,7 @@ export default function About() {
           <Reveal>
             <SectionHeading
               title="Giá Trị Cốt Lõi"
-              text="Bốn giá trị kim chỉ nam: Kết nối • Chia sẻ • Tin cậy • Cộng đồng định hình nên nền tảng ImFree."
+              text="Bốn giá trị kim chỉ nam: Connection • Sharing • Trust-First • Community định hình nên nền tảng ImFree."
             />
           </Reveal>
           <div className="mt-14 grid gap-5 md:grid-cols-3">

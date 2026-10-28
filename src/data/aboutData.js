@@ -11,7 +11,7 @@ export const goalAndMarket = {
   goal: {
     title: "Mục Tiêu Đề Tài",
     paragraphs: [
-      "Xây dựng và hoàn thiện một nền tảng trực tuyến giúp người dùng tiếp cận các công cụ hỗ trợ một cách nhanh chóng, minh bạch và hoàn toàn tiện lợi.",
+      "Xây dựng và hoàn thiện một nền tảng trực tuyến giúp người dùng tiếp cận các công cụ hỗ trợ một cách nhanh chóng, minh bạch và thuận tiện.",
       "Ứng dụng các kiến thức chuyên ngành đã học vào thực tế, nâng cao kỹ năng nghiên cứu, phát triển sản phẩm theo quy chuẩn công nghiệp."
     ]
   },
