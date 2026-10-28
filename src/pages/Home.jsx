@@ -54,14 +54,14 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* 2 Cánh logo chuyển màu trôi nhẹ nhàng - Đặt z-0 và đẩy ra xa để tuyệt đối không che nội dung */}
+            {/* 2 Cánh logo chuyển màu trôi nhẹ nhàng - Đặt z-20 lên phía trước và căn chỉnh tọa độ chính xác để không che nội dung */}
             <Wing
               variant="blue"
-              className="absolute -left-10 -top-10 sm:-left-14 sm:-top-12 z-0 w-28 animate-float sm:w-36 pointer-events-none drop-shadow-md"
+              className="absolute -left-9 -top-9 sm:-left-11 sm:-top-11 z-20 w-22 sm:w-26 animate-float pointer-events-none drop-shadow-md"
             />
             <Wing
               variant="pink"
-              className="absolute -bottom-10 -right-8 sm:-bottom-12 sm:-right-12 z-0 w-24 animate-float-slow sm:w-32 pointer-events-none drop-shadow-md"
+              className="absolute -bottom-9 -right-8 sm:-bottom-10 sm:-right-9 z-20 w-20 sm:w-24 animate-float-slow pointer-events-none drop-shadow-md"
             />
 
             {/* Khung Card chính: Thẻ Máy ảnh chuẩn xác 100% theo giao diện ứng dụng ImFree */}
