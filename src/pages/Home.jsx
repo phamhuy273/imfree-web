@@ -11,9 +11,21 @@ import { ArrowRight, Clock, Heart, Sparkles, CheckCircle2 } from "lucide-react";
 import Button from "../components/Button";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
-import ImagePlaceholder from "../components/ImagePlaceholder";
 import Wing from "../components/Wing";
 import { brand, highlights, modules, benefits } from "../data/content";
+
+import mockupAssetSharing from "../assets/mockup-asset-sharing.png";
+import mockupRiskControl from "../assets/mockup-risk-control.png";
+import mockupTrustProfile from "../assets/mockup-trust-profile.png";
+import mockupSkillSharing from "../assets/mockup-skill-sharing.png";
+
+// Danh sách 4 ảnh Mockup App tương ứng 4 Module Bento Grid
+const MOCKUP_IMAGES = [
+  mockupAssetSharing, // Hình 1: Asset Sharing (Trọng tâm MVP)
+  mockupRiskControl,  // Hình 4: Quy trình kiểm soát rủi ro (Checklist bàn giao)
+  mockupTrustProfile, // Hình 2: Xây dựng niềm tin (Đánh giá giao dịch 5 sao)
+  mockupSkillSharing, // Hình 3: Skill & Time Sharing (Kỹ năng & Thời gian)
+];
 
 // Component Đếm số phần trăm mượt mà (Animated Counter với Progress Bar)
 function AnimatedMetric({ item, index }) {
@@ -351,25 +363,136 @@ export default function Home() {
             />
           </Reveal>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             {modules.map((m, i) => {
               // Hàng 1: to + nhỏ, hàng 2: nhỏ + to (đúng wireframe)
               const wide = i === 0 || i === 3;
               return (
                 <Reveal key={m.title} delay={i * 0.08} className={wide ? "md:col-span-2" : ""}>
-                  <BentoSpotlightCard className="h-full flex flex-col justify-between">
-                    <div>
-                      <span className="grid size-11 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white shadow-2xs">
-                        <m.icon className="size-6" aria-hidden="true" />
-                      </span>
-                      <h3 className="mt-5 text-xl font-semibold tracking-tight text-ink group-hover:text-brand-600 transition-colors">
-                        {m.title}
-                      </h3>
-                      <p className="mt-2 max-w-[48ch] text-muted text-sm leading-relaxed">
-                        {m.text}
-                      </p>
-                    </div>
-                    <ImagePlaceholder label={`Minh hoạ ${m.title}`} className="mt-6 min-h-44 flex-1" />
+                  <BentoSpotlightCard className="h-full flex flex-col justify-between p-6 sm:p-8">
+                    {wide ? (
+                      /* Ô RỘNG (HÌNH 1: ASSET SHARING & HÌNH 3: SKILL & TIME) */
+                      <div className="flex flex-col md:flex-row items-stretch justify-between gap-6 lg:gap-8 h-full">
+                        {/* Cột thông tin văn bản bên trái */}
+                        <div className="flex-1 flex flex-col justify-between">
+                          <div>
+                            <div className="flex items-center gap-2 mb-3">
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200">
+                                <span className="size-1.5 rounded-full bg-brand-600 animate-pulse" />
+                                {m.badge}
+                              </span>
+                            </div>
+
+                            <div className="flex items-center gap-3">
+                              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white shadow-2xs">
+                                <m.icon className="size-5" aria-hidden="true" />
+                              </span>
+                              <h3 className="text-xl font-bold tracking-tight text-ink group-hover:text-brand-600 transition-colors">
+                                {m.title}
+                              </h3>
+                            </div>
+
+                            <p className="mt-3 text-muted text-sm leading-relaxed">
+                              {m.text}
+                            </p>
+
+                            {m.highlights && (
+                              <ul className="mt-4 space-y-2">
+                                {m.highlights.map((h) => (
+                                  <li key={h} className="flex items-center gap-2 text-xs font-medium text-slate-600">
+                                    <CheckCircle2 className="size-3.5 text-brand-600 shrink-0" />
+                                    <span>{h}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+
+                          <div className="mt-6 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs text-muted">
+                            <span className="font-semibold text-brand-700">ImFree App Preview</span>
+                            <span className="text-[11px] text-slate-400">Giao diện thực tế</span>
+                          </div>
+                        </div>
+
+                        {/* Cột Mockup Điện thoại bên phải */}
+                        <div className="shrink-0 w-full md:w-auto flex justify-center md:justify-end items-end -mb-6 sm:-mb-8 mt-4 md:mt-0">
+                          <div className="relative w-[215px] sm:w-[225px] lg:w-[240px] rounded-t-[30px] p-2 pb-0 bg-slate-900 shadow-[0_20px_45px_-10px_rgba(15,26,51,0.28)] ring-1 ring-slate-800 transition-transform duration-300 group-hover:-translate-y-1">
+                            {/* Dynamic Island */}
+                            <div className="w-14 h-3 bg-black rounded-full mx-auto mb-1.5 flex items-center justify-end pr-1.5">
+                              <span className="size-1 rounded-full bg-slate-700" />
+                            </div>
+                            {/* Màn hình hiển thị ảnh mockup */}
+                            <div className="relative overflow-hidden rounded-t-[20px] max-h-[290px] sm:max-h-[310px] lg:max-h-[320px] bg-slate-100 shadow-inner">
+                              <img
+                                src={MOCKUP_IMAGES[i]}
+                                alt={m.title}
+                                className="w-full h-auto object-cover object-top select-none pointer-events-none"
+                              />
+                              {/* Phủ gradient mờ ở đáy */}
+                              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-slate-900/35 via-transparent to-transparent" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      /* Ô NHỎ (HÌNH 4: QUY TRÌNH KIỂM SOÁT RỦI RO & HÌNH 2: XÂY DỰNG NIỀM TIN) */
+                      <div className="flex flex-col justify-between h-full">
+                        <div>
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200">
+                              <span className="size-1.5 rounded-full bg-brand-600 animate-pulse" />
+                              {m.badge}
+                            </span>
+                          </div>
+
+                          <div className="flex items-start gap-3">
+                            <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white shadow-2xs">
+                              <m.icon className="size-5" aria-hidden="true" />
+                            </span>
+                            <div>
+                              <h3 className="text-lg font-bold tracking-tight text-ink group-hover:text-brand-600 transition-colors">
+                                {m.title}
+                              </h3>
+                            </div>
+                          </div>
+
+                          <p className="mt-3 text-muted text-xs sm:text-sm leading-relaxed">
+                            {m.text}
+                          </p>
+
+                          {m.highlights && (
+                            <ul className="mt-3 space-y-1.5">
+                              {m.highlights.map((h) => (
+                                <li key={h} className="flex items-center gap-2 text-xs font-medium text-slate-600">
+                                  <CheckCircle2 className="size-3.5 text-brand-600 shrink-0" />
+                                  <span>{h}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+
+                        {/* Mockup Điện thoại nhô lên ở đáy */}
+                        <div className="mt-6 -mb-6 sm:-mb-8 flex justify-center">
+                          <div className="relative w-[190px] sm:w-[205px] rounded-t-[28px] p-2 pb-0 bg-slate-900 shadow-[0_20px_45px_-10px_rgba(15,26,51,0.28)] ring-1 ring-slate-800 transition-transform duration-300 group-hover:-translate-y-1">
+                            {/* Dynamic Island */}
+                            <div className="w-12 h-2.5 bg-black rounded-full mx-auto mb-1.5 flex items-center justify-end pr-1">
+                              <span className="size-0.5 rounded-full bg-slate-700" />
+                            </div>
+                            {/* Màn hình hiển thị ảnh mockup */}
+                            <div className="relative overflow-hidden rounded-t-[18px] max-h-[220px] sm:max-h-[235px] bg-slate-100 shadow-inner">
+                              <img
+                                src={MOCKUP_IMAGES[i]}
+                                alt={m.title}
+                                className="w-full h-auto object-cover object-top select-none pointer-events-none"
+                              />
+                              {/* Phủ gradient mờ ở đáy */}
+                              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-slate-900/35 via-transparent to-transparent" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </BentoSpotlightCard>
                 </Reveal>
               );

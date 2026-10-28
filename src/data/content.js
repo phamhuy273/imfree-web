@@ -63,23 +63,45 @@ export const highlights = [
 export const modules = [
   {
     icon: Camera,
+    badge: "MVP Core • Trọng tâm triển khai",
     title: "Asset Sharing — Trọng tâm phiên bản MVP",
     text: "Tập trung giải quyết bài toán chia sẻ tài sản nhàn rỗi (máy ảnh, thiết bị học tập, công nghệ) nhằm tối ưu chi phí và kiểm chứng mô hình trong khuôn viên trường.",
+    highlights: [
+      "Xác thực sinh viên UIT qua email trường",
+      "Tiết kiệm 70-80% chi phí sử dụng thiết bị",
+      "Bảo chứng tiền cọc minh bạch, an tâm",
+    ],
   },
   {
     icon: ShieldCheck,
+    badge: "Kiểm soát rủi ro • 4 Mốc an tâm",
     title: "Quy trình giao dịch kiểm soát rủi ro",
     text: "Bảo vệ toàn diện qua 4 mốc: Thỏa thuận điều khoản minh bạch, ghi nhận ảnh hiện trạng trước khi dùng, đối chiếu khi hoàn trả và hỗ trợ hòa giải nếu phát sinh tranh chấp.",
+    highlights: [
+      "Checklist đối soát linh kiện & phụ kiện",
+      "Ảnh hiện trạng trước và sau khi sử dụng",
+    ],
   },
   {
     icon: Star,
+    badge: "Trust Profile • Đánh giá 2 chiều",
     title: "Xây dựng niềm tin trong cộng đồng sinh viên",
     text: "Chu trình uy tín khép kín: Mỗi giao dịch hoàn tất được ghi nhận vào hồ sơ Trust Profile 5 sao, tạo cơ sở bảo chứng vững chắc cho các giao dịch tiếp theo.",
+    highlights: [
+      "Đánh giá & chấm điểm sao minh bạch",
+      "Tích lũy hồ sơ tín nhiệm cộng đồng",
+    ],
   },
   {
     icon: Clock,
+    badge: "Roadmap mở rộng • Giai đoạn tiếp theo",
     title: "Skill & Time Sharing — Định hướng mở rộng sau",
     text: "Mở rộng khai thác 2 nguồn lực nhàn rỗi tiềm năng: Dịch vụ kỹ năng chuyên môn (gia sư, thiết kế, lập trình) và thời gian rảnh mỗi ngày của sinh viên.",
+    highlights: [
+      "Gia sư & Hỗ trợ đồ án công nghệ",
+      "Thiết kế đồ họa, poster & slide thuyết trình",
+      "Linh hoạt theo khung giờ rảnh mỗi ngày",
+    ],
   },
 ];
 
