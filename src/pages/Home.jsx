@@ -478,7 +478,7 @@ export default function Home() {
                         )}
                       </div>
 
-                      <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between">
+                      <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center">
                         <button
                           type="button"
                           onClick={() => setSelectedMockupIndex(i)}
@@ -487,7 +487,6 @@ export default function Home() {
                           <Maximize2 className="size-3.5 transition-transform group-hover/btn:scale-110" />
                           <span>Xem giao diện</span>
                         </button>
-                        <span className="text-[11px] text-slate-400">Ấn ảnh phóng to</span>
                       </div>
                     </div>
 
