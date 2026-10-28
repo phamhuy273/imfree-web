@@ -40,13 +40,28 @@ const STAGES = [
 
 export default function Features() {
   const [activeStageId, setActiveStageId] = useState("stage-1");
+  const [navHidden, setNavHidden] = useState(false);
 
-  // ScrollSpy: Tự động cập nhật thanh điều hướng khi người dùng lướt trang
+  // ScrollSpy & Đồng bộ vị trí với Navbar khi người dùng lướt trang
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Đồng bộ trạng thái ẩn/hiện của Navbar:
+      // Kéo xuống quá 80px: Navbar ẩn -> Stage bar dịch lên sát top (top-4)
+      // Kéo lên: Navbar hiện (h-16 = 64px) -> Stage bar tự động dạt xuống (top-20 = 80px) để không bao giờ bị đè/dính
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setNavHidden(true);
+      } else {
+        setNavHidden(false);
+      }
+      lastScrollY = currentScrollY;
+
+      // ScrollSpy: Tự động cập nhật giai đoạn theo vị trí cuộn
       const stageIds = ["stage-1", "stage-2", "stage-3"];
-      // Ngưỡng phát hiện mốc giai đoạn (offset vừa vặn với sticky header)
-      const scrollPosition = window.scrollY + 220;
+      const scrollPosition = currentScrollY + 240;
 
       for (let i = stageIds.length - 1; i >= 0; i--) {
         const el = document.getElementById(stageIds[i]);
@@ -70,7 +85,7 @@ export default function Features() {
     setActiveStageId(id);
     const el = document.getElementById(id);
     if (el) {
-      const yOffset = -90;
+      const yOffset = -140;
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
@@ -97,8 +112,12 @@ export default function Features() {
 
       {/* ───────── 2. HỆ THỐNG 3 GIAI ĐOẠN CUỘN LIÊN TỤC VỚI THANH ĐIỀU HƯỚNG DÍNH TỰ ĐỘNG CHẠY ───────── */}
       <section className="section bg-gradient-to-b from-white via-brand-50/40 to-white relative pb-24">
-        {/* Thanh Điều Hướng Dính Nổi (Sticky ScrollSpy Navigation Bar) */}
-        <div className="sticky top-4 sm:top-6 z-40 mb-16 transition-all duration-300">
+        {/* Thanh Điều Hướng Dính Nổi: Tự động tránh Navbar khi kéo lên */}
+        <div
+          className={`sticky z-40 mb-16 transition-all duration-300 ease-out ${
+            navHidden ? "top-4 sm:top-5" : "top-20 sm:top-22"
+          }`}
+        >
           <div className="container-x">
             <div className="max-w-3xl mx-auto p-1.5 rounded-2xl bg-white/90 backdrop-blur-xl border border-line shadow-soft">
               <div className="flex items-center justify-between gap-1 sm:gap-2">
@@ -150,7 +169,7 @@ export default function Features() {
         {/* Nội Dung 3 Giai Đoạn Hiển Thị Đầy Đủ Để Người Dùng Tự Do Lướt */}
         <div className="container-x space-y-24">
           {/* ───────── GIAI ĐOẠN 01: DISCOVER & TRUST ───────── */}
-          <section id="stage-1" className="scroll-mt-28">
+          <section id="stage-1" className="scroll-mt-36">
             <div className="text-center max-w-2xl mx-auto mb-10">
               <span className="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider text-brand-700 uppercase bg-brand-50 rounded-full border border-brand-200">
                 Giai đoạn 01 • Khám phá & Đánh giá
@@ -192,7 +211,7 @@ export default function Features() {
           </section>
 
           {/* ───────── GIAI ĐOẠN 02: SECURE EXCHANGE (5 CARD CÂN XỨNG: 3 TRÊN + 2 DƯỚI RỘNG 50%) ───────── */}
-          <section id="stage-2" className="scroll-mt-28">
+          <section id="stage-2" className="scroll-mt-36">
             <div className="text-center max-w-2xl mx-auto mb-10">
               <span className="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider text-brand-700 uppercase bg-brand-50 rounded-full border border-brand-200">
                 Giai đoạn 02 • Giao dịch an toàn
@@ -261,7 +280,7 @@ export default function Features() {
           </section>
 
           {/* ───────── GIAI ĐOẠN 03: PROTECTION & RESOLUTION ───────── */}
-          <section id="stage-3" className="scroll-mt-28">
+          <section id="stage-3" className="scroll-mt-36">
             <div className="text-center max-w-2xl mx-auto mb-10">
               <span className="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider text-brand-700 uppercase bg-brand-50 rounded-full border border-brand-200">
                 Giai đoạn 03 • Bảo vệ & Trọng tài
