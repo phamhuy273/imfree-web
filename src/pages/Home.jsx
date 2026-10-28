@@ -7,7 +7,17 @@ import {
   AnimatePresence,
   useInView,
 } from "framer-motion";
-import { ArrowRight, Clock, Heart, Sparkles, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight,
+  Clock,
+  Heart,
+  Sparkles,
+  CheckCircle2,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Maximize2,
+} from "lucide-react";
 import Button from "../components/Button";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
@@ -25,6 +35,46 @@ const MOCKUP_IMAGES = [
   mockupRiskControl,  // Hình 4: Quy trình kiểm soát rủi ro (Checklist bàn giao)
   mockupTrustProfile, // Hình 2: Xây dựng niềm tin (Đánh giá giao dịch 5 sao)
   mockupSkillSharing, // Hình 3: Skill & Time Sharing (Kỹ năng & Thời gian)
+];
+
+// Thông tin chi tiết phục vụ Modal xem ảnh phóng to giao diện thực tế
+const MOCKUP_DETAILS = [
+  {
+    index: 0,
+    title: "Asset Sharing — Trọng tâm phiên bản MVP",
+    subtitle: "Màn hình tìm kiếm, lọc danh mục và danh sách thiết bị cho thuê P2P",
+    badge: "MVP Core • Trọng tâm triển khai",
+    image: mockupAssetSharing,
+    description:
+      "Giao diện giải quyết bài toán chia sẻ tài sản nhàn rỗi cho sinh viên UIT: Bộ lọc thông minh theo danh mục (Máy ảnh, Xe điện, Đồ dùng học tập), mức giá thuê rõ ràng theo ngày, trạng thái sẵn sàng và vị trí giao nhận gần trường.",
+  },
+  {
+    index: 1,
+    title: "Quy trình giao dịch kiểm soát rủi ro",
+    subtitle: "Checklist đối soát phụ kiện & Ảnh xác nhận hiện trạng trước bàn giao",
+    badge: "Kiểm soát rủi ro • 4 Mốc an tâm",
+    image: mockupRiskControl,
+    description:
+      "Bảo vệ 2 chiều minh bạch: Bên cho thuê và bên thuê cùng kiểm tra danh mục phụ kiện (thân máy, lens, thẻ nhớ, pin), ghi chú hiện trạng ban đầu và chụp ảnh đối soát trước khi lưu biên bản giao nhận vào hệ thống.",
+  },
+  {
+    index: 2,
+    title: "Xây dựng niềm tin trong cộng đồng sinh viên",
+    subtitle: "Màn hình Đánh giá 2 chiều & Chấm điểm Trust Profile 5 sao",
+    badge: "Trust Profile • Đánh giá 2 chiều",
+    image: mockupTrustProfile,
+    description:
+      "Chu trình uy tín khép kín: Sau khi hoàn trả thiết bị, cả 2 bên thực hiện đánh giá sao và gửi bình luận khách quan. Điểm uy tín được tích lũy vào hồ sơ cá nhân để bảo chứng cho mọi giao dịch tiếp theo.",
+  },
+  {
+    index: 3,
+    title: "Skill & Time Sharing — Định hướng mở rộng sau",
+    subtitle: "Mô hình mở rộng: Khai thác Kỹ năng chuyên môn & Thời gian nhàn rỗi",
+    badge: "Roadmap mở rộng • Giai đoạn tiếp theo",
+    image: mockupSkillSharing,
+    description:
+      "Tầm nhìn tương lai của ImFree: Mở rộng chia sẻ kỹ năng học tập (Gia sư đồ án CNTT, Thiết kế Poster, Slide thuyết trình) và khai thác thời gian rảnh mỗi ngày giúp sinh viên tạo thêm thu nhập chính đáng.",
+  },
 ];
 
 // Component Đếm số phần trăm mượt mà (Animated Counter với Progress Bar)
@@ -142,6 +192,37 @@ const item = {
 };
 
 export default function Home() {
+  // Trạng thái mở Lightbox Modal xem riêng phóng to giao diện di động
+  const [selectedMockupIndex, setSelectedMockupIndex] = useState(null);
+
+  // Đóng modal bằng phím Escape & chuyển ảnh bằng phím mũi tên
+  useEffect(() => {
+    if (selectedMockupIndex === null) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setSelectedMockupIndex(null);
+      } else if (e.key === "ArrowLeft") {
+        setSelectedMockupIndex((prev) =>
+          prev > 0 ? prev - 1 : MOCKUP_DETAILS.length - 1
+        );
+      } else if (e.key === "ArrowRight") {
+        setSelectedMockupIndex((prev) =>
+          prev < MOCKUP_DETAILS.length - 1 ? prev + 1 : 0
+        );
+      }
+    };
+
+    // Khóa cuộn trang khi mở modal
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedMockupIndex]);
+
   // 1. Hiệu ứng 3D Parallax Tilt cho thẻ Hero Card
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -369,12 +450,12 @@ export default function Home() {
               const wide = i === 0 || i === 3;
               return (
                 <Reveal key={m.title} delay={i * 0.08} className={wide ? "md:col-span-2" : ""}>
-                  <BentoSpotlightCard className="h-full flex flex-col justify-between p-6 sm:p-8">
+                  <BentoSpotlightCard className="h-full flex flex-col justify-between p-6 sm:p-7.5">
                     {wide ? (
                       /* Ô RỘNG (HÌNH 1: ASSET SHARING & HÌNH 3: SKILL & TIME) */
-                      <div className="flex flex-col md:flex-row items-stretch justify-between gap-6 lg:gap-8 h-full">
+                      <div className="flex flex-col md:flex-row items-center justify-between gap-6 lg:gap-8 h-full">
                         {/* Cột thông tin văn bản bên trái */}
-                        <div className="flex-1 flex flex-col justify-between">
+                        <div className="flex-1 flex flex-col justify-between h-full">
                           <div>
                             <div className="flex items-center gap-2 mb-3">
                               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200">
@@ -408,29 +489,54 @@ export default function Home() {
                             )}
                           </div>
 
-                          <div className="mt-6 pt-3.5 border-t border-slate-100 flex items-center justify-between text-xs text-muted">
-                            <span className="font-semibold text-brand-700">ImFree App Preview</span>
-                            <span className="text-[11px] text-slate-400">Giao diện thực tế</span>
+                          <div className="mt-6 pt-3.5 border-t border-slate-100 flex items-center justify-between">
+                            <button
+                              type="button"
+                              onClick={() => setSelectedMockupIndex(i)}
+                              className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition-colors cursor-pointer group/btn"
+                            >
+                              <Maximize2 className="size-3.5 transition-transform group-hover/btn:scale-110" />
+                              <span>Xem giao diện chi tiết</span>
+                            </button>
+                            <span className="text-[11px] text-slate-400">Ấn ảnh để phóng to</span>
                           </div>
                         </div>
 
-                        {/* Cột Mockup Điện thoại bên phải */}
-                        <div className="shrink-0 w-full md:w-auto flex justify-center md:justify-end items-end -mb-6 sm:-mb-8 mt-4 md:mt-0">
-                          <div className="relative w-[215px] sm:w-[225px] lg:w-[240px] rounded-t-[30px] p-2 pb-0 bg-slate-900 shadow-[0_20px_45px_-10px_rgba(15,26,51,0.28)] ring-1 ring-slate-800 transition-transform duration-300 group-hover:-translate-y-1">
+                        {/* Cột Mockup Điện thoại bên phải: TRỌN VẸN 100%, KHÔNG CẮT NỬA */}
+                        <div className="shrink-0 flex justify-center items-center py-1">
+                          <div
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => setSelectedMockupIndex(i)}
+                            onKeyDown={(e) => e.key === "Enter" && setSelectedMockupIndex(i)}
+                            className="group/phone relative cursor-zoom-in rounded-[30px] p-2 bg-slate-900 shadow-[0_16px_36px_-8px_rgba(15,26,51,0.25)] ring-1 ring-slate-800 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_20px_45px_-6px_rgba(42,86,204,0.3)]"
+                          >
                             {/* Dynamic Island */}
-                            <div className="w-14 h-3 bg-black rounded-full mx-auto mb-1.5 flex items-center justify-end pr-1.5">
-                              <span className="size-1 rounded-full bg-slate-700" />
+                            <div className="w-12 h-2.5 bg-black rounded-full mx-auto mb-1.5 flex items-center justify-end pr-1">
+                              <span className="size-0.5 rounded-full bg-slate-700" />
                             </div>
-                            {/* Màn hình hiển thị ảnh mockup */}
-                            <div className="relative overflow-hidden rounded-t-[20px] max-h-[290px] sm:max-h-[310px] lg:max-h-[320px] bg-slate-100 shadow-inner">
+
+                            {/* Màn hình hiển thị trọn vẹn */}
+                            <div className="relative overflow-hidden rounded-[22px] w-[170px] sm:w-[185px] lg:w-[195px] aspect-[393/852] bg-slate-100 shadow-inner">
                               <img
                                 src={MOCKUP_IMAGES[i]}
                                 alt={m.title}
-                                className="w-full h-auto object-cover object-top select-none pointer-events-none"
+                                className="w-full h-full object-cover object-top select-none pointer-events-none"
                               />
-                              {/* Phủ gradient mờ ở đáy */}
-                              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-slate-900/35 via-transparent to-transparent" />
+
+                              {/* Hover overlay hint */}
+                              <div className="absolute inset-0 bg-slate-950/25 backdrop-blur-[1px] opacity-0 group-hover/phone:opacity-100 transition-opacity flex flex-col items-center justify-center text-white gap-1">
+                                <div className="size-8 rounded-full bg-white/90 text-brand-700 flex items-center justify-center shadow-md">
+                                  <Maximize2 className="size-4" />
+                                </div>
+                                <span className="text-[11px] font-bold bg-slate-900/80 px-2.5 py-0.5 rounded-full backdrop-blur-xs">
+                                  Phóng to
+                                </span>
+                              </div>
                             </div>
+
+                            {/* Home Indicator bar */}
+                            <div className="w-14 h-1 bg-slate-700/80 rounded-full mx-auto mt-1.5 mb-0.5" />
                           </div>
                         </div>
                       </div>
@@ -472,24 +578,51 @@ export default function Home() {
                           )}
                         </div>
 
-                        {/* Mockup Điện thoại nhô lên ở đáy */}
-                        <div className="mt-6 -mb-6 sm:-mb-8 flex justify-center">
-                          <div className="relative w-[190px] sm:w-[205px] rounded-t-[28px] p-2 pb-0 bg-slate-900 shadow-[0_20px_45px_-10px_rgba(15,26,51,0.28)] ring-1 ring-slate-800 transition-transform duration-300 group-hover:-translate-y-1">
+                        {/* Mockup Điện thoại trọn vẹn ở đáy (Không cắt nửa) */}
+                        <div className="mt-5 flex flex-col items-center justify-center">
+                          <div
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => setSelectedMockupIndex(i)}
+                            onKeyDown={(e) => e.key === "Enter" && setSelectedMockupIndex(i)}
+                            className="group/phone relative cursor-zoom-in rounded-[28px] p-2 bg-slate-900 shadow-[0_16px_36px_-8px_rgba(15,26,51,0.25)] ring-1 ring-slate-800 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_20px_45px_-6px_rgba(42,86,204,0.3)]"
+                          >
                             {/* Dynamic Island */}
-                            <div className="w-12 h-2.5 bg-black rounded-full mx-auto mb-1.5 flex items-center justify-end pr-1">
+                            <div className="w-10 h-2 bg-black rounded-full mx-auto mb-1 flex items-center justify-end pr-1">
                               <span className="size-0.5 rounded-full bg-slate-700" />
                             </div>
-                            {/* Màn hình hiển thị ảnh mockup */}
-                            <div className="relative overflow-hidden rounded-t-[18px] max-h-[220px] sm:max-h-[235px] bg-slate-100 shadow-inner">
+
+                            {/* Màn hình hiển thị trọn vẹn */}
+                            <div className="relative overflow-hidden rounded-[20px] w-[145px] sm:w-[155px] aspect-[393/852] bg-slate-100 shadow-inner">
                               <img
                                 src={MOCKUP_IMAGES[i]}
                                 alt={m.title}
-                                className="w-full h-auto object-cover object-top select-none pointer-events-none"
+                                className="w-full h-full object-cover object-top select-none pointer-events-none"
                               />
-                              {/* Phủ gradient mờ ở đáy */}
-                              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-slate-900/35 via-transparent to-transparent" />
+
+                              {/* Hover overlay hint */}
+                              <div className="absolute inset-0 bg-slate-950/25 backdrop-blur-[1px] opacity-0 group-hover/phone:opacity-100 transition-opacity flex flex-col items-center justify-center text-white gap-1">
+                                <div className="size-7 rounded-full bg-white/90 text-brand-700 flex items-center justify-center shadow-md">
+                                  <Maximize2 className="size-3.5" />
+                                </div>
+                                <span className="text-[10px] font-bold bg-slate-900/80 px-2 py-0.5 rounded-full backdrop-blur-xs">
+                                  Phóng to
+                                </span>
+                              </div>
                             </div>
+
+                            {/* Home Indicator bar */}
+                            <div className="w-12 h-1 bg-slate-700/80 rounded-full mx-auto mt-1 mb-0.5" />
                           </div>
+
+                          <button
+                            type="button"
+                            onClick={() => setSelectedMockupIndex(i)}
+                            className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition-colors cursor-pointer"
+                          >
+                            <Maximize2 className="size-3" />
+                            <span>Phóng to giao diện</span>
+                          </button>
                         </div>
                       </div>
                     )}
@@ -518,6 +651,154 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ───────── LIGHTBOX MODAL: PHÓNG TO XEM RIÊNG GIAO DIỆN APP THỰC TẾ ───────── */}
+      <AnimatePresence>
+        {selectedMockupIndex !== null && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+            {/* Lớp nền mờ tối màu */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setSelectedMockupIndex(null)}
+              className="fixed inset-0 bg-slate-950/80 backdrop-blur-md cursor-pointer"
+              aria-hidden="true"
+            />
+
+            {/* Khung Modal chính */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: 16 }}
+              transition={{ type: "spring", damping: 28, stiffness: 340 }}
+              className="relative z-10 w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-2xl overflow-hidden my-auto"
+            >
+              {/* Header Modal */}
+              <div className="flex items-center justify-between px-5 sm:px-7 py-3.5 sm:py-4 border-b border-slate-100 bg-white/80 shrink-0">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <span className="shrink-0 size-2.5 rounded-full bg-brand-600 animate-pulse" />
+                  <div className="min-w-0">
+                    <h4 className="text-sm sm:text-base font-bold text-ink truncate">
+                      {MOCKUP_DETAILS[selectedMockupIndex].title}
+                    </h4>
+                    <p className="text-xs text-muted truncate hidden sm:block">
+                      {MOCKUP_DETAILS[selectedMockupIndex].subtitle}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 shrink-0">
+                  <span className="text-[11px] font-medium text-slate-400 hidden md:inline">
+                    Nhấn ESC để đóng • Phím ← → chuyển ảnh
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedMockupIndex(null)}
+                    className="size-8.5 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 hover:text-ink transition-colors cursor-pointer"
+                    aria-label="Đóng xem giao diện"
+                  >
+                    <X className="size-4.5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Body Modal: Điện thoại lớn + Thông tin giải thích */}
+              <div className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col md:flex-row items-center justify-center gap-6 lg:gap-10">
+                {/* Nút mũi tên Trái */}
+                <button
+                  type="button"
+                  onClick={() =>
+                    setSelectedMockupIndex((prev) =>
+                      prev > 0 ? prev - 1 : MOCKUP_DETAILS.length - 1
+                    )
+                  }
+                  className="hidden md:flex size-11 rounded-full bg-white border border-slate-200/90 shadow-md items-center justify-center text-slate-700 hover:text-brand-600 hover:border-brand-300 transition-all hover:scale-105 cursor-pointer shrink-0"
+                  aria-label="Xem giao diện trước"
+                >
+                  <ChevronLeft className="size-6" />
+                </button>
+
+                {/* Khung điện thoại kích thước lớn */}
+                <div className="relative shrink-0 rounded-[36px] sm:rounded-[42px] p-2.5 sm:p-3 bg-slate-900 shadow-[0_25px_60px_-15px_rgba(15,26,51,0.35)] ring-1 ring-slate-800">
+                  {/* Dynamic Island */}
+                  <div className="w-20 h-4 bg-black rounded-full mx-auto mb-2 flex items-center justify-end pr-2">
+                    <span className="size-1 rounded-full bg-slate-700" />
+                  </div>
+
+                  {/* Màn hình hiển thị độ nét cao */}
+                  <div className="relative overflow-hidden rounded-[26px] sm:rounded-[32px] w-[260px] sm:w-[285px] md:w-[305px] aspect-[393/852] bg-white shadow-inner">
+                    <img
+                      src={MOCKUP_DETAILS[selectedMockupIndex].image}
+                      alt={MOCKUP_DETAILS[selectedMockupIndex].title}
+                      className="w-full h-full object-contain select-none"
+                    />
+                  </div>
+
+                  {/* Home bar */}
+                  <div className="w-24 h-1 bg-slate-700/80 rounded-full mx-auto mt-2 mb-0.5" />
+                </div>
+
+                {/* Nút mũi tên Phải */}
+                <button
+                  type="button"
+                  onClick={() =>
+                    setSelectedMockupIndex((prev) =>
+                      prev < MOCKUP_DETAILS.length - 1 ? prev + 1 : 0
+                    )
+                  }
+                  className="hidden md:flex size-11 rounded-full bg-white border border-slate-200/90 shadow-md items-center justify-center text-slate-700 hover:text-brand-600 hover:border-brand-300 transition-all hover:scale-105 cursor-pointer shrink-0"
+                  aria-label="Xem giao diện tiếp theo"
+                >
+                  <ChevronRight className="size-6" />
+                </button>
+
+                {/* Cột thông tin chi tiết */}
+                <div className="max-w-xs sm:max-w-sm text-left">
+                  <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200 mb-3">
+                    {MOCKUP_DETAILS[selectedMockupIndex].badge}
+                  </span>
+                  <h5 className="text-lg font-bold text-ink">
+                    {MOCKUP_DETAILS[selectedMockupIndex].title}
+                  </h5>
+                  <p className="mt-2.5 text-xs sm:text-sm text-muted leading-relaxed">
+                    {MOCKUP_DETAILS[selectedMockupIndex].description}
+                  </p>
+
+                  <div className="mt-5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-600 space-y-2">
+                    <div className="font-semibold text-ink flex items-center gap-1.5">
+                      <span className="size-1.5 rounded-full bg-emerald-500" />
+                      <span>Trải nghiệm di động thực tế</span>
+                    </div>
+                    <p className="text-slate-500 text-[11px] leading-relaxed">
+                      Màn hình thiết kế theo chuẩn tỉ lệ di động 9:19.5, phục vụ thử nghiệm Pilot khép kín tại trường Đại học Công nghệ Thông tin (UIT).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer Modal: 4 Tab chuyển nhanh */}
+              <div className="px-4 sm:px-6 py-3 border-t border-slate-100 bg-slate-50/80 flex items-center justify-center gap-2 overflow-x-auto shrink-0">
+                {MOCKUP_DETAILS.map((item, idx) => (
+                  <button
+                    key={item.title}
+                    type="button"
+                    onClick={() => setSelectedMockupIndex(idx)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all whitespace-nowrap cursor-pointer ${
+                      selectedMockupIndex === idx
+                        ? "bg-brand-600 text-white shadow-xs"
+                        : "bg-white text-slate-600 hover:text-ink border border-slate-200"
+                    }`}
+                  >
+                    <span>{`0${idx + 1}. ${item.title.split("—")[0].trim()}`}</span>
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
