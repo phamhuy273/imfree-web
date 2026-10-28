@@ -182,7 +182,7 @@ export default function Features() {
                         <span>{stage.num}</span>
                       </motion.div>
 
-                      {/* Tên giai đoạn đúng chuẩn thiết kế */}
+                      {/* Tên giai đoạn chỉ để Tiếng Anh theo yêu cầu */}
                       <div className="mt-2 text-center">
                         <div
                           className={`text-xs sm:text-sm font-bold tracking-tight transition-colors duration-200 ${
@@ -193,9 +193,6 @@ export default function Features() {
                               : "text-muted group-hover:text-ink"
                           }`}
                         >
-                          {stage.shortLabel}
-                        </div>
-                        <div className="text-[10px] font-mono text-muted/70 uppercase tracking-wider hidden sm:block mt-0.5">
                           {stage.name}
                         </div>
                       </div>
