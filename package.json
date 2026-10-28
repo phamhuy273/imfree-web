@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "zip": "python -c \"import os, zipfile; z = zipfile.ZipFile('deploy.zip', 'w', zipfile.ZIP_DEFLATED); [z.write(os.path.join(r, f), os.path.relpath(os.path.join(r, f), 'dist').replace('\\\\', '/')) for r, d, fs in os.walk('dist') for f in fs]; z.close()\"",
+    "deploy-bundle": "npm run build && npm run zip",
     "lint": "oxlint",
     "preview": "vite preview"
   },
