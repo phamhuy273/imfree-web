@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import ImagePlaceholder from "../components/ImagePlaceholder";
+import Wing from "../components/Wing";
 import { brand, highlights, modules, benefits } from "../data/content";
 
 // Hero vào lần lượt: đây là "khoảnh khắc nổi bật" duy nhất khi tải trang
@@ -20,6 +21,7 @@ export default function Home() {
       <section className="relative overflow-hidden bg-[radial-gradient(60%_50%_at_85%_0%,var(--color-brand-100),transparent)] pb-16 pt-24 sm:pt-28 lg:pt-32">
         <div className="container-x grid items-center gap-10 lg:gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <motion.div variants={container} initial="hidden" animate="show">
+            {/* Pill Badge chữ thuần, tối giản, không icon */}
             <motion.span
               variants={item}
               className="inline-block rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-4"
@@ -32,7 +34,7 @@ export default function Home() {
             </motion.h1>
 
             <motion.p variants={item} className="lead mt-4">
-              ImFree kết nối sinh viên sở hữu tài sản, kỹ năng và thời gian nhàn rỗi với những ai đang có nhu cầu. Giao dịch an tâm với hệ thống xác thực sinh viên, giữ cọc và tích lũy điểm uy tín.
+              ImFree kết nối sinh viên sở hữu tài sản và kỹ năng nhàn rỗi với những ai đang có nhu cầu. Giao dịch an tâm với hệ thống xác thực sinh viên, bảo chứng giữ cọc và Trust Profile đánh giá bằng sao minh bạch.
             </motion.p>
 
             <motion.div variants={item} className="mt-7 flex flex-wrap gap-3">
@@ -45,30 +47,42 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Card xem trước sản phẩm thực tế ImFree (Gọn gàng, tinh tế, không tràn màn hình) */}
+          {/* Khung xem trước với hiệu ứng cánh logo trôi nổi bồng bềnh cực xịn */}
           <motion.div
             className="relative mx-auto w-full max-w-lg lg:max-w-none"
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Card chính: Listing cho thuê máy ảnh theo câu chuyện đề tài */}
-            <div className="relative rounded-2xl bg-white border border-line shadow-lift p-5 sm:p-6 overflow-hidden">
+            {/* 2 Cánh logo chuyển màu trôi nhẹ nhàng */}
+            <Wing
+              variant="blue"
+              className="absolute -left-8 -top-8 z-10 w-28 animate-float sm:w-36 pointer-events-none drop-shadow-md"
+            />
+            <Wing
+              variant="pink"
+              className="absolute -bottom-8 -right-6 z-10 w-24 animate-float-slow sm:w-32 pointer-events-none drop-shadow-md"
+            />
+
+            {/* Khung Card chính: Giao diện thực tế ImFree (Tài sản & Kỹ năng + Trust Profile sao) */}
+            <div className="relative rounded-card bg-white border border-line shadow-lift p-5 sm:p-6 overflow-hidden">
               {/* Header card */}
               <div className="flex items-center justify-between pb-3.5 border-b border-line mb-4">
                 <div className="flex items-center gap-2">
                   <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">
-                    Sẵn sàng bàn giao
+                    Sẵn sàng kết nối
                   </span>
                 </div>
-                <span className="text-xs font-medium text-muted">
-                  Khuôn viên Campus • KTX
-                </span>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-semibold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full">
+                    Tài sản & Kỹ năng
+                  </span>
+                </div>
               </div>
 
               {/* Product preview box */}
-              <div className="rounded-xl bg-gradient-to-br from-brand-50 to-white border border-brand-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden mb-4">
+              <div className="rounded-2xl bg-gradient-to-br from-brand-50 to-white border border-brand-100 p-5 flex flex-col items-center justify-center text-center relative overflow-hidden mb-4">
                 <div className="size-14 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center mb-2.5 shadow-xs">
                   <Camera className="size-7" />
                 </div>
@@ -84,7 +98,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Provider & Trust Score */}
+              {/* Provider & Trust Profile (Đánh giá bằng sao minh bạch) */}
               <div className="flex items-center justify-between pt-1">
                 <div className="flex items-center gap-2.5">
                   <div className="size-9 rounded-full bg-brand-600 text-white font-bold text-xs flex items-center justify-center shadow-xs">
@@ -99,18 +113,23 @@ export default function Home() {
                   </div>
                 </div>
 
+                {/* Trust Profile với 5 sao vàng */}
                 <div className="text-right">
-                  <div className="inline-flex items-center gap-1 text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200/60">
-                    <Star className="size-3 fill-amber-500 text-amber-500" />
-                    <span>Trust Score 98</span>
+                  <div className="inline-flex items-center gap-1 text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200/70">
+                    <div className="flex items-center text-amber-500">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="size-3 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <span className="ml-1 text-ink font-semibold">5.0</span>
                   </div>
-                  <div className="text-[10px] text-muted mt-0.5">14 giao dịch thành công</div>
+                  <div className="text-[10px] text-muted mt-0.5">Trust Profile • 28 đánh giá</div>
                 </div>
               </div>
             </div>
 
             {/* Floating Trust Badge */}
-            <div className="hidden sm:flex absolute -bottom-3 -left-3 items-center gap-2 bg-ink text-white px-3.5 py-2 rounded-xl shadow-lg border border-white/10 text-xs font-medium">
+            <div className="hidden sm:flex absolute -bottom-3 -left-3 items-center gap-2 bg-ink text-white px-3.5 py-2 rounded-xl shadow-lg border border-white/10 text-xs font-medium z-20">
               <ShieldCheck className="size-4 text-emerald-400 shrink-0" />
               <span>Bảo chứng giữ cọc (Deposit)</span>
             </div>
@@ -141,7 +160,7 @@ export default function Home() {
           <Reveal>
             <SectionHeading
               title="Hệ Sinh Thái Tính Năng"
-              text="Bốn trụ cột cốt lõi tạo nên giá trị và tính ứng dụng thực tiễn của đề tài ImFree."
+              text="Tập trung vào hai mảng cốt lõi: Chia sẻ Tài sản & Chia sẻ Kỹ năng cùng cơ chế Trust Profile an tâm."
             />
           </Reveal>
 
@@ -170,7 +189,7 @@ export default function Home() {
       <section className="section">
         <div className="container-x">
           <Reveal>
-            <SectionHeading title="Vì Sao Nên Chọn ImFree" text="Bốn giá trị thiết thực mang lại cho sinh viên và cộng đồng trẻ." />
+            <SectionHeading title="Vì Sao Nên Chọn ImFree" text="Bốn giá trị thiết thực dành riêng cho sinh viên." />
           </Reveal>
 
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

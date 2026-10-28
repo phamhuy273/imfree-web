@@ -1,22 +1,23 @@
 import {
   Camera,
   Wrench,
-  Clock,
   ShieldCheck,
+  Star,
   Target,
-  Lightbulb,
-  Handshake,
   Heart,
+  Handshake,
   TrendingUp,
   UserCheck,
   Coins,
   Lock,
+  Sparkles,
+  Award,
 } from "lucide-react";
 
 export const brand = {
   name: "ImFree",
   slogan: "Biến nguồn lực nhàn rỗi thành giá trị thực",
-  footerText: "Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi (Tài sản, Kỹ năng, Thời gian) dành riêng cho sinh viên.",
+  footerText: "Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi (Tài sản & Kỹ năng) dành riêng cho sinh viên.",
 };
 
 export const navLinks = [
@@ -39,8 +40,8 @@ export const contact = {
 export const highlights = [
   { icon: Camera, label: "Cho thuê tài sản" },
   { icon: Wrench, label: "Chia sẻ kỹ năng" },
-  { icon: Clock, label: "Thời gian nhàn rỗi" },
-  { icon: ShieldCheck, label: "Điểm uy tín Trust Score" },
+  { icon: Star, label: "Trust Profile (Đánh giá sao)" },
+  { icon: ShieldCheck, label: "Bảo chứng đặt cọc (Deposit)" },
 ];
 
 // 4 module chính: dùng cho bento (Trang chủ) và lưới 2×2 (Tính năng)
@@ -48,22 +49,22 @@ export const modules = [
   {
     icon: Camera,
     title: "Asset Sharing — Cho thuê tài sản",
-    text: "Tận dụng máy ảnh, máy chiếu, thiết bị công nghệ nhàn rỗi với cơ chế giữ cọc Deposit và ảnh chụp đối chiếu tình trạng.",
+    text: "Tận dụng máy ảnh, máy chiếu, thiết bị công nghệ nhàn rỗi với cơ chế giữ cọc Deposit và ảnh chụp đối chiếu tình trạng minh bạch.",
   },
   {
     icon: Wrench,
     title: "Skill Sharing — Chia sẻ kỹ năng",
-    text: "Cung cấp dịch vụ dựa trên kỹ năng cá nhân như thiết kế, quay chụp, gia sư học tập và hỗ trợ đồ án thực tế.",
+    text: "Cung cấp và tiếp cận các dịch vụ kỹ năng sinh viên như thiết kế đồ họa, quay dựng video, gia sư chuyên ngành và hỗ trợ đồ án.",
   },
   {
-    icon: Clock,
-    title: "Time Sharing — Thời gian nhàn rỗi",
-    text: "Chuyển hóa 2–4 giờ thời gian rảnh rỗi mỗi ngày thành giá trị thiết thực và thu nhập chính đáng cho bản thân.",
+    icon: Star,
+    title: "Trust Profile — Hồ sơ uy tín bằng sao",
+    text: "Hệ thống đánh giá 5 sao và nhận xét thực tế sau mỗi giao dịch, giúp xây dựng hồ sơ uy tín vững chắc trong cộng đồng sinh viên.",
   },
   {
     icon: ShieldCheck,
-    title: "Trust System — Hệ thống uy tín",
-    text: "Nền tảng xác thực sinh viên, chấm điểm Trust Score và hỗ trợ xử lý khiếu nại minh bạch dựa trên bằng chứng.",
+    title: "Safety & Dispute — Bảo vệ & Xử lý sự cố",
+    text: "Xác thực danh tính sinh viên 100%, bảo vệ bằng hợp đồng giao dịch P2P và cơ chế hỗ trợ xử lý khiếu nại dựa trên bằng chứng.",
   },
 ];
 
@@ -72,38 +73,38 @@ export const benefits = [
   {
     icon: UserCheck,
     title: "An tâm tuyệt đối",
-    text: "Xác thực danh tính sinh viên 100%, bảo vệ giao dịch bằng cơ chế giữ cọc và kiểm tra tình trạng tài sản.",
+    text: "Xác thực danh tính sinh viên, kiểm tra Trust Profile và đánh giá sao thực tế trước khi quyết định giao dịch.",
   },
   {
     icon: Coins,
     title: "Tạo thêm thu nhập",
-    text: "Biến đồ dùng đắp chiếu và kỹ năng cá nhân thành nguồn tài chính thiết thực phục vụ đời sống sinh viên.",
+    text: "Biến máy móc ít dùng và kỹ năng chuyên môn của bản thân thành nguồn thu nhập chính đáng trong thời gian sinh viên.",
   },
   {
     icon: TrendingUp,
     title: "Tiết kiệm chi phí",
-    text: "Dễ dàng tiếp cận các thiết bị công nghệ đắt tiền ngắn hạn mà không cần tốn hàng triệu đồng mua mới.",
+    text: "Tiếp cận các trang thiết bị đắt tiền ngắn hạn mà không cần tốn hàng triệu đồng mua mới.",
   },
   {
     icon: Lock,
     title: "Tích lũy uy tín",
-    text: "Uy tín được cộng dồn qua từng giao dịch thành công (Trust Score), không còn nỗi lo giao dịch với người lạ.",
+    text: "Hồ sơ Trust Profile được cộng dồn sao sau mỗi lần hoàn tất giao dịch tốt đẹp, tạo dựng danh tiếng lâu dài.",
   },
 ];
 
 // 3 card lớn ở cuối trang Tính năng
 export const highlightCards = [
   {
-    title: "Discovery — Khám phá nguồn lực",
+    title: "Discovery — Khám phá Tài sản & Kỹ năng",
     text: "Dễ dàng tìm kiếm máy ảnh, thiết bị hoặc người có kỹ năng phù hợp ngay tại khuôn viên trường và ký túc xá.",
   },
   {
-    title: "Trust & Safety — Lớp bảo vệ an toàn",
-    text: "Hồ sơ xác thực sinh viên, hiển thị điểm uy tín và lịch sử đánh giá minh bạch trước khi quyết định giao dịch.",
+    title: "Trust Profile — Minh bạch qua từng lượt sao",
+    text: "Hồ sơ xác thực sinh viên kèm số sao đánh giá và lịch sử giao dịch rõ ràng, không lo rủi ro khi giao dịch.",
   },
   {
     title: "Deposit & Escrow — Bảo chứng giao dịch",
-    text: "Cơ chế giữ cọc và thanh toán tạm giữ, chỉ giải phóng khi hai bên đã đối chiếu hoàn tất và hài lòng.",
+    text: "Cơ chế giữ cọc an toàn, chỉ giải phóng khi hai bên đã đối chiếu hoàn tất tình trạng tài sản hoặc dịch vụ.",
   },
 ];
 
@@ -119,31 +120,31 @@ export const values = [
   {
     icon: Target,
     title: "Nguồn lực nhàn rỗi làm trung tâm",
-    text: "Bắt đầu từ câu hỏi: 'Sinh viên đang có gì chưa dùng hết?' để biến thành giá trị thực.",
+    text: "Tập trung khai thác 2 nguồn lực lớn của sinh viên: Tài sản cá nhân và Kỹ năng chuyên môn.",
   },
   {
-    icon: ShieldCheck,
-    title: "Niềm tin từ cộng đồng",
-    text: "Xây dựng môi trường giao dịch an tâm dành riêng cho sinh viên với danh tính đã xác minh.",
+    icon: Star,
+    title: "Niềm tin từ Trust Profile",
+    text: "Xây dựng môi trường giao dịch an tâm với danh tính xác thực và hệ thống đánh giá bằng sao minh bạch.",
   },
   {
     icon: Handshake,
     title: "Mạng lưới cung - cầu 2 chiều",
-    text: "Mỗi sinh viên linh hoạt đóng vai trò người cung cấp hoặc người sử dụng tùy theo từng giao dịch.",
+    text: "Mỗi sinh viên linh hoạt đóng vai trò người cung cấp hoặc người sử dụng tùy theo từng nhu cầu.",
   },
   {
     icon: Heart,
     title: "Trải nghiệm sinh viên tối ưu",
-    text: "Giao diện tinh gọn, thao tác nhanh chóng và hỗ trợ giải quyết tranh chấp có căn cứ.",
+    text: "Giao diện tinh gọn, thao tác tiện lợi và cơ chế hỗ trợ xử lý tranh chấp công bằng, có căn cứ.",
   },
   {
-    icon: Lightbulb,
-    title: "Đổi mới mô hình P2P Campus",
-    text: "Tiên phong áp dụng mô hình kinh tế chia sẻ trong khuôn viên trường đại học và ký túc xá.",
+    icon: Sparkles,
+    title: "Đổi mới kinh tế chia sẻ",
+    text: "Tiên phong ứng dụng mô hình chia sẻ tài nguyên P2P ngay trong khuôn viên các trường đại học.",
   },
   {
-    icon: TrendingUp,
-    title: "Tối ưu hóa giá trị tài sản",
-    text: "Kéo dài vòng đời thiết bị, giảm lãng phí tài nguyên và hỗ trợ tài chính cho sinh viên.",
+    icon: Award,
+    title: "Tối ưu hóa giá trị thực",
+    text: "Kéo dài vòng đời thiết bị, giải quyết bài toán kinh tế và hỗ trợ bạn bè cùng phát triển.",
   },
 ];

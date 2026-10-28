@@ -42,7 +42,7 @@ export default function About() {
                   Khởi nguồn từ bài toán thực tế: làm thế nào để sinh viên tận dụng chiếc máy ảnh, laptop hay những kỹ năng nhàn rỗi để tạo ra thu nhập mà không phải lo sợ rủi ro mất mát hay thiếu tin cậy khi giao dịch với người lạ?
                 </p>
                 <p className="max-w-[60ch] text-muted leading-relaxed text-[15px]">
-                  ImFree ra đời với sứ mệnh xây dựng nền tảng chia sẻ nguồn lực P2P chuyên biệt, lấy việc xác thực sinh viên, bảo chứng tiền cọc (Deposit) và chấm điểm uy tín (Trust Score) làm cốt lõi an toàn.
+                  ImFree ra đời với sứ mệnh xây dựng nền tảng chia sẻ nguồn lực P2P chuyên biệt (Tài sản & Kỹ năng), lấy việc xác thực sinh viên, bảo chứng tiền cọc (Deposit) và xây dựng hồ sơ uy tín (Trust Profile đánh giá bằng sao) làm cốt lõi an toàn.
                 </p>
               </div>
             </Reveal>
