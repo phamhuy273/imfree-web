@@ -18,52 +18,45 @@ export default function About() {
             Xem sản phẩm
           </Button>
         </div>
-        <div className="container-x mt-14">
-          <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 shadow-[0_25px_60px_-15px_rgba(42,86,204,0.22)]">
-            {/* Nền hiệu ứng ánh sáng Studio & lưới công nghệ */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_45%,rgba(42,86,204,0.35),rgba(15,23,42,0.85)_70%,#020617_100%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+        <div className="container-x mt-10 sm:mt-12">
+          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl border border-brand-200/80 bg-gradient-to-b from-brand-50/70 via-white to-brand-50/30 p-5 sm:p-7 shadow-[0_20px_50px_-15px_rgba(42,86,204,0.12)]">
+            {/* Vòng hào quang sáng màu xanh nhạt thương hiệu phía sau */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-96 rounded-full bg-brand-400/10 blur-3xl pointer-events-none" />
 
-            {/* Huy hiệu góc trên bên trái */}
-            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 rounded-full bg-slate-900/85 backdrop-blur-md border border-slate-700/80 px-3.5 py-1.5 text-xs text-slate-200 shadow-lg">
-              <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-semibold text-white">Đội ngũ ImFree</span>
-              <span className="text-slate-400 hidden sm:inline">• UIT - ĐHQG-HCM</span>
+            {/* Header thông tin nhanh của card */}
+            <div className="relative z-20 flex items-center justify-between gap-3 pb-3.5 border-b border-brand-100 flex-wrap">
+              <div className="flex items-center gap-2.5">
+                <span className="flex size-2 rounded-full bg-brand-600 animate-pulse" />
+                <span className="text-xs sm:text-sm font-bold text-ink">Đội ngũ sáng lập ImFree</span>
+                <span className="text-xs text-muted hidden sm:inline">• Đại học Công nghệ Thông tin (UIT)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-semibold text-brand-700 bg-brand-100/70 px-2.5 py-0.5 rounded-full border border-brand-200/80">
+                  5 Thành viên
+                </span>
+                <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">
+                  Pilot Campus 2026
+                </span>
+              </div>
             </div>
 
-            {/* Huy hiệu góc trên bên phải */}
-            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 hidden sm:flex items-center gap-2 rounded-full bg-brand-500/15 backdrop-blur-md border border-brand-400/30 px-3.5 py-1.5 text-xs text-brand-300 font-semibold shadow-lg">
-              <span>Kinh tế chia sẻ nguồn lực sinh viên</span>
-            </div>
-
-            {/* Hình ảnh đội ngũ 5 thành viên UIT */}
-            <div className="relative z-10 flex justify-center pt-8 sm:pt-12 pb-14 sm:pb-18">
+            {/* Hình ảnh đội ngũ 5 thành viên UIT (Nền sáng, to rõ, chiếm trọn khung hình) */}
+            <div className="relative z-10 flex justify-center pt-4 sm:pt-6">
               <img
-                src="/team-banner.jpg"
+                src="/team-uit.png"
                 alt="Đội ngũ 5 thành viên UIT sáng lập nền tảng ImFree"
-                className="h-[300px] sm:h-[400px] md:h-[460px] lg:h-[500px] w-auto max-w-full object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)]"
+                className="max-h-[380px] sm:max-h-[460px] md:max-h-[500px] w-auto max-w-full object-contain drop-shadow-[0_15px_30px_rgba(42,86,204,0.14)]"
               />
             </div>
 
-            {/* Lớp chuyển màu mượt mà ở đáy */}
-            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent z-15 pointer-events-none" />
-
-            {/* Thanh thông tin dưới cùng */}
-            <div className="absolute bottom-3 inset-x-3 sm:bottom-6 sm:inset-x-6 z-20 flex flex-wrap items-center justify-between gap-2 rounded-xl sm:rounded-2xl bg-slate-900/85 backdrop-blur-md border border-slate-700/80 px-3.5 py-2 sm:px-5 sm:py-3.5 text-xs shadow-2xl">
-              <div className="flex items-center gap-2.5">
-                <span className="flex size-6 sm:size-7 items-center justify-center rounded-lg bg-brand-600/30 border border-brand-500/40 text-brand-300 font-bold text-xs sm:text-sm">
-                  5
-                </span>
-                <div>
-                  <div className="font-bold text-white text-xs sm:text-sm">Đội ngũ 5 thành viên UIT</div>
-                  <div className="text-[10px] sm:text-[11px] text-slate-400">Trường ĐH Công nghệ Thông tin — ĐHQG-HCM</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 text-slate-300 font-medium">
-                <span className="rounded-lg bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold">
-                  Khởi tạo MVP • Pilot tại Campus
-                </span>
-              </div>
+            {/* Chân thẻ: Thông điệp giá trị */}
+            <div className="relative z-20 mt-3 rounded-2xl bg-white/95 backdrop-blur-xs border border-brand-100/90 p-3.5 sm:p-4 text-center shadow-xs">
+              <p className="text-xs sm:text-sm font-semibold text-ink">
+                Nhóm sinh viên UIT tiên phong xây dựng giải pháp kinh tế chia sẻ nguồn lực trong khuôn viên đại học
+              </p>
+              <p className="text-[11px] sm:text-xs text-muted mt-1">
+                Xuất phát từ nhu cầu thực tế của 105 sinh viên UIT — Kết nối thiết bị, kỹ năng & thời gian an tâm và minh bạch
+              </p>
             </div>
           </div>
         </div>
