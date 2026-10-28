@@ -53,31 +53,24 @@ export default function Navbar() {
           <span className="text-lg font-bold tracking-tight text-ink">{brand.name}</span>
         </Link>
 
-        {/* Desktop Nav: Vỏ bọc Pill tinh tế, tách biệt rõ ràng nhưng vẫn cực kỳ hài hoà */}
+        {/* Desktop Nav: Vỏ bọc Pill tinh tế, bo tròn chuẩn xác, không bao giờ bị lệch hay nhảy ra ngoài */}
         <nav
-          className="hidden items-center p-1 rounded-full bg-slate-100/90 border border-slate-200/80 shadow-[inset_0_1px_2px_rgba(0,0,0,0.03)] md:flex"
+          className="hidden items-center p-1 rounded-full bg-slate-100/90 border border-slate-200/80 shadow-[inset_0_1px_2px_rgba(0,0,0,0.03)] md:flex overflow-hidden"
           aria-label="Điều hướng chính"
         >
           {navLinks.map((l) => (
             <NavLink
               key={l.to}
               to={l.to}
-              className="relative isolate rounded-full px-4 py-1.5 text-sm font-medium transition-colors"
+              className={({ isActive }) =>
+                `relative rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? "font-bold text-brand-700 bg-white shadow-xs border border-slate-200/60"
+                    : "text-slate-600 hover:text-ink hover:bg-white/50"
+                }`
+              }
             >
-              {({ isActive }) => (
-                <>
-                  <span className={isActive ? "font-bold text-brand-700" : "text-slate-600 hover:text-ink"}>
-                    {l.label}
-                  </span>
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-active"
-                      className="absolute inset-0 -z-10 rounded-full bg-white shadow-xs border border-slate-200/50"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </>
-              )}
+              {l.label}
             </NavLink>
           ))}
         </nav>

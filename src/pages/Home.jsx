@@ -450,16 +450,9 @@ export default function Home() {
               <Reveal key={m.title} delay={i * 0.08} className="h-full">
                 <BentoSpotlightCard className="h-full flex flex-col justify-between p-6 sm:p-7">
                   <div className="flex flex-col sm:flex-row items-center sm:items-stretch justify-between gap-5 sm:gap-6 h-full">
-                    {/* Cột thông tin bên trái (chiếm ~58% không gian) */}
+                    {/* Cột thông tin bên trái (chiếm ~58% không gian, đã bỏ tag theo yêu cầu) */}
                     <div className="flex-1 flex flex-col justify-between min-w-0">
                       <div>
-                        <div className="flex items-center gap-2 mb-3">
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200">
-                            <span className="size-1.5 rounded-full bg-brand-600 animate-pulse" />
-                            {m.badge}
-                          </span>
-                        </div>
-
                         <div className="flex items-center gap-3">
                           <span className="grid size-10 sm:size-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white shadow-2xs">
                             <m.icon className="size-5" aria-hidden="true" />
@@ -474,7 +467,7 @@ export default function Home() {
                         </p>
 
                         {m.highlights && (
-                          <ul className="mt-3.5 space-y-1.5">
+                          <ul className="mt-4 space-y-2">
                             {m.highlights.map((h) => (
                               <li key={h} className="flex items-center gap-2 text-xs font-medium text-slate-600">
                                 <CheckCircle2 className="size-3.5 text-brand-600 shrink-0" />
@@ -498,30 +491,33 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Cột Mockup Điện thoại bên phải (chiếm ~42% không gian, vừa vặn không khoảng trống) */}
+                    {/* Cột Mockup Điện thoại bên phải: VIỀN SIÊU MỎNG TITANIUM, DYNAMIC ISLAND NỔI BÊN TRONG MÀN HÌNH */}
                     <div className="shrink-0 flex justify-center items-center py-1">
                       <div
                         role="button"
                         tabIndex={0}
                         onClick={() => setSelectedMockupIndex(i)}
                         onKeyDown={(e) => e.key === "Enter" && setSelectedMockupIndex(i)}
-                        className="group/phone relative cursor-zoom-in rounded-[28px] p-2 bg-slate-900 shadow-[0_16px_36px_-8px_rgba(15,26,51,0.22)] ring-1 ring-slate-800 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_20px_45px_-6px_rgba(42,86,204,0.3)]"
+                        className="group/phone relative cursor-zoom-in rounded-[24px] sm:rounded-[26px] p-[3.5px] sm:p-1 bg-slate-900 shadow-[0_16px_36px_-8px_rgba(15,26,51,0.22)] ring-1 ring-slate-800 transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_20px_45px_-6px_rgba(42,86,204,0.3)]"
                       >
-                        {/* Dynamic Island */}
-                        <div className="w-12 h-2.5 bg-black rounded-full mx-auto mb-1.5 flex items-center justify-end pr-1">
-                          <span className="size-0.5 rounded-full bg-slate-700" />
-                        </div>
+                        {/* Màn hình hiển thị tràn viền trọn vẹn */}
+                        <div className="relative overflow-hidden rounded-[21px] sm:rounded-[23px] w-[155px] sm:w-[170px] lg:w-[185px] aspect-[393/852] bg-slate-100 shadow-inner">
+                          {/* Dynamic Island nổi tinh tế bên trong màn hình (không chiếm viền trên) */}
+                          <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-10 h-2 bg-black rounded-full z-10 flex items-center justify-end pr-1 pointer-events-none shadow-xs">
+                            <span className="size-0.5 rounded-full bg-slate-700" />
+                          </div>
 
-                        {/* Màn hình hiển thị trọn vẹn */}
-                        <div className="relative overflow-hidden rounded-[20px] w-[155px] sm:w-[170px] lg:w-[185px] aspect-[393/852] bg-slate-100 shadow-inner">
                           <img
                             src={MOCKUP_IMAGES[i]}
                             alt={m.title}
                             className="w-full h-full object-cover object-top select-none pointer-events-none"
                           />
 
+                          {/* Home indicator bar nổi bên trong màn hình */}
+                          <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-black/40 rounded-full z-10 pointer-events-none" />
+
                           {/* Hover overlay hint */}
-                          <div className="absolute inset-0 bg-slate-950/25 backdrop-blur-[1px] opacity-0 group-hover/phone:opacity-100 transition-opacity flex flex-col items-center justify-center text-white gap-1">
+                          <div className="absolute inset-0 bg-slate-950/25 backdrop-blur-[1px] opacity-0 group-hover/phone:opacity-100 transition-opacity flex flex-col items-center justify-center text-white gap-1 z-20">
                             <div className="size-8 rounded-full bg-white/90 text-brand-700 flex items-center justify-center shadow-md">
                               <Maximize2 className="size-4" />
                             </div>
@@ -530,9 +526,6 @@ export default function Home() {
                             </span>
                           </div>
                         </div>
-
-                        {/* Home Indicator bar */}
-                        <div className="w-14 h-1 bg-slate-700/80 rounded-full mx-auto mt-1.5 mb-0.5" />
                       </div>
                     </div>
                   </div>
@@ -623,24 +616,24 @@ export default function Home() {
                   <ChevronLeft className="size-6 sm:size-7" />
                 </button>
 
-                {/* Khung điện thoại kích thước lớn siêu nét, không có nội dung chữ rườm rà */}
-                <div className="relative rounded-[36px] sm:rounded-[44px] p-2.5 sm:p-3 bg-slate-900 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85)] ring-1 ring-white/15 max-h-[78vh] sm:max-h-[82vh] flex flex-col">
-                  {/* Dynamic Island */}
-                  <div className="w-16 sm:w-20 h-3.5 sm:h-4 bg-black rounded-full mx-auto mb-1.5 sm:mb-2 flex items-center justify-end pr-2 shrink-0">
-                    <span className="size-1 rounded-full bg-slate-700" />
-                  </div>
+                {/* Khung điện thoại viền siêu mỏng Titanium Pro (không dày viền) */}
+                <div className="relative rounded-[32px] sm:rounded-[40px] p-1 sm:p-1.5 bg-slate-950 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85)] ring-1 ring-white/20 max-h-[82vh] flex flex-col">
+                  {/* Màn hình hiển thị tràn viền sắc nét */}
+                  <div className="relative overflow-hidden rounded-[29px] sm:rounded-[36px] w-[260px] sm:w-[310px] md:w-[340px] aspect-[393/852] bg-white shadow-inner">
+                    {/* Dynamic Island nổi tinh tế bên trong màn hình */}
+                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3 bg-black rounded-full z-10 flex items-center justify-end pr-1.5 pointer-events-none shadow-xs">
+                      <span className="size-1 rounded-full bg-slate-700" />
+                    </div>
 
-                  {/* Màn hình hiển thị ảnh nguyên bản */}
-                  <div className="relative overflow-hidden rounded-[26px] sm:rounded-[34px] w-[260px] sm:w-[310px] md:w-[340px] aspect-[393/852] bg-white shadow-inner">
                     <img
                       src={MOCKUP_DETAILS[selectedMockupIndex].image}
                       alt={MOCKUP_DETAILS[selectedMockupIndex].title}
                       className="w-full h-full object-contain select-none pointer-events-none"
                     />
-                  </div>
 
-                  {/* Home bar */}
-                  <div className="w-20 sm:w-24 h-1 bg-slate-700/80 rounded-full mx-auto mt-1.5 sm:mt-2 mb-0.5 shrink-0" />
+                    {/* Home bar nổi bên trong màn hình */}
+                    <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-20 h-1 bg-black/40 rounded-full z-10 pointer-events-none" />
+                  </div>
                 </div>
 
                 {/* Mũi tên Phải */}
