@@ -7,20 +7,43 @@ import { brand, navLinks } from "../data/content";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
+    let lastScrollY = window.scrollY;
+
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Đổi sang nền kính mờ khi cuộn qua 12px
+      setScrolled(currentScrollY > 12);
+
+      // Kéo xuống thì ẩn (khi đã cuộn hơn 80px), kéo lên thì hiện lại ngay lập tức
+      if (currentScrollY > lastScrollY && currentScrollY > 80 && !open) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [open]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition duration-300 ${
+    <motion.header
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: "-100%" },
+      }}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled || open
-          ? "border-b border-line bg-white/80 backdrop-blur-xl"
+          ? "border-b border-line bg-white/85 backdrop-blur-xl shadow-xs"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -100,6 +123,6 @@ export default function Navbar() {
           </motion.nav>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
