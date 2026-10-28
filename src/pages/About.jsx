@@ -19,11 +19,52 @@ export default function About() {
           </Button>
         </div>
         <div className="container-x mt-14">
-          <div className="relative rounded-card overflow-hidden shadow-lift bg-white border border-brand-100 p-2">
-            <ImagePlaceholder
-              label="Ảnh banner / Đội ngũ 5 thành viên UIT (tỉ lệ 21:9)"
-              className="aspect-[16/9] w-full md:aspect-[21/9]"
-            />
+          <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 shadow-[0_25px_60px_-15px_rgba(42,86,204,0.22)]">
+            {/* Nền hiệu ứng ánh sáng Studio & lưới công nghệ */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_65%_at_50%_45%,rgba(42,86,204,0.35),rgba(15,23,42,0.85)_70%,#020617_100%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+
+            {/* Huy hiệu góc trên bên trái */}
+            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-2 rounded-full bg-slate-900/85 backdrop-blur-md border border-slate-700/80 px-3.5 py-1.5 text-xs text-slate-200 shadow-lg">
+              <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="font-semibold text-white">Đội ngũ ImFree</span>
+              <span className="text-slate-400 hidden sm:inline">• UIT - ĐHQG-HCM</span>
+            </div>
+
+            {/* Huy hiệu góc trên bên phải */}
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 hidden sm:flex items-center gap-2 rounded-full bg-brand-500/15 backdrop-blur-md border border-brand-400/30 px-3.5 py-1.5 text-xs text-brand-300 font-semibold shadow-lg">
+              <span>Kinh tế chia sẻ nguồn lực sinh viên</span>
+            </div>
+
+            {/* Hình ảnh đội ngũ 5 thành viên UIT */}
+            <div className="relative z-10 flex justify-center pt-8 sm:pt-12 pb-14 sm:pb-18">
+              <img
+                src="/team-banner.jpg"
+                alt="Đội ngũ 5 thành viên UIT sáng lập nền tảng ImFree"
+                className="h-[300px] sm:h-[400px] md:h-[460px] lg:h-[500px] w-auto max-w-full object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)]"
+              />
+            </div>
+
+            {/* Lớp chuyển màu mượt mà ở đáy */}
+            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent z-15 pointer-events-none" />
+
+            {/* Thanh thông tin dưới cùng */}
+            <div className="absolute bottom-3 inset-x-3 sm:bottom-6 sm:inset-x-6 z-20 flex flex-wrap items-center justify-between gap-2 rounded-xl sm:rounded-2xl bg-slate-900/85 backdrop-blur-md border border-slate-700/80 px-3.5 py-2 sm:px-5 sm:py-3.5 text-xs shadow-2xl">
+              <div className="flex items-center gap-2.5">
+                <span className="flex size-6 sm:size-7 items-center justify-center rounded-lg bg-brand-600/30 border border-brand-500/40 text-brand-300 font-bold text-xs sm:text-sm">
+                  5
+                </span>
+                <div>
+                  <div className="font-bold text-white text-xs sm:text-sm">Đội ngũ 5 thành viên UIT</div>
+                  <div className="text-[10px] sm:text-[11px] text-slate-400">Trường ĐH Công nghệ Thông tin — ĐHQG-HCM</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-slate-300 font-medium">
+                <span className="rounded-lg bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold">
+                  Khởi tạo MVP • Pilot tại Campus
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
