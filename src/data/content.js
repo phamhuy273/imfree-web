@@ -27,8 +27,8 @@ import {
 export const brand = {
   name: "ImFree",
   tagline: "Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi dành cho sinh viên",
-  subTagline: "Dự án AISC2026 • Đội ngũ phát triển ImFree",
-  footerText: "ImFree — Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi dành cho sinh viên (Dự án tham gia AISC2026). Bắt đầu từ việc giúp sinh viên chia sẻ tài sản nhàn rỗi một cách thuận tiện và đáng tin cậy.",
+  subTagline: "Đội ngũ sinh viên phát triển ImFree",
+  footerText: "ImFree — Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi dành cho sinh viên. Bắt đầu từ việc giúp sinh viên chia sẻ tài sản nhàn rỗi một cách thuận tiện và đáng tin cậy.",
 };
 
 export const navLinks = [
@@ -38,7 +38,7 @@ export const navLinks = [
 ];
 
 export const contact = {
-  emails: ["contact@imfree.id.vn", "imfree.aisc2026@gmail.com"],
+  emails: ["contact@imfree.id.vn", "support@imfree.id.vn"],
   socials: [
     { label: "Facebook Page", href: "https://facebook.com" },
     { label: "GitHub Repository", href: "https://github.com/phamhuy273/imfree-web" },

@@ -10,9 +10,6 @@ export default function About() {
       {/* ───────── 1. TIÊU ĐỀ + BANNER ĐỘI NGŨ (SLIDE 1 & SLIDE 29) ───────── */}
       <section className="bg-[radial-gradient(60%_40%_at_50%_0%,var(--color-brand-100),transparent)] pb-12 pt-32 sm:pt-40">
         <div className="container-x text-center">
-          <span className="inline-block rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-4">
-            Đề tài tham gia AISC2026 • Đội ngũ sinh viên UIT
-          </span>
           <h1 className="h1 mx-auto max-w-3xl">Về dự án ImFree</h1>
           <p className="lead mx-auto mt-4">
             Nền tảng kinh tế chia sẻ nguồn lực nhàn rỗi được xây dựng từ thực tiễn nhu cầu và rào cản niềm tin của sinh viên.
