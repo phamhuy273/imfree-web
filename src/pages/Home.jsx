@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Camera, CheckCircle2, Star, ShieldCheck } from "lucide-react";
+import { ArrowRight, Camera, CheckCircle2, Star } from "lucide-react";
 import Button from "../components/Button";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
@@ -126,12 +126,6 @@ export default function Home() {
                   <div className="text-[10px] text-muted mt-0.5">Trust Profile • 28 đánh giá</div>
                 </div>
               </div>
-            </div>
-
-            {/* Floating Trust Badge */}
-            <div className="hidden sm:flex absolute -bottom-3 -left-3 items-center gap-2 bg-ink text-white px-3.5 py-2 rounded-xl shadow-lg border border-white/10 text-xs font-medium z-20">
-              <ShieldCheck className="size-4 text-emerald-400 shrink-0" />
-              <span>Bảo chứng giữ cọc (Deposit)</span>
             </div>
           </motion.div>
         </div>
