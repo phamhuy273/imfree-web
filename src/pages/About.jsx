@@ -114,11 +114,11 @@ export default function About() {
                   <p className="mt-2 text-xs text-muted leading-relaxed">
                     Minh bạch với xác thực sinh viên UIT KYC, bảo chứng tiền cọc và cơ chế đánh giá 2 chiều.
                   </p>
-                  <div className="mt-3.5 flex items-center justify-between text-[11px] text-muted pt-2 border-t border-slate-100">
-                    <span className="text-emerald-700 font-semibold">
-                      Giao dịch tin cậy & minh bạch
+                  <div className="mt-3.5 flex items-center justify-between text-[11px] text-muted pt-2 border-t border-slate-100 gap-2">
+                    <span className="text-emerald-700 font-semibold whitespace-nowrap">
+                      Tin cậy & Minh bạch
                     </span>
-                    <span className="text-[10px] text-slate-400 font-medium">
+                    <span className="text-[10px] text-slate-400 font-medium whitespace-nowrap">
                       2-Way Rating
                     </span>
                   </div>
@@ -221,7 +221,7 @@ export default function About() {
       </section>
 
       {/* ───────── 3. ĐỘI NGŨ 5 THÀNH VIÊN UIT (SLIDE 28) ───────── */}
-      <section className="section bg-brand-50/60">
+      <section className="section bg-gradient-to-b from-brand-50/50 via-white/80 to-brand-50/40 border-y border-brand-100/70 relative">
         <div className="container-x">
           <Reveal>
             <SectionHeading
@@ -229,31 +229,34 @@ export default function About() {
               text="Nhóm sinh viên trường Đại học Công nghệ Thông tin (UIT) chủ động phát triển phiên bản MVP phục vụ Pilot có kiểm soát."
             />
           </Reveal>
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4.5">
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4">
             {team.map((m, i) => (
               <Reveal key={m.name} delay={i * 0.05}>
-                <article className="group text-center bg-white p-5 rounded-2xl border border-line shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-card hover:border-brand-200 flex flex-col justify-between items-center h-full">
+                <article className="group text-center bg-white/95 backdrop-blur-xs px-3.5 py-5 sm:px-3 sm:py-5 rounded-2xl border border-brand-100/80 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-card hover:border-brand-300 flex flex-col justify-between items-center h-full min-h-[190px] relative overflow-hidden">
+                  {/* Đường viền ánh kim chuyển màu mỏng nhẹ phía trên khi hover */}
+                  <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-brand-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
                   <div className="w-full">
                     {/* Chữ cái viết tắt đại diện tên */}
-                    <div className="size-12 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100/60 border border-brand-200/60 flex items-center justify-center text-brand-700 font-bold text-sm mx-auto mb-3.5 shadow-2xs group-hover:scale-105 transition-transform">
+                    <div className="size-11 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100/70 border border-brand-200/60 flex items-center justify-center text-brand-700 font-bold text-xs sm:text-sm mx-auto mb-3 shadow-2xs group-hover:scale-105 transition-transform">
                       {m.initials}
                     </div>
-                    {/* Tên thành viên */}
-                    <h3 className="font-bold text-ink text-base leading-snug group-hover:text-brand-600 transition-colors">
+                    {/* Tên thành viên: Cân đối không bị rớt chữ đơn lẻ */}
+                    <h3 className="font-bold text-ink text-[13.5px] sm:text-sm leading-snug group-hover:text-brand-600 transition-colors">
                       {m.name}
                     </h3>
                     {/* Ngành học */}
-                    <p className="text-xs text-muted font-medium mt-1.5 leading-relaxed">
+                    <p className="text-[11.5px] text-muted font-medium mt-1 leading-snug">
                       {m.major}
                     </p>
                   </div>
                   {/* Vai trò */}
-                  <div className="mt-4 pt-3 border-t border-slate-100 w-full flex justify-center">
+                  <div className="mt-3.5 pt-2.5 border-t border-slate-100 w-full flex justify-center">
                     <span
-                      className={`text-xs px-3 py-1 rounded-full font-semibold transition-colors ${
+                      className={`text-[11px] px-2.5 py-0.5 rounded-full font-semibold transition-colors ${
                         m.isLead
                           ? "bg-brand-600 text-white shadow-soft"
-                          : "bg-slate-100 text-slate-600 group-hover:bg-brand-50 group-hover:text-brand-700"
+                          : "bg-slate-100/90 text-slate-600 group-hover:bg-brand-50 group-hover:text-brand-700"
                       }`}
                     >
                       {m.role}

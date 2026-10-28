@@ -219,7 +219,7 @@ export default function Features() {
             <div className="grid gap-6 md:grid-cols-2">
               {stage1Discover.map((item, idx) => (
                 <Reveal key={item.title} delay={idx * 0.06}>
-                  <article className="group flex flex-col justify-between p-6 rounded-2xl border border-line bg-white shadow-xs hover:border-brand-300 hover:shadow-card hover:-translate-y-1 transition-all duration-300 h-full">
+                  <article className="group flex flex-col justify-between p-6 rounded-2xl border border-brand-100/90 bg-white/95 backdrop-blur-xs shadow-xs hover:border-brand-300 hover:shadow-card hover:-translate-y-1 transition-all duration-300 h-full">
                     <div>
                       <div className="flex items-start gap-4">
                         <div className="size-12 shrink-0 rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white group-hover:shadow-xs transition-all duration-300">
@@ -248,20 +248,19 @@ export default function Features() {
             </div>
           </section>
 
-          {/* ───────── GIAI ĐOẠN 02: SECURE EXCHANGE (5 CARD CÂN XỨNG: 3 TRÊN + 2 DƯỚI RỘNG 50%) ───────── */}
+          {/* ───────── GIAI ĐOẠN 02: SECURE EXCHANGE (5 CARD CÂN XỨNG TRONG KHUNG CHUYỂN SẮC) ───────── */}
           <section id="stage-2" className="scroll-mt-36">
-            <div className="text-center max-w-2xl mx-auto mb-10">
-              <span className="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider text-brand-700 uppercase bg-brand-50 rounded-full border border-brand-200">
-                Giai đoạn 02 • Giao dịch an toàn
-              </span>
-              <h2 className="h2">{STAGES[1].headingTitle}</h2>
-              <p className="lead mt-3 mx-auto">{STAGES[1].headingText}</p>
-            </div>
+            <div className="relative p-6 sm:p-10 rounded-3xl bg-gradient-to-b from-brand-50/60 via-white/80 to-brand-50/40 border border-brand-100/80 shadow-xs backdrop-blur-xs">
+              <div className="text-center max-w-2xl mx-auto mb-10">
+                <span className="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider text-brand-700 uppercase bg-brand-100/80 rounded-full border border-brand-200">
+                  Giai đoạn 02 • Giao dịch an toàn
+                </span>
+                <h2 className="h2">{STAGES[1].headingTitle}</h2>
+                <p className="lead mt-3 mx-auto">{STAGES[1].headingText}</p>
+              </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
                 {stage2Exchange.map((item, idx) => {
-                  // Hàng 1 (3 card đầu): mỗi card chiếm 2/6 cột (33.3%)
-                  // Hàng 2 (2 card sau): mỗi card chiếm 3/6 cột (50%) -> lấp đầy 100% hàng, không bao giờ bị lệch
                   const isRow2 = idx >= 3;
 
                   return (
@@ -270,7 +269,7 @@ export default function Features() {
                       delay={idx * 0.05}
                       className={`h-full ${isRow2 ? "lg:col-span-3" : "lg:col-span-2"}`}
                     >
-                      <article className="group flex flex-col justify-between p-6 rounded-2xl border border-line bg-white shadow-xs hover:border-brand-300 hover:shadow-card hover:-translate-y-1 transition-all duration-300 h-full">
+                      <article className="group flex flex-col justify-between p-6 rounded-2xl border border-brand-100/90 bg-white/95 backdrop-blur-xs shadow-xs hover:border-brand-300 hover:shadow-card hover:-translate-y-1 transition-all duration-300 h-full">
                         <div>
                           <div className="flex items-start gap-4">
                             <div className="size-12 shrink-0 rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white group-hover:shadow-xs transition-all duration-300">
@@ -297,6 +296,7 @@ export default function Features() {
                     </Reveal>
                   );
                 })}
+              </div>
             </div>
           </section>
 
@@ -313,7 +313,7 @@ export default function Features() {
             <div className="grid gap-6 md:grid-cols-2">
                 {stage3Resolution.map((item, idx) => (
                   <Reveal key={item.title} delay={idx * 0.06}>
-                    <article className="group flex flex-col justify-between p-6 rounded-2xl border border-line bg-white shadow-xs hover:border-brand-300 hover:shadow-card hover:-translate-y-1 transition-all duration-300 h-full">
+                    <article className="group flex flex-col justify-between p-6 rounded-2xl border border-brand-100/90 bg-white/95 backdrop-blur-xs shadow-xs hover:border-brand-300 hover:shadow-card hover:-translate-y-1 transition-all duration-300 h-full">
                       <div>
                         <div className="flex items-start gap-4">
                           <div className="size-12 shrink-0 rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white group-hover:shadow-xs transition-all duration-300">
