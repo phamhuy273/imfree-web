@@ -20,44 +20,12 @@ export default function About() {
         </div>
         <div className="container-x mt-8 sm:mt-10">
           <div className="relative mx-auto max-w-[720px] overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-2 sm:p-2.5 shadow-card">
-            <div className="relative overflow-hidden rounded-2xl group">
-              {/* Ảnh sắc nét với độ phân giải cao hỗ trợ màn hình Retina */}
+            <div className="overflow-hidden rounded-2xl">
               <img
                 src="/team-uit-campus.jpg"
-                srcSet="/team-uit-campus.jpg 1x, /team-uit-campus@2x.jpg 2x"
                 alt="Đội ngũ 5 thành viên UIT sáng lập nền tảng ImFree tại khuôn viên trường"
-                className="w-full h-auto object-cover block transition duration-500 group-hover:scale-[1.01]"
-                loading="eager"
+                className="w-full h-auto object-cover block"
               />
-
-              {/* Huy hiệu góc trên bên trái: Tên đội ngũ */}
-              <div className="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 z-20 flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-md border border-white/80 px-3 py-1 text-xs text-ink shadow-soft">
-                <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-bold">Đội ngũ ImFree</span>
-                <span className="text-muted hidden sm:inline">• UIT</span>
-              </div>
-
-              {/* Huy hiệu góc trên bên phải: Giai đoạn dự án */}
-              <div className="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-3.5 z-20 flex items-center gap-1 rounded-full bg-brand-600/90 backdrop-blur-md border border-white/20 px-3 py-1 text-xs font-semibold text-white shadow-soft">
-                <span>Pilot 2026</span>
-              </div>
-
-              {/* Thanh phụ đề nổi mờ ở chân ảnh */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/85 via-slate-950/40 to-transparent p-3.5 sm:p-5 pt-10 flex flex-wrap items-end justify-between gap-2 text-white">
-                <div>
-                  <h3 className="text-xs sm:text-sm font-bold text-white drop-shadow-xs">
-                    Đội ngũ 5 thành viên sáng lập ImFree
-                  </h3>
-                  <p className="text-[11px] sm:text-xs text-slate-200/95 mt-0.5 drop-shadow-xs">
-                    Sinh viên Trường Đại học Công nghệ Thông tin — ĐHQG-HCM
-                  </p>
-                </div>
-                <div className="hidden sm:flex items-center gap-2">
-                  <span className="text-[11px] bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/30 font-medium">
-                    Kinh tế chia sẻ sinh viên
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
