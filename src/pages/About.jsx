@@ -7,12 +7,15 @@ import { team, values } from "../data/content";
 export default function About() {
   return (
     <>
-      {/* Tiêu đề + banner */}
+      {/* ───────── 1. TIÊU ĐỀ + BANNER ĐỘI NGŨ ───────── */}
       <section className="bg-[radial-gradient(60%_40%_at_50%_0%,var(--color-brand-100),transparent)] pb-12 pt-32 sm:pt-40">
         <div className="container-x text-center">
-          <h1 className="h1 mx-auto max-w-3xl">Về chúng tôi</h1>
-          <p className="lead mx-auto mt-6">
-            Dự án xuất phát từ nhu cầu thực tế của người dùng trong việc tiếp cận và chia sẻ tài nguyên hiệu quả.
+          <span className="inline-block rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-4">
+            Dự án AISC2026 • Đội ngũ Rimberio
+          </span>
+          <h1 className="h1 mx-auto max-w-3xl">Về dự án ImFree</h1>
+          <p className="lead mx-auto mt-4">
+            Giải pháp kinh tế chia sẻ nguồn lực nhàn rỗi được xây dựng từ thực tiễn nhu cầu và rào cản niềm tin của sinh viên.
           </p>
           <Button to="/tinh-nang" className="mt-8">
             Xem sản phẩm
@@ -21,39 +24,69 @@ export default function About() {
         <div className="container-x mt-14">
           <div className="relative rounded-card overflow-hidden shadow-lift bg-white border border-brand-100 p-2">
             <ImagePlaceholder
-              label="Ảnh banner / Ảnh tập thể nhóm phát triển (tỉ lệ 21:9)"
+              label="Ảnh banner / Nhóm sáng lập Rimberio (tỉ lệ 21:9)"
               className="aspect-[16/9] w-full md:aspect-[21/9]"
             />
           </div>
         </div>
       </section>
 
-      {/* Mục tiêu & Thị trường */}
+      {/* ───────── 2. MỤC TIÊU & SỐ LIỆU THỊ TRƯỜNG THỰC TẾ (SLIDE 3 & 28) ───────── */}
       <section className="section">
         <div className="container-x">
           <Reveal>
-            <h2 className="h2 text-ink">Mục tiêu và thị trường</h2>
+            <SectionHeading
+              title="Mục Tiêu & Dữ Liệu Thị Trường"
+              text="Được chứng minh qua số liệu khảo sát thực tế từ 105 sinh viên trường Đại học Công nghệ Thông tin (UIT)."
+            />
           </Reveal>
-          <div className="mt-10 grid gap-10 md:grid-cols-2">
+
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            {/* Box 1: Mục tiêu dự án */}
             <Reveal>
-              <div className="rounded-2xl border border-line bg-brand-50/40 p-8 h-full space-y-3">
-                <h3 className="text-xl font-bold text-ink">Mục tiêu dự án</h3>
-                <p className="max-w-[60ch] text-muted leading-relaxed text-[15px]">
-                  Khởi nguồn từ bài toán thực tế: làm thế nào để sinh viên tận dụng chiếc máy ảnh, laptop hay những kỹ năng nhàn rỗi để tạo ra thu nhập mà không phải lo sợ rủi ro mất mát hay thiếu tin cậy khi giao dịch với người lạ?
+              <div className="rounded-2xl border border-line bg-brand-50/40 p-8 h-full space-y-4">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-600 bg-brand-100/60 w-fit px-3 py-1 rounded-full">
+                  Khởi nguồn đề tài
+                </div>
+                <h3 className="text-2xl font-bold text-ink">Bắt đầu từ câu chuyện có thật</h3>
+                <p className="text-muted leading-relaxed text-[15px]">
+                  Nhiều sinh viên sở hữu những tài sản giá trị như máy ảnh, laptop cấu hình cao, máy chiếu... nhưng tần suất sử dụng thực tế rất thấp. Sinh viên muốn cho thuê để có thêm thu nhập, nhưng lại gặp phải rào cản tâm lý lớn nhất: <em>liệu người thuê có giữ gìn máy không, và giao dịch với người lạ có đáng tin không?</em>
                 </p>
-                <p className="max-w-[60ch] text-muted leading-relaxed text-[15px]">
-                  ImFree ra đời với sứ mệnh xây dựng nền tảng chia sẻ nguồn lực P2P chuyên biệt (Tài sản & Kỹ năng), lấy việc xác thực sinh viên, bảo chứng tiền cọc (Deposit) và xây dựng hồ sơ uy tín (Trust Profile đánh giá bằng sao) làm cốt lõi an toàn.
+                <p className="text-muted leading-relaxed text-[15px]">
+                  <strong>ImFree</strong> ra đời để lấp đầy khoảng trống thị trường: tạo ra một nền tảng chuyên biệt, nơi sinh viên an tâm kết nối chia sẻ <strong>Tài sản & Kỹ năng</strong> nhờ quy trình kiểm soát rủi ro 3 giai đoạn và hồ sơ uy tín <strong>Trust Profile</strong>.
                 </p>
               </div>
             </Reveal>
+
+            {/* Box 2: Dữ liệu khảo sát 105 SV UIT */}
             <Reveal delay={0.1}>
-              <div className="rounded-2xl border border-line bg-brand-50/40 p-8 h-full space-y-3">
-                <h3 className="text-xl font-bold text-ink">Thị trường & Cơ hội</h3>
-                <p className="max-w-[60ch] text-muted leading-relaxed text-[15px]">
-                  Khảo sát cho thấy hơn <strong>66,7%</strong> sinh viên có từ 2–4 giờ nhàn rỗi mỗi ngày và <strong>41,4%</strong> có kỹ năng làm thêm. Trong khi đó, nhu cầu thuê thiết bị ngắn hạn (camera, máy quay, âm thanh, máy chiếu) luôn rất lớn.
-                </p>
-                <p className="max-w-[60ch] text-muted leading-relaxed text-[15px]">
-                  ImFree áp dụng chiến lược <em>Campus-first</em>, khởi đầu từ các khuôn viên đại học và ký túc xá tập trung, từng bước hình thành mạng lưới chia sẻ nguồn lực liên trường (cross-campus) bền vững.
+              <div className="rounded-2xl border border-line bg-white p-8 h-full shadow-xs space-y-5">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-600 bg-accent-500/10 w-fit px-3 py-1 rounded-full">
+                  Số liệu khảo sát 105 SV UIT
+                </div>
+                <h3 className="text-2xl font-bold text-ink">Nhu cầu lớn • Rào cản niềm tin cao</h3>
+                
+                <div className="grid grid-cols-2 gap-4 pt-1">
+                  <div className="p-4 rounded-xl bg-brand-50/60 border border-brand-100">
+                    <div className="text-2xl font-extrabold text-brand-700">58,1%</div>
+                    <div className="text-xs text-muted mt-1 leading-snug">Từng phát sinh nhu cầu thuê / mượn tài sản</div>
+                  </div>
+                  <div className="p-4 rounded-xl bg-brand-50/60 border border-brand-100">
+                    <div className="text-2xl font-extrabold text-brand-700">49,5%</div>
+                    <div className="text-xs text-muted mt-1 leading-snug">Sẵn sàng cung cấp đồ nhàn rỗi để kiếm thêm tiền</div>
+                  </div>
+                  <div className="p-4 rounded-xl bg-amber-50/60 border border-amber-200/60">
+                    <div className="text-2xl font-extrabold text-amber-700">90,5%</div>
+                    <div className="text-xs text-muted mt-1 leading-snug">Phân vân hoặc không an tâm khi giao dịch với người lạ</div>
+                  </div>
+                  <div className="p-4 rounded-xl bg-accent-500/10 border border-accent-400/30">
+                    <div className="text-2xl font-extrabold text-accent-600">72,4%</div>
+                    <div className="text-xs text-muted mt-1 leading-snug">Rào cản lớn nhất: Không biết đối tác có tin cậy không</div>
+                  </div>
+                </div>
+
+                <p className="text-xs text-muted italic">
+                  * Khảo sát thực hiện tại ĐHQG-HCM, xác nhận nhu cầu đã tồn tại rõ nét và ImFree chính là giải pháp giải quyết rào cản độ tin cậy.
                 </p>
               </div>
             </Reveal>
@@ -61,25 +94,30 @@ export default function About() {
         </div>
       </section>
 
-      {/* Đội ngũ */}
+      {/* ───────── 3. ĐỘI NGŨ THỰC HIỆN DỰ ÁN (SLIDE 28) ───────── */}
       <section className="section bg-brand-50/60">
         <div className="container-x">
           <Reveal>
             <SectionHeading
-              title="Đội ngũ của chúng tôi"
-              text="Những thành viên nhiệt huyết xây dựng và phát triển sản phẩm."
+              title="Đội Ngũ Sáng Lập (Rimberio)"
+              text="Nhóm 5 sinh viên trường Đại học Công nghệ Thông tin (UIT) chủ động phát triển và kiểm chứng phiên bản Pilot."
             />
           </Reveal>
           <div className="mt-14 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
             {team.map((m, i) => (
               <Reveal key={m.name} delay={i * 0.06}>
-                <article className="group text-center bg-white p-4 rounded-2xl border border-line shadow-xs transition duration-300 hover:-translate-y-1 hover:shadow-soft">
-                  <ImagePlaceholder
-                    label="Ảnh đại diện"
-                    className="aspect-[4/5] w-full transition duration-300 group-hover:scale-[1.02]"
-                  />
-                  <h3 className="mt-4 font-bold text-ink text-base">{m.name}</h3>
-                  <p className="text-xs text-brand-600 font-medium mt-1">{m.major}</p>
+                <article className="group text-center bg-white p-5 rounded-2xl border border-line shadow-xs transition duration-300 hover:-translate-y-1 hover:shadow-soft flex flex-col justify-between h-full">
+                  <div>
+                    <ImagePlaceholder
+                      label="Ảnh"
+                      className="aspect-[4/5] w-full transition duration-300 group-hover:scale-[1.02] mb-4"
+                    />
+                    <h3 className="font-bold text-ink text-base">{m.name}</h3>
+                    <p className="text-xs text-brand-600 font-medium mt-1">{m.major}</p>
+                  </div>
+                  <span className="mt-3 text-[11px] text-muted bg-slate-100 py-1 px-2 rounded-full inline-block">
+                    {m.role}
+                  </span>
                 </article>
               </Reveal>
             ))}
@@ -87,25 +125,25 @@ export default function About() {
         </div>
       </section>
 
-      {/* Giá trị cốt lõi */}
+      {/* ───────── 4. GIÁ TRỊ CỐT LÕI (SLIDE 1 & SLIDE 27) ───────── */}
       <section className="section">
         <div className="container-x">
           <Reveal>
             <SectionHeading
-              title="Giá trị cốt lõi"
-              text="Sáu nguyên tắc kim chỉ nam định hình chất lượng và văn hóa của ImFree."
+              title="Giá Trị Cốt Lõi"
+              text="Bốn giá trị kim chỉ nam: Kết nối • Chia sẻ • Tin cậy • Cộng đồng định hình nên nền tảng ImFree."
             />
           </Reveal>
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
             {values.map((v, i) => (
-              <Reveal key={v.title} delay={(i % 2) * 0.08}>
-                <article className="flex h-full items-start gap-5 rounded-card border border-line p-6 transition duration-300 hover:border-brand-300 hover:shadow-soft bg-white">
-                  <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-brand-50 text-brand-600">
-                    <v.icon className="size-6" aria-hidden="true" />
-                  </span>
+              <Reveal key={v.title} delay={i * 0.08}>
+                <article className="flex h-full flex-col justify-between rounded-card border border-line p-6 transition duration-300 hover:border-brand-300 hover:shadow-soft bg-white">
                   <div>
+                    <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-brand-50 text-brand-600 mb-4">
+                      <v.icon className="size-6" aria-hidden="true" />
+                    </span>
                     <h3 className="text-lg font-bold tracking-tight text-ink">{v.title}</h3>
-                    <p className="mt-1.5 text-muted text-sm leading-relaxed">{v.text}</p>
+                    <p className="mt-2 text-muted text-sm leading-relaxed">{v.text}</p>
                   </div>
                 </article>
               </Reveal>

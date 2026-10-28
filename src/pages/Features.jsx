@@ -1,18 +1,17 @@
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
 import AppWindow from "../components/AppWindow";
-import ImagePlaceholder from "../components/ImagePlaceholder";
-import { coreCycle, mvpModules } from "../data/content";
+import { discoverSteps, transactionStages } from "../data/content";
 
 export default function Features() {
   return (
     <>
-      {/* ───────── 1. TIÊU ĐỀ + KHUNG APP SIMULATOR ───────── */}
+      {/* ───────── 1. TIÊU ĐỀ + KHUNG APP SIMULATOR (SLIDE 8-16) ───────── */}
       <section className="bg-[radial-gradient(60%_40%_at_50%_0%,var(--color-brand-100),transparent)] pb-10 pt-32 sm:pt-40">
         <div className="container-x text-center">
           <h1 className="h1 mx-auto max-w-3xl">Khám phá các tính năng</h1>
           <p className="lead mx-auto mt-6">
-            Mô phỏng trải nghiệm giao diện và quy trình vận hành khép kín của nền tảng ImFree.
+            Mô phỏng trải nghiệm giao diện và luồng giao dịch xuyên suốt (Transaction Flow) của nền tảng ImFree.
           </p>
         </div>
         <div className="container-x mt-14">
@@ -20,20 +19,20 @@ export default function Features() {
         </div>
       </section>
 
-      {/* ───────── 2. CHU TRÌNH GIAO DỊCH LÕI (2×2 GRID - BÁM SÁT WIREFRAME) ───────── */}
+      {/* ───────── 2. GIAI ĐOẠN 1: DISCOVER & TRUST (2×2 GRID - BÁM SÁT WIREFRAME) ───────── */}
       <section className="section">
         <div className="container-x">
           <Reveal>
             <SectionHeading
-              title="Chu Trình Giao Dịch Lõi"
-              text="Quy trình 4 bước khép kín đảm bảo tính an tâm, tiện lợi và minh bạch từ lúc tìm kiếm đến khi hoàn tất."
+              title="Giai Đoạn 01: Discover & Trust"
+              text="Từ tìm kiếm tài sản đến gửi yêu cầu thuê — minh bạch hơn ở mỗi điểm chạm nhằm giảm thiểu bất cân xứng thông tin."
             />
           </Reveal>
 
           <div className="mt-14 grid gap-x-10 gap-y-10 md:grid-cols-2">
-            {coreCycle.map((step, i) => (
+            {discoverSteps.map((step, i) => (
               <Reveal key={step.title} delay={(i % 2) * 0.1}>
-                <article className="flex items-start gap-5 p-6 rounded-2xl border border-line bg-white shadow-xs transition hover:border-brand-300 hover:shadow-soft">
+                <article className="flex items-start gap-5 p-6 rounded-2xl border border-line bg-white shadow-xs transition hover:border-brand-300 hover:shadow-soft h-full">
                   {/* Khung ô vuông số thứ tự + icon bên trái (chuẩn wireframe ảnh vuông) */}
                   <div className="size-20 shrink-0 rounded-2xl bg-brand-50 border border-brand-100 flex flex-col items-center justify-center text-brand-600 shadow-xs">
                     <span className="text-[11px] font-mono font-bold text-accent-500 tracking-wider">
@@ -64,18 +63,18 @@ export default function Features() {
         </div>
       </section>
 
-      {/* ───────── 3. BA PHÂN HỆ CÔNG NGHỆ CỐT LÕI (3 CỘT - BÁM SÁT WIREFRAME) ───────── */}
+      {/* ───────── 3. BA GIAI ĐOẠN GIAO DỊCH TOÀN DIỆN (3 CỘT - BÁM SÁT WIREFRAME & SLIDE 7) ───────── */}
       <section className="section bg-brand-50/60">
         <div className="container-x">
           <Reveal>
             <SectionHeading
-              title="Ba Phân Hệ Công Nghệ Nổi Bật"
-              text="Được thiết kế chuyên biệt để giải quyết trọn vẹn bài toán chia sẻ Tài sản & Kỹ năng trong môi trường đại học."
+              title="Quy Trình Giao Dịch 3 Giai Đoạn"
+              text="Tạo thành một quy trình khép kín, từ kết nối cung - cầu đến kiểm soát rủi ro và giải quyết tranh chấp."
             />
           </Reveal>
 
           <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {mvpModules.map((c, i) => (
+            {transactionStages.map((c, i) => (
               <Reveal key={c.title} delay={i * 0.1}>
                 <article className="group h-full rounded-card border border-line bg-white p-7 transition duration-300 hover:-translate-y-1 hover:shadow-lift flex flex-col justify-between">
                   <div>
@@ -85,7 +84,7 @@ export default function Features() {
                         <c.icon className="size-6" aria-hidden="true" />
                       </div>
                       <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-muted">
-                        {c.badge}
+                        {c.stageNum}
                       </span>
                     </div>
 

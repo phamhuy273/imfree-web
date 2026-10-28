@@ -16,12 +16,18 @@ import {
   CheckCircle2,
   Scale,
   Package,
+  Layers,
+  FileCheck,
+  Clock,
+  AlertTriangle,
+  Users,
 } from "lucide-react";
 
 export const brand = {
   name: "ImFree",
-  slogan: "Biến nguồn lực nhàn rỗi thành giá trị thực",
-  footerText: "Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi (Tài sản & Kỹ năng) dành riêng cho sinh viên.",
+  tagline: "Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi dành cho sinh viên",
+  subTagline: "Dự án tham gia AISC2026 • Phát triển bởi Rimberio",
+  footerText: "ImFree — Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi dành cho sinh viên. Dự án tham gia AISC2026 phát triển bởi nhóm Rimberio.",
 };
 
 export const navLinks = [
@@ -31,174 +37,193 @@ export const navLinks = [
 ];
 
 export const contact = {
-  emails: ["contact@imfree.id.vn", "support@imfree.id.vn"],
+  emails: ["contact@imfree.id.vn", "rimberio.aisc2026@gmail.com"],
   socials: [
-    { label: "Facebook", href: "https://facebook.com" },
-    { label: "GitHub", href: "https://github.com/phamhuy273/imfree-web" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
+    { label: "Facebook Page", href: "https://facebook.com" },
+    { label: "GitHub Repository", href: "https://github.com/phamhuy273/imfree-web" },
+    { label: "Cộng đồng UIT", href: "https://uit.edu.vn" },
   ],
   phones: ["0987 654 321", "0912 345 678"],
 };
 
-// Hàng 4 chip dưới hero trang chủ
+// =========================================================================
+// 1. TRANG CHỦ: HÀNG 4 TỪ KHÓA CỐT LÕI (SLIDE 1 CỦA ĐỀ TÀI AISC2026)
+// =========================================================================
 export const highlights = [
-  { icon: Camera, label: "Cho thuê tài sản" },
-  { icon: Wrench, label: "Chia sẻ kỹ năng" },
-  { icon: Star, label: "Trust Profile (Đánh giá sao)" },
-  { icon: ShieldCheck, label: "Bảo chứng đặt cọc (Deposit)" },
+  { icon: Layers, label: "Kết nối cung - cầu" },
+  { icon: Camera, label: "Chia sẻ tài sản" },
+  { icon: ShieldCheck, label: "Tin cậy & Xác thực" },
+  { icon: Users, label: "Cộng đồng sinh viên" },
 ];
 
-// ==========================================
-// 1. TRANG CHỦ: HỆ SINH THÁI TÍNH NĂNG (BENTO GRID - TỔNG QUAN CẤP CAO)
-// ==========================================
+// =========================================================================
+// TRANG CHỦ: HỆ SINH THÁI TÍNH NĂNG (BENTO GRID - TỔNG QUAN GIẢI PHÁP SLIDE 5 & 27)
+// =========================================================================
 export const modules = [
   {
     icon: Camera,
-    title: "Asset Sharing — Cho thuê tài sản",
-    text: "Tận dụng máy ảnh, máy chiếu, thiết bị công nghệ nhàn rỗi với cơ chế giữ cọc Deposit và ảnh chụp đối chiếu tình trạng minh bạch.",
+    title: "Asset Sharing — Trọng tâm phiên bản MVP",
+    text: "Mô hình cho thuê tài sản nhàn rỗi (máy ảnh, camera, thiết bị âm thanh, máy chiếu...) giúp sinh viên giải quyết nhu cầu ngắn hạn mà không cần bỏ tiền triệu mua mới.",
+  },
+  {
+    icon: FileCheck,
+    title: "Secure Exchange — Kiểm soát rủi ro toàn diện",
+    text: "Quy trình ghi nhận minh bạch ở từng mốc: Before Verification (chụp ảnh hiện trạng trước khi dùng) và After Verification (đối chiếu khi hoàn trả) kèm giữ cọc Deposit.",
+  },
+  {
+    icon: Star,
+    title: "Trust Profile — Vòng lặp xây dựng niềm tin",
+    text: "Cơ chế tích lũy uy tín qua từng giao dịch: Giao dịch thành công → Đánh giá 5 sao thực tế → Lưu vết lịch sử → Trust Profile minh bạch cho các giao dịch tiếp theo.",
   },
   {
     icon: Wrench,
-    title: "Skill Sharing — Chia sẻ kỹ năng",
-    text: "Cung cấp và tiếp cận các dịch vụ kỹ năng sinh viên như thiết kế đồ họa, quay dựng video, gia sư chuyên ngành và hỗ trợ đồ án.",
-  },
-  {
-    icon: Star,
-    title: "Trust Profile — Hồ sơ uy tín bằng sao",
-    text: "Hệ thống đánh giá 5 sao và nhận xét thực tế sau mỗi giao dịch, giúp xây dựng hồ sơ uy tín vững chắc trong cộng đồng sinh viên.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Safety & Dispute — Bảo vệ & Xử lý sự cố",
-    text: "Xác thực danh tính sinh viên 100%, bảo vệ bằng hợp đồng giao dịch P2P và cơ chế hỗ trợ xử lý khiếu nại dựa trên bằng chứng.",
+    title: "Skill & Time Sharing — Định hướng mở rộng",
+    text: "Sau khi hoàn thiện Pilot tài sản, hệ thống mở rộng khai thác thêm 2 nguồn lực nhàn rỗi: Kỹ năng chuyên môn và 2–4 giờ thời gian rảnh mỗi ngày của sinh viên.",
   },
 ];
 
-// 4 card "lợi ích" ở Trang chủ
+// =========================================================================
+// TRANG CHỦ: VÌ SAO NÊN CHỌN IMFREE (DỰA TRÊN SỐ LIỆU KHẢO SÁT 105 SV UIT - SLIDE 3)
+// =========================================================================
 export const benefits = [
   {
     icon: UserCheck,
-    title: "An tâm tuyệt đối",
-    text: "Xác thực danh tính sinh viên, kiểm tra Trust Profile và đánh giá sao thực tế trước khi quyết định giao dịch.",
+    title: "58,1% Sinh viên có nhu cầu",
+    text: "Hơn một nửa sinh viên từng có nhu cầu thuê/mượn tài sản công nghệ ngắn hạn nhưng chỉ tìm kiếm rời rạc qua bạn bè, người quen.",
   },
   {
     icon: Coins,
-    title: "Tạo thêm thu nhập",
-    text: "Biến máy móc ít dùng và kỹ năng chuyên môn của bản thân thành nguồn thu nhập chính đáng trong thời gian sinh viên.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Tiết kiệm chi phí",
-    text: "Tiếp cận các trang thiết bị đắt tiền ngắn hạn mà không cần tốn hàng triệu đồng mua mới.",
+    title: "49,5% Sẵn sàng cho thuê",
+    text: "Nguồn cung dồi dào từ các bạn sinh viên sở hữu đồ dùng ít dùng, mong muốn tạo ra thêm dòng tiền thu nhập chính đáng cho bản thân.",
   },
   {
     icon: Lock,
-    title: "Tích lũy uy tín",
-    text: "Hồ sơ Trust Profile được cộng dồn sao sau mỗi lần hoàn tất giao dịch tốt đẹp, tạo dựng danh tiếng lâu dài.",
+    title: "Xóa tan 90,5% e ngại",
+    text: "Giải quyết triệt để nỗi lo lớn nhất khi giao dịch với người lạ nhờ lớp xác thực sinh viên qua email trường và bằng chứng đối chiếu.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Bảo chứng đặt cọc (Deposit)",
+    text: "Cơ chế ký quỹ tự động và quy trình giải quyết tranh chấp (Dispute) bảo vệ quyền lợi trọn vẹn cho cả Provider lẫn Seeker.",
   },
 ];
 
-// ==========================================
-// 2. TRANG TÍNH NĂNG: ĐI SÂU VÀO CƠ CHẾ VẬN HÀNH & PHÂN HỆ MVP (KHÔNG TRÙNG LẶP)
-// ==========================================
+// =========================================================================
+// 2. TRANG TÍNH NĂNG: TRANSACTION FLOW 3 GIAI ĐOẠN CHÍNH (SLIDE 7-20, 41-43)
+// =========================================================================
 
-// Lưới 4 ô (2x2): Chu trình giao dịch lõi 4 bước
-export const coreCycle = [
+// Lưới 4 ô (2x2): Giai đoạn 1 Discover & Trust (Slide 8-11, 43)
+export const discoverSteps = [
   {
     icon: Search,
     step: "01",
-    title: "Khám phá & Đăng tải (Discovery)",
-    text: "Người cho thuê hoặc cung cấp kỹ năng đăng tải thông tin, mức giá và điều kiện. Người có nhu cầu tìm kiếm nhanh theo campus, KTX và thời gian.",
-    tag: "Bộ lọc thông minh",
+    title: "Search & Filter — Tìm kiếm tài sản",
+    text: "Nhập từ khóa thiết bị (ví dụ 'camera'), lọc nhanh theo mức giá, thời gian thuê và vị trí khuôn viên trường/KTX để tiếp cận đúng nguồn cung mong muốn.",
+    tag: "Tiếp cận nguồn cung phù hợp",
   },
   {
-    icon: UserCheck,
+    icon: Layers,
     step: "02",
-    title: "Xác thực & Lớp tin cậy (Trust & Verification)",
-    text: "Xác thực danh tính 100% sinh viên qua email trường. Hai bên kiểm tra Trust Profile, lịch sử giao dịch và đánh giá sao trước khi bắt đầu.",
-    tag: "Minh bạch 100%",
-  },
-  {
-    icon: Camera,
-    step: "03",
-    title: "Bàn giao & Giữ cọc (Handover & Deposit)",
-    text: "Ghi nhận hiện trạng tài sản bằng ảnh/video trực tiếp trên app trước khi giao. Kích hoạt cơ chế ký quỹ (Deposit) giữ tiền cọc an toàn.",
-    tag: "Bảo chứng tài sản",
+    title: "Asset Detail — Xem chi tiết tài sản",
+    text: "Xem đầy đủ hình ảnh thực tế, mô tả thông số kỹ thuật, tình trạng phụ kiện đi kèm, giá thuê theo ngày và các điều kiện nhận trả do Provider quy định.",
+    tag: "Đầy đủ thông tin đối chiếu",
   },
   {
     icon: Star,
+    step: "03",
+    title: "Provider's Trust Profile — Kiểm tra uy tín",
+    text: "Xem hồ sơ Provider: trạng thái xác minh sinh viên UIT, số sao đánh giá trung bình và lịch sử các đơn hàng đã hoàn tất trước khi quyết định đặt cọc.",
+    tag: "Giảm bất cân xứng thông tin",
+  },
+  {
+    icon: FileCheck,
     step: "04",
-    title: "Nghiệm thu & Đánh giá sao (Rating & Review)",
-    text: "Xác nhận đối chiếu tình trạng khi hoàn trả tài sản để giải phóng tiền cọc. Hai bên chấm sao cho nhau, bồi đắp uy tín cho các giao dịch sau.",
-    tag: "Tích lũy uy tín",
+    title: "Booking Request — Gửi yêu cầu thuê",
+    text: "Chọn khoảng thời gian thuê, số lượng ngày, gửi lời nhắn cụ thể và đề xuất thỏa thuận. Yêu cầu được gửi trực tiếp đến Provider trước khi thanh toán.",
+    tag: "Chuyển thành yêu cầu cụ thể",
   },
 ];
 
-// Lưới 3 card lớn: 3 Phân hệ công nghệ cốt lõi của nền tảng MVP
-export const mvpModules = [
+// Lưới 3 card lớn: 3 Giai đoạn cốt lõi của quy trình giao dịch (Slide 7, 41-43)
+export const transactionStages = [
   {
-    icon: Package,
-    badge: "Phân hệ 01",
-    title: "Hệ Thống Cho Thuê Tài Sản (Asset Sharing)",
-    text: "Quản lý danh mục thiết bị, lịch đặt thuê linh hoạt theo ngày/giờ, quản lý tiền đặt cọc (Deposit) và tự động nhắc nhở lịch hẹn trả đồ.",
-    featurePoint: "Bàn giao có ảnh đối chiếu",
+    icon: Search,
+    stageNum: "Giai đoạn 01",
+    title: "Discover & Trust (Khám phá & Tin cậy)",
+    text: "Giúp người dùng tìm kiếm tài sản cần thuê và đánh giá độ tin cậy của đối tác thông qua bộ lọc thông minh và hồ sơ Trust Profile minh bạch.",
+    featurePoint: "Tìm kiếm & Đánh giá đối tác",
   },
   {
-    icon: Sparkles,
-    badge: "Phân hệ 02",
-    title: "Thị Trường Dịch Vụ Kỹ Năng (Skill Marketplace)",
-    text: "Không gian kết nối dịch vụ chuyên môn giữa sinh viên (design, lập trình, gia sư, quay chụp). Thống nhất phạm vi công việc và giải ngân minh bạch.",
-    featurePoint: "Thỏa thuận rõ ràng",
+    icon: ShieldCheck,
+    stageNum: "Giai đoạn 02",
+    title: "Secure Exchange (Giao dịch an toàn)",
+    text: "Quản lý xuyên suốt quá trình xác nhận, thanh toán phí thuê, giữ cọc Deposit, ghi nhận ảnh trước khi dùng (Before Verification) và đối chiếu khi trả (After Verification).",
+    featurePoint: "Đối chiếu ảnh 2 chiều & Giữ cọc",
   },
   {
     icon: Scale,
-    badge: "Phân hệ 03",
-    title: "Trung Tâm An Toàn & Trọng Tài (Trust & Safety)",
-    text: "Bộ công cụ bảo vệ người dùng, hỗ trợ giải quyết tranh chấp (Dispute System) công bằng và có căn cứ dựa trên lịch sử ảnh đối chiếu và hợp đồng.",
-    featurePoint: "Trọng tài minh bạch",
+    stageNum: "Giai đoạn 03",
+    title: "Protection & Resolution (Bảo vệ & Trọng tài)",
+    text: "Hệ thống hỗ trợ tiếp nhận và giải quyết sự cố, tranh chấp phát sinh một cách có căn cứ dựa trên lịch sử đối chiếu ảnh/video và chính sách của ImFree.",
+    featurePoint: "Xử lý tranh chấp minh bạch",
   },
 ];
 
-// ==========================================
-// 3. TRANG VỀ CHÚNG TÔI
-// ==========================================
+// =========================================================================
+// 3. TRANG VỀ CHÚNG TÔI: KHẢO SÁT, TÍNH KHẢ THI & CHIẾN LƯỢC TIẾP CẬN (SLIDE 3, 25, 28)
+// =========================================================================
+export const surveyStats = [
+  { value: "58.1%", label: "Sinh viên từng phát sinh nhu cầu thuê/mượn tài sản" },
+  { value: "50.5%", label: "Từng tìm kiếm hoặc sử dụng kỹ năng của sinh viên khác" },
+  { value: "49.5%", label: "Sẵn sàng cho thuê tài sản nhàn rỗi để có thêm thu nhập" },
+  { value: "72.4%", label: "Lo lắng lớn nhất: Không biết người giao dịch có tin cậy không" },
+];
+
+export const coldStartSteps = [
+  { step: "01", title: "Khoanh vùng Micro-market", desc: "Tập trung trước mắt tại cộng đồng UIT, các CLB, đội thi và ban tổ chức sự kiện sinh viên." },
+  { step: "02", title: "Gom nhu cầu thực tế (Demand-first)", desc: "Xác định các thiết bị có nhu cầu thuê cao (máy ảnh, camera, âm thanh) trước khi kêu gọi đăng đồ đại trà." },
+  { step: "03", title: "Tuyển chọn Provider phù hợp", desc: "Chủ động kết nối các sinh viên có thiết bị nhàn rỗi tương ứng với nhu cầu đã gom." },
+  { step: "04", title: "Concierge Matching (Hỗ trợ trực tiếp)", desc: "Nhóm sáng lập trực tiếp hướng dẫn bàn giao, kiểm tra tình trạng và bảo đảm giao dịch an toàn ban đầu." },
+  { step: "05", title: "Mở rộng khi có thanh khoản", desc: "Chỉ mở rộng sang các trường thuộc ĐHQG-HCM và KTX khi cụm giao dịch tại UIT vận hành trơn tru." },
+];
+
 export const team = [
-  { name: "Phạm Viết Quang Huy", major: "Khoa học Máy tính" },
-  { name: "Thành viên nhóm 2", major: "Kỹ thuật Phần mềm" },
-  { name: "Thành viên nhóm 3", major: "Công nghệ Thông tin" },
-  { name: "Thành viên nhóm 4", major: "Hệ thống Thông tin" },
-  { name: "Thành viên nhóm 5", major: "An toàn Thông tin" },
+  { name: "Phạm Viết Quang Huy", major: "Khoa học Máy tính - UIT", role: "Đồng sáng lập / Trưởng nhóm" },
+  { name: "Hoàng Nam", major: "Kỹ thuật Phần mềm - UIT", role: "Frontend & Mobile Developer" },
+  { name: "Phương Linh", major: "Thiết kế Đồ họa / UI-UX", role: "Product Designer" },
+  { name: "Thành viên nhóm 4", major: "Hệ thống Thông tin - UIT", role: "Backend & Data Architect" },
+  { name: "Thành viên nhóm 5", major: "An toàn Thông tin - UIT", role: "Trust & Safety Specialist" },
 ];
 
 export const values = [
   {
+    icon: Layers,
+    title: "Kết nối (Connection)",
+    text: "Kết nối nguồn cung đang 'đắp chiếu' với những nhu cầu sử dụng thực tế chưa được đáp ứng trong trường.",
+  },
+  {
+    icon: Camera,
+    title: "Chia sẻ (Sharing)",
+    text: "Thúc đẩy văn hóa chia sẻ tài nguyên trong cộng đồng sinh viên, giảm thiểu lãng phí và tối ưu chi phí.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Tin cậy (Trust-first)",
+    text: "Xây dựng niềm tin vững chắc bằng xác thực sinh viên, hồ sơ Trust Profile và cơ chế bảo chứng cọc rõ ràng.",
+  },
+  {
+    icon: Users,
+    title: "Cộng đồng (Community)",
+    text: "Lấy môi trường đại học làm cái nôi phát triển, hướng tới mạng lưới chia sẻ nguồn lực liên trường bền vững.",
+  },
+  {
     icon: Target,
-    title: "Nguồn lực nhàn rỗi làm trung tâm",
-    text: "Tập trung khai thác 2 nguồn lực lớn của sinh viên: Tài sản cá nhân và Kỹ năng chuyên môn.",
-  },
-  {
-    icon: Star,
-    title: "Niềm tin từ Trust Profile",
-    text: "Xây dựng môi trường giao dịch an tâm với danh tính xác thực và hệ thống đánh giá bằng sao minh bạch.",
-  },
-  {
-    icon: Handshake,
-    title: "Mạng lưới cung - cầu 2 chiều",
-    text: "Mỗi sinh viên linh hoạt đóng vai trò người cung cấp hoặc người sử dụng tùy theo từng nhu cầu.",
-  },
-  {
-    icon: Heart,
-    title: "Trải nghiệm sinh viên tối ưu",
-    text: "Giao diện tinh gọn, thao tác tiện lợi và cơ chế hỗ trợ xử lý tranh chấp công bằng, có căn cứ.",
-  },
-  {
-    icon: Sparkles,
-    title: "Đổi mới kinh tế chia sẻ",
-    text: "Tiên phong ứng dụng mô hình chia sẻ tài nguyên P2P ngay trong khuôn viên các trường đại học.",
+    title: "Kiểm soát rủi ro (Risk Control)",
+    text: "Giao dịch có mốc ghi nhận trước/sau (Before & After Verification) và xử lý sự cố có căn cứ dữ liệu.",
   },
   {
     icon: Award,
-    title: "Tối ưu hóa giá trị thực",
-    text: "Kéo dài vòng đời thiết bị, giải quyết bài toán kinh tế và hỗ trợ bạn bè cùng phát triển.",
+    title: "Kiểm chứng thực tế (Pragmatic MVP)",
+    text: "Mô hình được kiểm chứng từ khảo sát 105 sinh viên UIT và thử nghiệm thực tế trước khi nhân rộng quy mô.",
   },
 ];
