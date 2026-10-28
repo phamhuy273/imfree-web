@@ -21,15 +21,7 @@ export default function Home() {
       <section className="relative overflow-hidden bg-[radial-gradient(60%_50%_at_85%_0%,var(--color-brand-100),transparent)] pb-20 pt-32 sm:pt-40">
         <div className="container-x grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div variants={container} initial="hidden" animate="show">
-            <motion.span
-              variants={item}
-              className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-3.5 py-1.5 text-sm font-medium text-brand-700 shadow-xs"
-            >
-              <span className="size-2 rounded-full bg-accent-500 animate-pulse" />
-              Đề tài nghiên cứu khoa học sinh viên UIT
-            </motion.span>
-
-            <motion.h1 variants={item} className="h1 mt-6">
+            <motion.h1 variants={item} className="h1">
               Giải pháp kết nối & tối ưu hóa tài nguyên
             </motion.h1>
 
