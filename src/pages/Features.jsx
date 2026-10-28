@@ -134,7 +134,7 @@ export default function Features() {
           }`}
         >
           <div className="container-x">
-            <div className="max-w-2xl mx-auto relative rounded-2xl bg-white/90 backdrop-blur-xl border border-line shadow-soft px-6 sm:px-10 py-3.5 sm:py-4">
+            <div className="max-w-2xl mx-auto relative rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-[0_4px_24px_-4px_rgba(15,26,51,0.08),0_2px_8px_-2px_rgba(15,26,51,0.04)] px-6 sm:px-10 py-3.5 sm:py-4">
               {/* Đường ray nền & Vạch chạy tiến trình kết nối 3 mốc */}
               <div className="absolute left-10 sm:left-14 right-10 sm:right-14 top-8 sm:top-8.5 h-1 bg-slate-200/90 rounded-full z-0 overflow-hidden">
                 <motion.div

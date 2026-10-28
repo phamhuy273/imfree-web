@@ -41,10 +41,10 @@ export default function Navbar() {
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? "border-b border-line bg-white/85 backdrop-blur-xl shadow-xs"
-          : "border-b border-transparent bg-transparent"
+          ? "border-b border-slate-200/90 bg-white/95 backdrop-blur-xl shadow-[0_4px_20px_-4px_rgba(15,26,51,0.07),0_2px_6px_-1px_rgba(15,26,51,0.04)]"
+          : "border-b border-slate-200/60 bg-white/85 backdrop-blur-md shadow-[0_2px_8px_-2px_rgba(15,26,51,0.04)]"
       }`}
     >
       <div className="container-x flex h-16 items-center justify-between">
@@ -53,21 +53,26 @@ export default function Navbar() {
           <span className="text-lg font-bold tracking-tight text-ink">{brand.name}</span>
         </Link>
 
-        {/* Desktop */}
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Điều hướng chính">
+        {/* Desktop Nav: Vỏ bọc Pill tinh tế, tách biệt rõ ràng nhưng vẫn cực kỳ hài hoà */}
+        <nav
+          className="hidden items-center p-1 rounded-full bg-slate-100/90 border border-slate-200/80 shadow-[inset_0_1px_2px_rgba(0,0,0,0.03)] md:flex"
+          aria-label="Điều hướng chính"
+        >
           {navLinks.map((l) => (
             <NavLink
               key={l.to}
               to={l.to}
-              className="relative isolate rounded-full px-4 py-2 text-[15px] font-medium text-muted transition hover:text-ink aria-[current=page]:text-brand-700"
+              className="relative isolate rounded-full px-4 py-1.5 text-sm font-medium transition-colors"
             >
               {({ isActive }) => (
                 <>
-                  {l.label}
+                  <span className={isActive ? "font-bold text-brand-700" : "text-slate-600 hover:text-ink"}>
+                    {l.label}
+                  </span>
                   {isActive && (
                     <motion.span
                       layoutId="nav-active"
-                      className="absolute inset-0 -z-10 rounded-full bg-brand-50"
+                      className="absolute inset-0 -z-10 rounded-full bg-white shadow-xs border border-slate-200/50"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -78,14 +83,14 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <Button to="/ve-chung-toi" className="!px-5 !py-2.5">
+          <Button to="/ve-chung-toi" className="!px-5 !py-2">
             Liên hệ
           </Button>
         </div>
 
         {/* Mobile toggle */}
         <button
-          className="grid size-10 place-items-center rounded-full hover:bg-brand-50 md:hidden"
+          className="grid size-10 place-items-center rounded-full hover:bg-slate-100 md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Đóng menu" : "Mở menu"}
           aria-expanded={open}
