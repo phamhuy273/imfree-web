@@ -117,25 +117,25 @@ export const benefits = [
 export const stage1Discover = [
   {
     icon: Search,
-    title: "Search & Filter — Tìm kiếm tài sản",
+    title: "1. Search & Filter — Tìm kiếm tài sản",
     text: "Nhập từ khóa 'camera', lọc theo mức giá, thời gian thuê và tiêu chí phù hợp. Hệ thống hiển thị danh sách tài sản đang được đăng cho thuê thay vì tìm kiếm rời rạc qua người quen.",
     tag: "Tiếp cận nguồn cung phù hợp",
   },
   {
     icon: Layers,
-    title: "Asset Detail — Xem chi tiết tài sản",
+    title: "2. Asset Detail — Xem chi tiết tài sản",
     text: "Chọn tài sản để xem hình ảnh thực tế, mô tả thông số, tình trạng, giá thuê, thời gian khả dụng và các điều kiện thuê do Provider cung cấp trước khi gửi yêu cầu.",
     tag: "Đầy đủ thông tin đánh giá",
   },
   {
     icon: Star,
-    title: "Provider's Trust Profile — Đánh giá độ tin cậy",
+    title: "3. Provider's Trust Profile — Đánh giá độ tin cậy",
     text: "Xem hồ sơ Provider: trạng thái xác minh sinh viên UIT, đánh giá số sao và lịch sử giao dịch hoàn tất nhằm giảm bất cân xứng thông tin trước khi bàn giao hoặc đặt cọc.",
     tag: "Giảm bất cân xứng thông tin",
   },
   {
     icon: FileCheck,
-    title: "Booking Request — Gửi yêu cầu thuê",
+    title: "4. Booking Request — Gửi yêu cầu thuê",
     text: "Chọn thời gian thuê, gửi lời nhắn và đề xuất các thông tin cần xác nhận. Yêu cầu chuyển đến Provider để chuyển nhu cầu tìm kiếm thành yêu cầu giao dịch cụ thể.",
     tag: "Chuyển thành yêu cầu cụ thể",
   },
@@ -145,31 +145,31 @@ export const stage1Discover = [
 export const stage2Exchange = [
   {
     icon: CheckCircle2,
-    title: "Agreement — Xác nhận thỏa thuận",
+    title: "1. Agreement — Xác nhận thỏa thuận",
     text: "Provider chấp nhận yêu cầu. Hai bên thống nhất thời gian, địa điểm bàn giao/hoàn trả, giá thuê, tiền đặt cọc (Deposit) và điều kiện liên quan trên ứng dụng trước khi thanh toán.",
     tag: "Thống nhất điều khoản rõ ràng",
   },
   {
     icon: Camera,
-    title: "Before Verification — Tình trạng ban đầu",
+    title: "2. Before Verification — Tình trạng ban đầu",
     text: "Provider chụp ảnh và hoàn thành checklist phụ kiện. Seeker kiểm tra khi nhận rồi xác nhận đã nhận tài sản — mốc ghi nhận chính thức trước khi sử dụng.",
     tag: "Mốc quan trọng: Trước sử dụng",
   },
   {
     icon: Clock,
-    title: "Usage & Grace Period — Sử dụng & đối soát",
+    title: "3. Usage & Grace Period — Sử dụng & đối soát",
     text: "Thời gian thuê bắt đầu sau khi xác nhận nhận tài sản. Grace Period là khoảng thời gian quy định trước để kiểm tra hoạt động và báo lỗi sau bàn giao.",
     tag: "Khoảng thời gian kiểm tra an tâm",
   },
   {
     icon: ClipboardCheck,
-    title: "After Verification & Return — Ghi nhận & hoàn trả",
+    title: "4. After Verification & Return — Ghi nhận & hoàn trả",
     text: "Seeker chụp ảnh, hoàn thành checklist trước khi trả. Provider đối chiếu ảnh và checklist ban đầu rồi xác nhận đã nhận lại tài sản.",
     tag: "Mốc quan trọng: Đối chiếu khi trả",
   },
   {
     icon: ShieldCheck,
-    title: "Inspection & Completion — Kiểm tra & hoàn tất",
+    title: "5. Inspection & Completion — Kiểm tra & hoàn tất",
     text: "Provider kiểm tra sau hoàn trả. Không có vấn đề: hai bên đánh giá sao và kết thúc giao dịch, giải phóng tiền cọc. Có hư hỏng: chuyển sang Protection & Resolution.",
     tag: "Nghiệm thu & Giải phóng cọc",
   },
@@ -179,25 +179,25 @@ export const stage2Exchange = [
 export const stage3Resolution = [
   {
     icon: AlertTriangle,
-    title: "Open Dispute — Mở tranh chấp",
+    title: "1. Open Dispute — Mở tranh chấp",
     text: "Gửi yêu cầu, mô tả sự cố phát sinh và cung cấp ảnh, video, checklist hoặc thời điểm phát hiện. Đầu vào: loại sự cố, mô tả chi tiết và bằng chứng ban đầu.",
     tag: "Tiếp nhận khiếu nại minh bạch",
   },
   {
     icon: Layers,
-    title: "Evidence Review — Đối chiếu & phân loại",
+    title: "2. Evidence Review — Đối chiếu & phân loại",
     text: "Đối chiếu tình trạng trước-sau (Before vs After Verification), điều khoản thỏa thuận và phản hồi hai bên; phân loại lỗi sau khi nhận, hư hỏng khi hoàn trả hoặc thiếu phụ kiện.",
     tag: "Xác định bản chất bằng chứng",
   },
   {
     icon: Scale,
-    title: "Negotiation & Mediation — Thương lượng",
+    title: "3. Negotiation & Mediation — Thương lượng",
     text: "Hai bên trao đổi phương án giải quyết. Nếu chưa thống nhất, ImFree xem xét hồ sơ, đối chiếu chính sách nền tảng và đề xuất hướng xử lý phù hợp dựa trên bằng chứng.",
     tag: "Hòa giải dựa trên bằng chứng",
   },
   {
     icon: CheckCircle2,
-    title: "Resolution & Case Closure — Kết quả & đóng vụ việc",
+    title: "4. Resolution & Case Closure — Kết quả & đóng vụ việc",
     text: "Ghi nhận trạng thái; lập settlement gồm khắc phục hoặc bồi hoàn (nếu có). Hoàn tất thì đóng và lưu vào lịch sử, hồ sơ uy tín. Nếu chưa đủ bằng chứng: giữ trạng thái 'Chờ xử lý'.",
     tag: "Lập Settlement & Cập nhật uy tín",
   },
