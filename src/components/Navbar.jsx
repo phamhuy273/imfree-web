@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import Button from "./Button";
 import { brand, navLinks } from "../data/content";
 
 export default function Navbar() {
@@ -75,10 +74,15 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
-          <Button to="/ve-chung-toi" className="!px-5 !py-2">
-            Liên hệ
-          </Button>
+        {/* Huy hiệu trạng thái kết nối khuôn viên UIT với hiệu ứng radar ping */}
+        <div className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-brand-50/90 via-white to-slate-50/90 border border-brand-200/70 shadow-2xs text-xs select-none">
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 duration-1000" />
+            <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+          </span>
+          <span className="font-bold text-brand-700 tracking-tight">Khuôn viên UIT</span>
+          <span className="text-slate-300">•</span>
+          <span className="text-slate-500 font-medium">Connect • Share • Value</span>
         </div>
 
         {/* Mobile toggle */}
@@ -114,9 +118,15 @@ export default function Navbar() {
                   {l.label}
                 </NavLink>
               ))}
-              <Button to="/ve-chung-toi" className="mt-2" onClick={() => setOpen(false)}>
-                Liên hệ
-              </Button>
+              <div className="mt-3 flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-brand-50/80 border border-brand-100 text-xs font-medium text-slate-600">
+                <span className="relative flex size-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+                </span>
+                <span className="font-bold text-brand-700">Khuôn viên UIT</span>
+                <span className="text-slate-300">•</span>
+                <span>Connect • Share • Value</span>
+              </div>
             </div>
           </motion.nav>
         )}
