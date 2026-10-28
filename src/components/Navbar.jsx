@@ -52,20 +52,21 @@ export default function Navbar() {
           <span className="text-lg font-bold tracking-tight text-ink">{brand.name}</span>
         </Link>
 
-        {/* Desktop Nav: Vỏ bọc Pill tinh tế, bo tròn chuẩn xác, không bao giờ bị lệch hay nhảy ra ngoài */}
+        {/* Desktop Nav: Vỏ bọc Pill tinh tế, chuyển tab tức thì không delay, không lệch layout */}
         <nav
-          className="hidden items-center p-1 rounded-full bg-slate-100/90 border border-slate-200/80 shadow-[inset_0_1px_2px_rgba(0,0,0,0.03)] md:flex overflow-hidden"
+          className="hidden items-center p-1 rounded-full bg-slate-100/90 border border-slate-200/80 shadow-[inset_0_1px_2px_rgba(0,0,0,0.03)] md:flex"
           aria-label="Điều hướng chính"
         >
           {navLinks.map((l) => (
             <NavLink
               key={l.to}
               to={l.to}
+              end={l.to === "/"}
               className={({ isActive }) =>
-                `relative rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 ${
+                `relative rounded-full px-4 py-1.5 text-sm font-semibold transition-colors duration-150 border ${
                   isActive
-                    ? "font-bold text-brand-700 bg-white shadow-xs border border-slate-200/60"
-                    : "text-slate-600 hover:text-ink hover:bg-white/50"
+                    ? "text-brand-700 bg-white shadow-xs border-slate-200/70"
+                    : "text-slate-600 hover:text-ink hover:bg-white/60 border-transparent"
                 }`
               }
             >
@@ -74,15 +75,19 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Huy hiệu trạng thái kết nối khuôn viên UIT với hiệu ứng radar ping */}
-        <div className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-brand-50/90 via-white to-slate-50/90 border border-brand-200/70 shadow-2xs text-xs select-none">
+        {/* Huy hiệu giá trị cốt lõi: Connect • Share • Value với hiệu ứng radar ping */}
+        <div className="hidden md:flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-brand-50/50 via-white to-emerald-50/40 border border-slate-200/90 shadow-[0_1px_3px_rgba(15,26,51,0.06),0_1px_2px_rgba(15,26,51,0.03)] text-xs select-none backdrop-blur-md hover:border-brand-200/80 transition-all duration-300">
           <span className="relative flex size-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 duration-1000" />
-            <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+            <span className="relative inline-flex size-2 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
           </span>
-          <span className="font-bold text-brand-700 tracking-tight">Khuôn viên UIT</span>
-          <span className="text-slate-300">•</span>
-          <span className="text-slate-500 font-medium">Connect • Share • Value</span>
+          <div className="flex items-center gap-1.5 text-xs font-bold tracking-tight">
+            <span className="text-brand-700">Connect</span>
+            <span className="text-slate-300 text-[10px]">•</span>
+            <span className="text-accent-600">Share</span>
+            <span className="text-slate-300 text-[10px]">•</span>
+            <span className="text-emerald-600">Value</span>
+          </div>
         </div>
 
         {/* Mobile toggle */}
@@ -112,20 +117,25 @@ export default function Navbar() {
                 <NavLink
                   key={l.to}
                   to={l.to}
+                  end={l.to === "/"}
                   onClick={() => setOpen(false)}
                   className="rounded-xl px-4 py-3 text-base font-medium text-muted aria-[current=page]:bg-brand-50 aria-[current=page]:text-brand-700"
                 >
                   {l.label}
                 </NavLink>
               ))}
-              <div className="mt-3 flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-brand-50/80 border border-brand-100 text-xs font-medium text-slate-600">
+              <div className="mt-3 flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-gradient-to-r from-brand-50/50 via-white to-emerald-50/40 border border-slate-200/80 text-xs shadow-2xs">
                 <span className="relative flex size-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+                  <span className="relative inline-flex size-2 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
                 </span>
-                <span className="font-bold text-brand-700">Khuôn viên UIT</span>
-                <span className="text-slate-300">•</span>
-                <span>Connect • Share • Value</span>
+                <div className="flex items-center gap-1.5 text-xs font-bold tracking-tight">
+                  <span className="text-brand-700">Connect</span>
+                  <span className="text-slate-300 text-[10px]">•</span>
+                  <span className="text-accent-600">Share</span>
+                  <span className="text-slate-300 text-[10px]">•</span>
+                  <span className="text-emerald-600">Value</span>
+                </div>
               </div>
             </div>
           </motion.nav>
