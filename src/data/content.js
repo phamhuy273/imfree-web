@@ -12,6 +12,10 @@ import {
   Lock,
   Sparkles,
   Award,
+  Search,
+  CheckCircle2,
+  Scale,
+  Package,
 } from "lucide-react";
 
 export const brand = {
@@ -36,7 +40,7 @@ export const contact = {
   phones: ["0987 654 321", "0912 345 678"],
 };
 
-// Hàng 4 chip dưới hero
+// Hàng 4 chip dưới hero trang chủ
 export const highlights = [
   { icon: Camera, label: "Cho thuê tài sản" },
   { icon: Wrench, label: "Chia sẻ kỹ năng" },
@@ -44,7 +48,9 @@ export const highlights = [
   { icon: ShieldCheck, label: "Bảo chứng đặt cọc (Deposit)" },
 ];
 
-// 4 module chính: dùng cho bento (Trang chủ) và lưới 2×2 (Tính năng)
+// ==========================================
+// 1. TRANG CHỦ: HỆ SINH THÁI TÍNH NĂNG (BENTO GRID - TỔNG QUAN CẤP CAO)
+// ==========================================
 export const modules = [
   {
     icon: Camera,
@@ -92,22 +98,70 @@ export const benefits = [
   },
 ];
 
-// 3 card lớn ở cuối trang Tính năng
-export const highlightCards = [
+// ==========================================
+// 2. TRANG TÍNH NĂNG: ĐI SÂU VÀO CƠ CHẾ VẬN HÀNH & PHÂN HỆ MVP (KHÔNG TRÙNG LẶP)
+// ==========================================
+
+// Lưới 4 ô (2x2): Chu trình giao dịch lõi 4 bước
+export const coreCycle = [
   {
-    title: "Discovery — Khám phá Tài sản & Kỹ năng",
-    text: "Dễ dàng tìm kiếm máy ảnh, thiết bị hoặc người có kỹ năng phù hợp ngay tại khuôn viên trường và ký túc xá.",
+    icon: Search,
+    step: "01",
+    title: "Khám phá & Đăng tải (Discovery)",
+    text: "Người cho thuê hoặc cung cấp kỹ năng đăng tải thông tin, mức giá và điều kiện. Người có nhu cầu tìm kiếm nhanh theo campus, KTX và thời gian.",
+    tag: "Bộ lọc thông minh",
   },
   {
-    title: "Trust Profile — Minh bạch qua từng lượt sao",
-    text: "Hồ sơ xác thực sinh viên kèm số sao đánh giá và lịch sử giao dịch rõ ràng, không lo rủi ro khi giao dịch.",
+    icon: UserCheck,
+    step: "02",
+    title: "Xác thực & Lớp tin cậy (Trust & Verification)",
+    text: "Xác thực danh tính 100% sinh viên qua email trường. Hai bên kiểm tra Trust Profile, lịch sử giao dịch và đánh giá sao trước khi bắt đầu.",
+    tag: "Minh bạch 100%",
   },
   {
-    title: "Deposit & Escrow — Bảo chứng giao dịch",
-    text: "Cơ chế giữ cọc an toàn, chỉ giải phóng khi hai bên đã đối chiếu hoàn tất tình trạng tài sản hoặc dịch vụ.",
+    icon: Camera,
+    step: "03",
+    title: "Bàn giao & Giữ cọc (Handover & Deposit)",
+    text: "Ghi nhận hiện trạng tài sản bằng ảnh/video trực tiếp trên app trước khi giao. Kích hoạt cơ chế ký quỹ (Deposit) giữ tiền cọc an toàn.",
+    tag: "Bảo chứng tài sản",
+  },
+  {
+    icon: Star,
+    step: "04",
+    title: "Nghiệm thu & Đánh giá sao (Rating & Review)",
+    text: "Xác nhận đối chiếu tình trạng khi hoàn trả tài sản để giải phóng tiền cọc. Hai bên chấm sao cho nhau, bồi đắp uy tín cho các giao dịch sau.",
+    tag: "Tích lũy uy tín",
   },
 ];
 
+// Lưới 3 card lớn: 3 Phân hệ công nghệ cốt lõi của nền tảng MVP
+export const mvpModules = [
+  {
+    icon: Package,
+    badge: "Phân hệ 01",
+    title: "Hệ Thống Cho Thuê Tài Sản (Asset Sharing)",
+    text: "Quản lý danh mục thiết bị, lịch đặt thuê linh hoạt theo ngày/giờ, quản lý tiền đặt cọc (Deposit) và tự động nhắc nhở lịch hẹn trả đồ.",
+    featurePoint: "Bàn giao có ảnh đối chiếu",
+  },
+  {
+    icon: Sparkles,
+    badge: "Phân hệ 02",
+    title: "Thị Trường Dịch Vụ Kỹ Năng (Skill Marketplace)",
+    text: "Không gian kết nối dịch vụ chuyên môn giữa sinh viên (design, lập trình, gia sư, quay chụp). Thống nhất phạm vi công việc và giải ngân minh bạch.",
+    featurePoint: "Thỏa thuận rõ ràng",
+  },
+  {
+    icon: Scale,
+    badge: "Phân hệ 03",
+    title: "Trung Tâm An Toàn & Trọng Tài (Trust & Safety)",
+    text: "Bộ công cụ bảo vệ người dùng, hỗ trợ giải quyết tranh chấp (Dispute System) công bằng và có căn cứ dựa trên lịch sử ảnh đối chiếu và hợp đồng.",
+    featurePoint: "Trọng tài minh bạch",
+  },
+];
+
+// ==========================================
+// 3. TRANG VỀ CHÚNG TÔI
+// ==========================================
 export const team = [
   { name: "Phạm Viết Quang Huy", major: "Khoa học Máy tính" },
   { name: "Thành viên nhóm 2", major: "Kỹ thuật Phần mềm" },
