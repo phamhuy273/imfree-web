@@ -1,8 +1,74 @@
 @import "tailwindcss";
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+@theme {
+  --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #f2f6ff;
+  --color-brand-100: #dce8ff;
+  --color-brand-200: #b9d1ff;
+  --color-brand-300: #8db3ff;
+  --color-brand-400: #5e8bf5;
+  --color-brand-500: #3b6ee8;
+  --color-brand-600: #2a56cc;
+  --color-brand-700: #2144a3;
+  --color-brand-800: #1e3a82;
+
+  --color-accent-400: #ff7a95;
+  --color-accent-500: #ff5c7c;
+  --color-accent-600: #e63f61;
+
+  --color-ink: #0f1a33;
+  --color-muted: #5b6785;
+  --color-line: #e3e9f5;
+
+  --radius-card: 1.5rem;
+
+  --shadow-soft: 0 12px 40px -12px rgb(42 86 204 / 0.25);
+  --shadow-lift: 0 28px 60px -18px rgb(42 86 204 / 0.35);
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite reverse;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(2deg); }
   }
 }
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-white font-sans text-ink antialiased; }
+  ::selection { background: var(--color-brand-100); }
+  :focus-visible {
+    outline: 3px solid var(--color-brand-400);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+  .section { @apply py-20 sm:py-28; }
+
+  .h1 {
+    @apply text-balance font-extrabold text-ink;
+    font-size: clamp(2.5rem, 1rem + 5vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .h2 {
+    @apply text-balance font-bold text-ink;
+    font-size: clamp(1.875rem, 1rem + 2.5vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .lead { @apply max-w-[60ch] text-lg leading-relaxed text-muted sm:text-xl; }
+}
+
+/* Skeleton shimmer cho khung app giả */
+.skeleton {
+  background: linear-gradient(90deg, #eaf0fb 25%, #f7f9ff 50%, #eaf0fb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+@keyframes shimmer { to { background-position: -200% 0; } }
