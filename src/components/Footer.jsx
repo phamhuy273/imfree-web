@@ -1,47 +1,42 @@
 import { Link } from "react-router-dom";
 import Button from "./Button";
-import { brand, contact } from "../data/content";
+import { brand } from "../data/content";
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-white/75">
-      <div className="container-x grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-        <div>
+    <footer className="bg-ink text-white/75 border-t border-white/10">
+      <div className="container-x py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
           <Link to="/" className="flex items-center gap-2.5">
             <img src="/logo.png" alt="" className="h-9 w-auto object-contain" />
             <span className="text-lg font-bold text-white">{brand.name}</span>
           </Link>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">{brand.footerText}</p>
-          <Button to="/tinh-nang" variant="secondary" className="mt-6 !border-white/20 !bg-white/10 !text-white hover:!bg-white/20">
-            Xem tính năng
-          </Button>
+          <span className="hidden sm:inline text-white/20">|</span>
+          <p className="max-w-md text-xs sm:text-sm text-white/60 leading-relaxed">
+            {brand.footerText}
+          </p>
         </div>
 
-        <FooterCol title="Email" items={contact.emails.map((e) => ({ label: e, href: `mailto:${e}` }))} />
-        <FooterCol title="Mạng xã hội" items={contact.socials} />
-        <FooterCol title="Điện thoại" items={contact.phones.map((p) => ({ label: p, href: `tel:${p.replace(/\s/g, "")}` }))} />
+        <div className="flex items-center gap-3 shrink-0">
+          <Button
+            to="/tinh-nang"
+            variant="secondary"
+            className="!border-white/20 !bg-white/10 !text-white hover:!bg-white/20 !py-2 !px-4 text-xs font-semibold"
+          >
+            Tính năng
+          </Button>
+          <Button
+            to="/ve-chung-toi"
+            className="!py-2 !px-4 text-xs font-semibold"
+          >
+            Về chúng tôi
+          </Button>
+        </div>
       </div>
 
-      <div className="border-t border-white/10 py-6 text-center text-sm text-white/50">
+      <div className="border-t border-white/10 py-6 text-center text-xs sm:text-sm text-white/40">
         © {new Date().getFullYear()} {brand.name}. Bản quyền thuộc về {brand.name}.
       </div>
     </footer>
-  );
-}
-
-function FooterCol({ title, items }) {
-  return (
-    <div>
-      <h3 className="text-sm font-semibold text-white tracking-wide">{title}</h3>
-      <ul className="mt-4 space-y-3 text-sm">
-        {items.map((i) => (
-          <li key={i.label}>
-            <a href={i.href} target={i.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="transition hover:text-white">
-              {i.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }
