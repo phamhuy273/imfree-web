@@ -268,22 +268,26 @@ export default function Home() {
   return (
     <>
       {/* ───────── HERO ───────── */}
-      <section className="relative overflow-hidden bg-[radial-gradient(60%_50%_at_85%_0%,var(--color-brand-100),transparent)] pb-16 pt-24 sm:pt-28 lg:pt-32">
+      <section
+        onMouseMove={handleCardMouseMove}
+        onMouseLeave={handleCardMouseLeave}
+        className="relative overflow-hidden bg-[radial-gradient(60%_50%_at_85%_0%,var(--color-brand-100),transparent)] pb-16 pt-24 sm:pt-28 lg:pt-32"
+      >
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10 grid items-center gap-12 lg:gap-16 xl:gap-20 lg:grid-cols-2">
           <motion.div variants={container} initial="hidden" animate="show" className="relative max-w-xl">
             {/* 2 Cánh logo chuyển màu thương hiệu (Lá xanh & Lá hồng) trôi bồng bềnh nghệ thuật quanh Tiêu Đề */}
-            {/* Cánh xanh dương (Blue Wing) - Góc Trên - Trái Tiêu đề */}
+            {/* Cánh xanh dương (Blue Wing) - Góc Trên - Trái Tiêu đề (z-10 nổi bật trên nền) */}
             <motion.div
               style={{ x: wingBlueX, y: wingBlueY }}
-              className="absolute -top-10 sm:-top-12 -left-6 sm:-left-9 -z-10 w-16 sm:w-20 pointer-events-none drop-shadow-md select-none opacity-85"
+              className="absolute -top-10 sm:-top-13 -left-4 sm:-left-8 z-10 w-18 sm:w-22 lg:w-26 pointer-events-none drop-shadow-md select-none opacity-90"
             >
               <Wing variant="blue" className="w-full animate-float -rotate-12" />
             </motion.div>
 
-            {/* Cánh hồng (Pink Wing) - Góc Bên Phải Tiêu đề đối xứng */}
+            {/* Cánh hồng (Pink Wing) - Góc Bên Phải của dòng 'giá trị thực' (z-10 nổi bật trên nền) */}
             <motion.div
               style={{ x: wingPinkX, y: wingPinkY }}
-              className="absolute top-12 sm:top-14 right-2 sm:right-6 lg:right-2 -z-10 w-14 sm:w-18 pointer-events-none drop-shadow-md select-none opacity-85"
+              className="absolute top-14 sm:top-18 lg:top-22 right-2 sm:right-6 lg:right-4 z-10 w-16 sm:w-20 lg:w-24 pointer-events-none drop-shadow-md select-none opacity-90"
             >
               <Wing variant="pink" className="w-full animate-float-slow rotate-12" />
             </motion.div>
@@ -296,22 +300,22 @@ export default function Home() {
               Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi dành cho sinh viên
             </motion.span>
 
-            {/* Tiêu đề H1 CHUẨN 2 DÒNG DUY NHẤT: Biến nguồn lực nhàn rỗi / thành giá trị thực */}
+            {/* Tiêu đề H1 CHUẨN 2 DÒNG DUY NHẤT: Biến nguồn lực nhàn rỗi / thành giá trị thực (Cỡ chữ lớn đầy đặn) */}
             <motion.h1
               variants={item}
-              className="text-[26px] sm:text-[34px] md:text-[38px] lg:text-[40px] xl:text-[44px] font-extrabold text-ink tracking-tight leading-[1.18]"
+              className="text-[28px] sm:text-[38px] md:text-[44px] lg:text-[48px] xl:text-[54px] font-extrabold text-ink tracking-tight leading-[1.14]"
             >
               <span className="block whitespace-nowrap">Biến nguồn lực nhàn rỗi</span>
-              <span className="block mt-1 sm:mt-1.5 whitespace-nowrap">
+              <span className="block mt-1 sm:mt-2 whitespace-nowrap">
                 thành <span className="grad-text">giá trị thực</span>
               </span>
             </motion.h1>
 
-            <motion.p variants={item} className="lead mt-4">
+            <motion.p variants={item} className="lead mt-5 sm:mt-6">
               ImFree kết nối sinh viên có tài sản nhàn rỗi với người đang có nhu cầu sử dụng. Giao dịch an tâm với quy trình kiểm soát rủi ro 3 giai đoạn, đối chiếu hiện trạng và bảo chứng đặt cọc.
             </motion.p>
 
-            <motion.div variants={item} className="mt-7 flex flex-wrap gap-3">
+            <motion.div variants={item} className="mt-8 flex flex-wrap gap-3.5">
               <Button to="/tinh-nang">
                 Khám phá tính năng <ArrowRight className="size-4" />
               </Button>
