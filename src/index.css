@@ -36,8 +36,14 @@
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
-  body { @apply bg-white font-sans text-ink antialiased; }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    overflow-x: hidden;
+  }
   ::selection { background: var(--color-brand-100); }
   :focus-visible {
     outline: 3px solid var(--color-brand-400);
@@ -47,20 +53,20 @@
 }
 
 @layer components {
-  .container-x { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
-  .section { @apply py-20 sm:py-28; }
+  .container-x { @apply mx-auto w-full max-w-6xl px-4 sm:px-6 md:px-8; }
+  .section { @apply py-14 sm:py-24; }
 
   .h1 {
-    @apply font-extrabold text-ink tracking-tight text-balance;
-    font-size: clamp(2.25rem, 1.2rem + 2.5vw, 3.5rem);
-    line-height: 1.15;
-  }
-  .h2 {
-    @apply font-bold text-ink tracking-tight text-balance;
-    font-size: clamp(1.75rem, 1rem + 2vw, 2.75rem);
+    @apply font-extrabold text-ink tracking-tight;
+    font-size: clamp(1.85rem, 1.15rem + 2.4vw, 3.5rem);
     line-height: 1.2;
   }
-  .lead { @apply max-w-[52ch] text-base leading-relaxed text-muted sm:text-lg; }
+  .h2 {
+    @apply font-bold text-ink tracking-tight;
+    font-size: clamp(1.45rem, 0.95rem + 1.8vw, 2.65rem);
+    line-height: 1.25;
+  }
+  .lead { @apply max-w-[52ch] text-sm sm:text-base leading-relaxed text-muted md:text-lg; }
 }
 
 /* Skeleton shimmer cho khung app giả */
@@ -71,28 +77,26 @@
 }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
-
 /* Chữ gradient sắc sảo theo màu thương hiệu */
 .grad-text {
   background: linear-gradient(120deg, #2F55D4 0%, #4C7DFF 45%, #9055FD 80%, #C44AC8 120%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  display: inline-block;
 }
 
 /* Hiệu ứng trôi lơ lửng lệch pha cho các chip quanh điện thoại Hero */
 @keyframes floatChip1 {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-7px); }
 }
 @keyframes floatChip2 {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(-5px); }
 }
 @keyframes floatChip3 {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-9px); }
+  50% { transform: translateY(-8px); }
 }
 .chip-float-1 { animation: floatChip1 5s ease-in-out infinite; }
 .chip-float-2 { animation: floatChip2 6.5s ease-in-out infinite -1.5s; }

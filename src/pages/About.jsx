@@ -9,9 +9,11 @@ export default function About() {
   return (
     <>
       {/* ───────── 1. TIÊU ĐỀ + BANNER ĐỘI NGŨ (SLIDE 1 & SLIDE 29) ───────── */}
-      <section className="bg-[radial-gradient(60%_40%_at_50%_0%,var(--color-brand-100),transparent)] pb-12 pt-32 sm:pt-40 overflow-hidden">
+      <section className="bg-[radial-gradient(60%_40%_at_50%_0%,var(--color-brand-100),transparent)] pb-12 pt-28 sm:pt-40 overflow-hidden">
         <div className="container-x text-center">
-          <h1 className="h1 mx-auto max-w-3xl">Về dự án ImFree</h1>
+          <h1 className="h1 mx-auto max-w-3xl">
+            Về dự án <span className="grad-text">ImFree</span>
+          </h1>
           <p className="lead mx-auto mt-4">
             Nền tảng kinh tế chia sẻ nguồn lực nhàn rỗi được xây dựng từ thực tiễn nhu cầu và rào cản niềm tin của sinh viên.
           </p>

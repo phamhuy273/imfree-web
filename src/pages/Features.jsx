@@ -109,13 +109,14 @@ export default function Features() {
   return (
     <>
       {/* ───────── 1. TIÊU ĐỀ + KHUNG APP SIMULATOR (SLIDE 8-16) ───────── */}
-      <section className="bg-[radial-gradient(60%_40%_at_50%_0%,var(--color-brand-100),transparent)] pb-10 pt-32 sm:pt-40">
+      <section className="bg-[radial-gradient(60%_40%_at_50%_0%,var(--color-brand-100),transparent)] pb-10 pt-28 sm:pt-40">
         <div className="container-x text-center">
           <span className="inline-block rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-4">
             Transaction Flow • Luồng giao dịch 3 giai đoạn
           </span>
-          <h1 className="h1 mx-auto max-w-3xl">
-            Trải nghiệm <span className="grad-text">quy trình ImFree</span>
+          <h1 className="h1 mx-auto max-w-4xl text-center">
+            <span className="whitespace-nowrap">Trải nghiệm quy trình</span>{" "}
+            <span className="grad-text whitespace-nowrap">ImFree</span>
           </h1>
           <p className="lead mx-auto mt-4">
             Mô phỏng trải nghiệm giao diện và toàn bộ quy trình giao dịch khép kín từ lúc tìm kiếm đến bàn giao, hoàn trả và xử lý tranh chấp của ImFree.
@@ -136,9 +137,9 @@ export default function Features() {
           }`}
         >
           <div className="container-x">
-            <div className="max-w-2xl mx-auto relative rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-[0_4px_24px_-4px_rgba(15,26,51,0.08),0_2px_8px_-2px_rgba(15,26,51,0.04)] px-6 sm:px-10 py-3.5 sm:py-4">
+            <div className="max-w-2xl mx-auto relative rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-[0_4px_24px_-4px_rgba(15,26,51,0.08),0_2px_8px_-2px_rgba(15,26,51,0.04)] px-4 sm:px-10 py-3 sm:py-4">
               {/* Đường ray nền & Vạch chạy tiến trình kết nối 3 mốc */}
-              <div className="absolute left-10 sm:left-14 right-10 sm:right-14 top-8 sm:top-8.5 h-1 bg-slate-200/90 rounded-full z-0 overflow-hidden">
+              <div className="absolute left-7 sm:left-14 right-7 sm:right-14 top-7.5 sm:top-8.5 h-1 bg-slate-200/90 rounded-full z-0 overflow-hidden">
                 <motion.div
                   className="h-full bg-gradient-to-r from-brand-600 to-brand-500 rounded-full"
                   initial={false}

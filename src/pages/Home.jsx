@@ -20,6 +20,7 @@ import {
   Camera,
   ShieldCheck,
   Star,
+  ClipboardCheck,
 } from "lucide-react";
 import Button from "../components/Button";
 import Reveal from "../components/Reveal";
@@ -297,9 +298,9 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Cột phải: Điện thoại 3D Tilt + 3 Chip nổi lơ lửng lệch pha (Image 2) */}
+          {/* Cột phải: Điện thoại 3D Tilt + 3 Chip nổi lơ lửng lệch pha (Image 2 - Tối ưu mobile) */}
           <motion.div
-            className="relative mx-auto w-full max-w-[420px] lg:max-w-none flex items-center justify-center py-6 select-none perspective-1000"
+            className="relative mx-auto w-full max-w-[420px] lg:max-w-none flex items-center justify-center py-4 sm:py-6 select-none perspective-1000"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -314,10 +315,10 @@ export default function Home() {
                 transformStyle: "preserve-3d",
               }}
               onClick={() => setSelectedMockupIndex(0)}
-              className="relative w-[235px] sm:w-[265px] md:w-[280px] aspect-[393/852] rounded-[38px] p-2 bg-[#0F1A33] shadow-[0_30px_70px_-15px_rgba(47,85,212,0.32)] ring-1 ring-slate-800 cursor-zoom-in group z-10 transition-transform duration-300"
+              className="relative w-[215px] sm:w-[260px] md:w-[275px] aspect-[393/852] rounded-[36px] sm:rounded-[40px] p-2 bg-[#0F1A33] shadow-[0_30px_70px_-15px_rgba(47,85,212,0.32)] ring-1 ring-slate-800 cursor-zoom-in group z-10 transition-transform duration-300"
             >
               {/* Màn hình điện thoại hiển thị App ImFree */}
-              <div className="relative w-full h-full rounded-[30px] overflow-hidden bg-white shadow-inner">
+              <div className="relative w-full h-full rounded-[28px] sm:rounded-[32px] overflow-hidden bg-white shadow-inner">
                 <img
                   src={mockupAssetSharing}
                   alt="Giao diện ứng dụng ImFree"
@@ -331,42 +332,53 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Chip 1 (Trên - Trái): Canon EOS 80D · Còn trống 100k/ngày (Trôi lệch pha 1) */}
-            <div className="chip-float-1 pointer-events-none absolute -top-1 sm:top-4 -left-2 sm:-left-8 md:-left-12 z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3 border border-line/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.14)] min-w-[170px] sm:min-w-[190px]">
-              <div className="flex items-center gap-2 text-xs font-bold text-ink">
-                <div className="size-6 rounded-md bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
-                  <Camera className="size-3.5" />
+            {/* Chip 1 (Trên - Trái): Quy trình bàn giao 4 mốc (Trôi lệch pha 1) */}
+            <div className="chip-float-1 pointer-events-none absolute -top-2 sm:top-3 -left-3 sm:-left-10 lg:-left-14 z-20 bg-white/95 backdrop-blur-xl rounded-2xl p-2.5 sm:p-3 border border-slate-200/80 shadow-[0_16px_36px_-6px_rgba(15,26,51,0.14),0_2px_8px_rgba(0,0,0,0.04)] min-w-[175px] sm:min-w-[200px] scale-[0.82] sm:scale-100 origin-top-left transition-transform">
+              <div className="flex items-center gap-2.5">
+                <div className="size-8 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-100 text-[#2F55D4] border border-blue-200/60 flex items-center justify-center shrink-0 shadow-2xs">
+                  <ClipboardCheck className="size-4" />
                 </div>
-                <span className="truncate">Canon EOS 80D</span>
+                <div className="min-w-0">
+                  <div className="text-xs font-bold text-ink truncate">Quy trình bàn giao 4 mốc</div>
+                  <div className="text-[10px] text-muted truncate">Checklist đối soát 2 chiều</div>
+                </div>
               </div>
-              <div className="mt-1.5 flex items-center justify-between text-[11px] font-semibold">
-                <span className="text-emerald-600 flex items-center gap-1">
-                  <span className="size-1.5 rounded-full bg-emerald-500" />
-                  Còn trống
+              <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[10px] font-semibold">
+                <span className="text-[#2F55D4] flex items-center gap-1">
+                  <span className="size-1.5 rounded-full bg-[#2F55D4] animate-pulse" />
+                  Minh bạch phụ kiện
                 </span>
-                <span className="text-ink font-bold">100k/ngày</span>
+                <span className="text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded font-bold">100% Số hóa</span>
               </div>
             </div>
 
-            {/* Chip 2 (Dưới - Trái): Đã xác thực UIT · Email @gm.uit.edu.vn (Trôi lệch pha 2) */}
-            <div className="chip-float-2 pointer-events-none absolute bottom-6 sm:bottom-10 -left-2 sm:-left-6 md:-left-8 z-20 bg-white/95 backdrop-blur-md rounded-2xl py-2 sm:py-2.5 px-3 sm:px-3.5 border border-line/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.14)] flex items-center gap-2.5">
-              <div className="size-7 sm:size-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-                <ShieldCheck className="size-4 sm:size-4.5" />
+            {/* Chip 2 (Dưới - Trái): Xác thực sinh viên (Trôi lệch pha 2) */}
+            <div className="chip-float-2 pointer-events-none absolute -bottom-3 sm:bottom-8 -left-3 sm:-left-8 lg:-left-12 z-20 bg-white/95 backdrop-blur-xl rounded-2xl py-2 sm:py-2.5 px-3 sm:px-3.5 border border-slate-200/80 shadow-[0_16px_36px_-6px_rgba(15,26,51,0.14),0_2px_8px_rgba(0,0,0,0.04)] flex items-center gap-2.5 scale-[0.82] sm:scale-100 origin-bottom-left transition-transform">
+              <div className="size-8 sm:size-9 rounded-xl bg-gradient-to-br from-emerald-50 to-teal-100 text-emerald-600 border border-emerald-200/60 flex items-center justify-center shrink-0 shadow-2xs">
+                <ShieldCheck className="size-4.5" />
               </div>
               <div>
-                <div className="text-xs font-bold text-ink">Đã xác thực UIT</div>
-                <div className="text-[10px] text-muted">Email @gm.uit.edu.vn</div>
+                <div className="text-xs font-bold text-ink">Xác thực sinh viên</div>
+                <div className="text-[10px] text-muted">Định danh tài khoản trường</div>
+                <div className="text-[10px] text-emerald-600 font-semibold flex items-center gap-1 mt-0.5">
+                  <span className="size-1.5 rounded-full bg-emerald-500" />
+                  Bảo mật 2 chiều
+                </div>
               </div>
             </div>
 
-            {/* Chip 3 (Phải): Hoàn trả đúng hạn · +5.0 Sao Trust Profile (Trôi lệch pha 3) */}
-            <div className="chip-float-3 pointer-events-none absolute top-24 sm:top-28 -right-2 sm:-right-6 md:-right-8 z-20 bg-white/95 backdrop-blur-md rounded-2xl py-2 sm:py-2.5 px-3 sm:px-3.5 border border-line/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.14)] flex items-center gap-2.5">
-              <div className="size-7 sm:size-8 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
-                <Star className="size-4 sm:size-4.5 fill-brand-600" />
+            {/* Chip 3 (Phải): Hoàn trả đúng hạn (Trôi lệch pha 3) */}
+            <div className="chip-float-3 pointer-events-none absolute top-24 sm:top-28 -right-3 sm:-right-8 lg:-right-12 z-20 bg-white/95 backdrop-blur-xl rounded-2xl py-2 sm:py-2.5 px-3 sm:px-3.5 border border-slate-200/80 shadow-[0_16px_36px_-6px_rgba(15,26,51,0.14),0_2px_8px_rgba(0,0,0,0.04)] flex items-center gap-2.5 scale-[0.82] sm:scale-100 origin-top-right transition-transform">
+              <div className="size-8 sm:size-9 rounded-xl bg-gradient-to-br from-amber-50 to-amber-100 text-amber-500 border border-amber-200/60 flex items-center justify-center shrink-0 shadow-2xs">
+                <Star className="size-4.5 fill-amber-400 text-amber-400" />
               </div>
               <div>
                 <div className="text-xs font-bold text-ink">Hoàn trả đúng hạn</div>
-                <div className="text-[10px] text-emerald-600 font-semibold">+5.0 Sao Trust Profile</div>
+                <div className="text-[10px] text-[#2F55D4] font-bold">+5.0 Sao Trust Profile</div>
+                <div className="text-[10px] text-muted flex items-center gap-1 mt-0.5">
+                  <span className="size-1.5 rounded-full bg-emerald-500" />
+                  Tích lũy uy tín
+                </div>
               </div>
             </div>
           </motion.div>
