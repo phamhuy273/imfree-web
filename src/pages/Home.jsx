@@ -128,7 +128,7 @@ function AnimatedMetric({ item, index }) {
           </div>
 
           <div className="flex items-baseline gap-1">
-            <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-ink font-mono">
+            <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-ink tabular-nums font-sans">
               {isInView ? count.toFixed(1) : "0.0"}%
             </span>
           </div>
