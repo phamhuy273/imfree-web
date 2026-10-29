@@ -38,11 +38,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
   body {
     @apply bg-white font-sans text-ink antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
   ::selection { background: var(--color-brand-100); }
   :focus-visible {

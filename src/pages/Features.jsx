@@ -41,6 +41,7 @@ const STAGES = [
 export default function Features() {
   const [activeStageId, setActiveStageId] = useState("stage-1");
   const [navHidden, setNavHidden] = useState(false);
+  const [progressPercent, setProgressPercent] = useState(0);
 
   // ScrollSpy & Đồng bộ vị trí với Navbar khi người dùng lướt trang
   useEffect(() => {
@@ -65,26 +66,47 @@ export default function Features() {
         document.documentElement.scrollHeight - 100;
       if (isBottom) {
         setActiveStageId("stage-3");
+        setProgressPercent(100);
         return;
       }
 
-      // ScrollSpy: Dùng getBoundingClientRect() để đo vị trí thực tế so với khung nhìn (Viewport)
-      // Điểm kích hoạt chuẩn: khoảng 30% - 35% từ đỉnh màn hình (vừa vặn ngay dưới thanh Stepper đang neo)
-      const stageIds = ["stage-1", "stage-2", "stage-3"];
-      const triggerPoint = Math.min(280, Math.max(180, window.innerHeight * 0.35));
+      // Đo vị trí thực tế của 3 giai đoạn để thanh tiến trình chạy mượt mà theo từng pixel cuộn
+      const s1 = document.getElementById("stage-1");
+      const s2 = document.getElementById("stage-2");
+      const s3 = document.getElementById("stage-3");
 
-      let currentActive = "stage-1";
-      for (let i = 0; i < stageIds.length; i++) {
-        const el = document.getElementById(stageIds[i]);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          // Chỉ khi giai đoạn đó thực sự cuộn lên tới điểm đọc (triggerPoint) thì mới chuyển
-          if (rect.top <= triggerPoint) {
-            currentActive = stageIds[i];
-          }
+      if (s1 && s2 && s3) {
+        const s1Rect = s1.getBoundingClientRect();
+        const s2Rect = s2.getBoundingClientRect();
+        const s3Rect = s3.getBoundingClientRect();
+
+        // Điểm kích hoạt chuẩn: ngay dưới thanh Stepper đang neo (~35% chiều cao màn hình)
+        const trigger = Math.min(280, Math.max(160, window.innerHeight * 0.35));
+
+        if (s1Rect.top > trigger) {
+          // Chưa cuộn tới giai đoạn 1
+          setActiveStageId("stage-1");
+          setProgressPercent(0);
+        } else if (s2Rect.top > trigger) {
+          // Đang cuộn trong Giai đoạn 1 -> Vạch chạy liên tục từ 0% đến 50%
+          const dist = s2Rect.top - s1Rect.top;
+          const passed = trigger - s1Rect.top;
+          const ratio = Math.max(0, Math.min(1, passed / dist));
+          setProgressPercent(ratio * 50);
+          setActiveStageId(ratio >= 0.8 ? "stage-2" : "stage-1");
+        } else if (s3Rect.top > trigger) {
+          // Đang cuộn trong Giai đoạn 2 -> Vạch chạy liên tục từ 50% đến 100%
+          const dist = s3Rect.top - s2Rect.top;
+          const passed = trigger - s2Rect.top;
+          const ratio = Math.max(0, Math.min(1, passed / dist));
+          setProgressPercent(50 + ratio * 50);
+          setActiveStageId(ratio >= 0.8 ? "stage-3" : "stage-2");
+        } else {
+          // Đã cuộn đến hoặc vượt qua Giai đoạn 3
+          setProgressPercent(100);
+          setActiveStageId("stage-3");
         }
       }
-      setActiveStageId(currentActive);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -96,6 +118,8 @@ export default function Features() {
   // Cuộn mượt mà đến giai đoạn tương ứng khi bấm vào thanh
   const scrollToStage = (id) => {
     setActiveStageId(id);
+    const targetIdx = STAGES.findIndex((s) => s.id === id);
+    setProgressPercent(targetIdx === 0 ? 0 : targetIdx === 1 ? 50 : 100);
     const el = document.getElementById(id);
     if (el) {
       const yOffset = -140;
@@ -139,18 +163,11 @@ export default function Features() {
           <div className="container-x">
             <div className="max-w-2xl mx-auto relative rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-[0_4px_24px_-4px_rgba(15,26,51,0.08),0_2px_8px_-2px_rgba(15,26,51,0.04)] px-4 sm:px-10 py-3 sm:py-4">
               {/* Đường ray nền & Vạch chạy tiến trình kết nối 3 mốc */}
-              <div className="absolute left-7 sm:left-14 right-7 sm:right-14 top-7.5 sm:top-8.5 h-1 bg-slate-200/90 rounded-full z-0 overflow-hidden">
+              <div className="absolute left-7 sm:left-14 right-7 sm:right-14 top-7.5 sm:top-8.5 h-1.5 bg-slate-200/90 rounded-full z-0 overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-brand-600 to-brand-500 rounded-full"
+                  className="h-full bg-gradient-to-r from-brand-600 via-brand-500 to-indigo-500 rounded-full"
                   initial={false}
-                  animate={{
-                    width:
-                      currentStageIndex === 0
-                        ? "0%"
-                        : currentStageIndex === 1
-                        ? "50%"
-                        : "100%",
-                  }}
+                  animate={{ width: `${progressPercent}%` }}
                   transition={{ type: "spring", stiffness: 300, damping: 28 }}
                 />
               </div>
@@ -159,8 +176,9 @@ export default function Features() {
               <div className="relative z-10 flex items-center justify-between">
                 {STAGES.map((stage, idx) => {
                   const isCurrent = idx === currentStageIndex;
-                  const isPast = idx < currentStageIndex;
-                  const isPastOrCurrent = idx <= currentStageIndex;
+                  const isReached =
+                    progressPercent >= (idx === 0 ? 0 : idx === 1 ? 48 : 96) ||
+                    idx <= currentStageIndex;
 
                   return (
                     <button
@@ -172,12 +190,12 @@ export default function Features() {
                       <motion.div
                         animate={{
                           scale: isCurrent ? 1.15 : 1,
-                          backgroundColor: isPastOrCurrent ? "#2A56CC" : "#ffffff",
-                          borderColor: isPastOrCurrent ? "#2A56CC" : "#e2e8f0",
+                          backgroundColor: isReached ? "#2A56CC" : "#ffffff",
+                          borderColor: isReached ? "#2A56CC" : "#e2e8f0",
                         }}
                         transition={{ type: "spring", stiffness: 400, damping: 25 }}
                         className={`size-9 sm:size-10 rounded-full border-2 flex items-center justify-center text-xs sm:text-sm font-bold transition-all duration-300 ${
-                          isPastOrCurrent
+                          isReached
                             ? "text-white shadow-soft"
                             : "text-slate-400 bg-white"
                         } ${isCurrent ? "ring-4 ring-brand-100 shadow-md" : ""}`}
@@ -191,7 +209,7 @@ export default function Features() {
                           className={`text-xs sm:text-sm font-bold tracking-tight transition-colors duration-200 ${
                             isCurrent
                               ? "text-brand-700"
-                              : isPast
+                              : isReached
                               ? "text-ink"
                               : "text-muted group-hover:text-ink"
                           }`}

@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -76,6 +77,41 @@ export default function AppWindow() {
   const [searchQuery, setSearchQuery] = useState("");
   const [likedItems, setLikedItems] = useState({});
   const [selectedItem, setSelectedItem] = useState(null);
+  const [bookingSuccess, setBookingSuccess] = useState(false);
+
+  const handleCloseModal = () => {
+    setSelectedItem(null);
+    setBookingSuccess(false);
+  };
+
+  const handleBookingSubmit = () => {
+    setBookingSuccess(true);
+  };
+
+  const handleGoToStage2 = () => {
+    handleCloseModal();
+    const el = document.getElementById("stage-2");
+    if (el) {
+      const yOffset = -140;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
+  // Khóa cuộn trang khi modal mở & Lắng nghe phím Escape để đóng
+  useEffect(() => {
+    if (!selectedItem) return;
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") handleCloseModal();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [selectedItem]);
 
   // Lọc sản phẩm theo danh mục và từ khóa tìm kiếm
   const filteredItems = SIMULATED_ITEMS.filter((item) => {
@@ -92,7 +128,8 @@ export default function AppWindow() {
   };
 
   return (
-    <motion.div
+    <>
+      <motion.div
       ref={ref}
       style={{ scale, y }}
       className="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-line/90 bg-white shadow-[0_25px_60px_-15px_rgba(42,86,204,0.12)]"
@@ -240,113 +277,160 @@ export default function AppWindow() {
       </div>
 
       {/* 3. MODAL CHI TIẾT KHI BẤM CHỌN TÀI SẢN (Interactive Detail Drawer) - Vừa vặn, đầy đủ thông tin uy tín */}
-      <AnimatePresence>
-        {selectedItem && (
-          <div
-            onClick={() => setSelectedItem(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 12 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 12 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-[420px] rounded-2xl bg-white p-5 sm:p-5.5 shadow-2xl border border-slate-200"
-            >
-              {/* Header: Thumbnail + Tên + Badge + Đánh giá sao + Nút đóng */}
-              <div className="flex items-start gap-3.5">
-                <div className="size-15 sm:size-16 rounded-xl overflow-hidden bg-slate-50 border border-slate-200/80 shrink-0 shadow-2xs">
-                  <img src={selectedItem.image} alt={selectedItem.title} className="size-full object-cover" />
-                </div>
-                <div className="flex-1 min-w-0 pr-1">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="inline-block text-[10.5px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
-                      {selectedItem.status}
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/70">
-                      <Star className="size-3 fill-amber-400 text-amber-400" />
-                      {selectedItem.rating}
-                      <span className="font-normal text-muted/80">({selectedItem.reviews})</span>
-                    </span>
-                  </div>
-                  <h3 className="text-base sm:text-lg font-bold text-ink truncate leading-snug mt-1.5">
-                    {selectedItem.title}
-                  </h3>
-                  <p className="text-xs text-muted leading-relaxed line-clamp-2 mt-0.5">
-                    {selectedItem.subtitle}
-                  </p>
-                </div>
-                <button
-                  onClick={() => setSelectedItem(null)}
-                  className="size-7 sm:size-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-400 hover:text-ink transition cursor-pointer shrink-0 -mt-0.5 -mr-0.5"
-                  aria-label="Đóng"
-                >
-                  ✕
-                </button>
-              </div>
-
-              {/* Thông số giao dịch & Đánh giá người cho thuê */}
-              <div className="mt-3.5 p-3.5 rounded-xl bg-slate-50/80 border border-slate-200/70 space-y-2 text-xs">
-                <div className="flex justify-between items-center">
-                  <span className="text-muted">Giá niêm yết:</span>
-                  <span className="font-bold text-brand-600 text-sm">
-                    {selectedItem.price} <span className="font-normal text-xs text-muted">{selectedItem.unit}</span>
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted">Tiền đặt cọc (Deposit):</span>
-                  <span className="font-semibold text-ink">{selectedItem.deposit}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted">Địa điểm bàn giao:</span>
-                  <span className="font-semibold text-ink flex items-center gap-1">
-                    <MapPin className="size-3 text-slate-400" />
-                    {selectedItem.location}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted">Chủ tài sản / Cung cấp:</span>
-                  <span className="font-semibold text-ink flex items-center gap-1.5">
-                    {selectedItem.provider}
-                    <span className="inline-flex items-center text-[10px] font-semibold text-brand-700 bg-brand-50 px-1.5 py-0.5 rounded border border-brand-200/60">
-                      UIT KYC
-                    </span>
-                    <CheckCircle2 className="size-3.5 text-brand-600" />
-                  </span>
-                </div>
-                <div className="flex justify-between items-center pt-2 border-t border-slate-200/60">
-                  <span className="text-muted">Đánh giá người đó:</span>
-                  <div className="flex items-center gap-1.5">
-                    <span className="inline-flex items-center gap-1 font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200/70">
-                      <Star className="size-3.5 fill-amber-400 text-amber-400" />
-                      {selectedItem.rating} / 5.0
-                    </span>
-                    <span className="text-[11px] text-muted font-medium">({selectedItem.reviews} đánh giá uy tín)</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Nút hành động */}
-              <div className="mt-4 flex gap-2.5">
-                <button
-                  onClick={() => setSelectedItem(null)}
-                  className="flex-1 py-2.5 rounded-xl border border-line text-xs sm:text-sm font-semibold text-ink hover:bg-slate-50 transition cursor-pointer"
-                >
-                  Đóng
-                </button>
-                <button
-                  onClick={() => setSelectedItem(null)}
-                  className="flex-1 py-2.5 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-semibold hover:bg-brand-700 transition shadow-soft cursor-pointer flex items-center justify-center gap-1.5"
-                >
-                  <span>Gửi Booking</span>
-                  <ArrowRight className="size-3.5" />
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </motion.div>
+
+    {/* Render modal ra ngoài document.body qua createPortal để che toàn màn hình và không bao giờ bị kẹt trong khung */}
+    {typeof document !== "undefined" &&
+      createPortal(
+        <AnimatePresence>
+          {selectedItem && (
+            <div
+              onClick={handleCloseModal}
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 12 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 12 }}
+                transition={{ duration: 0.18, ease: "easeOut" }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-[440px] rounded-2xl bg-white p-5 sm:p-6 shadow-2xl border border-slate-200"
+              >
+                {!bookingSuccess ? (
+                  <>
+                    {/* Header: Thumbnail + Tên + Badge + Đánh giá sao + Nút đóng */}
+                    <div className="flex items-start gap-3.5">
+                      <div className="size-15 sm:size-16 rounded-xl overflow-hidden bg-slate-50 border border-slate-200/80 shrink-0 shadow-2xs">
+                        <img src={selectedItem.image} alt={selectedItem.title} className="size-full object-cover" />
+                      </div>
+                      <div className="flex-1 min-w-0 pr-1">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="inline-block text-[10.5px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                            {selectedItem.status}
+                          </span>
+                          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/70">
+                            <Star className="size-3 fill-amber-400 text-amber-400" />
+                            {selectedItem.rating}
+                            <span className="font-normal text-muted/80">({selectedItem.reviews})</span>
+                          </span>
+                        </div>
+                        <h3 className="text-base sm:text-lg font-bold text-ink truncate leading-snug mt-1.5">
+                          {selectedItem.title}
+                        </h3>
+                        <p className="text-xs text-muted leading-relaxed line-clamp-2 mt-0.5">
+                          {selectedItem.subtitle}
+                        </p>
+                      </div>
+                      <button
+                        onClick={handleCloseModal}
+                        className="size-7 sm:size-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-400 hover:text-ink transition cursor-pointer shrink-0 -mt-0.5 -mr-0.5"
+                        aria-label="Đóng"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    {/* Thông số giao dịch & Đánh giá người cho thuê */}
+                    <div className="mt-3.5 p-3.5 rounded-xl bg-slate-50/80 border border-slate-200/70 space-y-2 text-xs">
+                      <div className="flex justify-between items-center">
+                        <span className="text-muted">Giá niêm yết:</span>
+                        <span className="font-bold text-brand-600 text-sm">
+                          {selectedItem.price} <span className="font-normal text-xs text-muted">{selectedItem.unit}</span>
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-muted">Tiền đặt cọc (Deposit):</span>
+                        <span className="font-semibold text-ink">{selectedItem.deposit}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-muted">Địa điểm bàn giao:</span>
+                        <span className="font-semibold text-ink flex items-center gap-1">
+                          <MapPin className="size-3 text-slate-400" />
+                          {selectedItem.location}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-muted">Chủ tài sản / Cung cấp:</span>
+                        <span className="font-semibold text-ink flex items-center gap-1.5">
+                          {selectedItem.provider}
+                          <span className="inline-flex items-center text-[10px] font-semibold text-brand-700 bg-brand-50 px-1.5 py-0.5 rounded border border-brand-200/60">
+                            UIT KYC
+                          </span>
+                          <CheckCircle2 className="size-3.5 text-brand-600" />
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center pt-2 border-t border-slate-200/60">
+                        <span className="text-muted">Đánh giá người đó:</span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="inline-flex items-center gap-1 font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200/70">
+                            <Star className="size-3.5 fill-amber-400 text-amber-400" />
+                            {selectedItem.rating} / 5.0
+                          </span>
+                          <span className="text-[11px] text-muted font-medium">({selectedItem.reviews} đánh giá uy tín)</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Nút hành động */}
+                    <div className="mt-4 flex gap-2.5">
+                      <button
+                        onClick={handleCloseModal}
+                        className="flex-1 py-2.5 rounded-xl border border-line text-xs sm:text-sm font-semibold text-ink hover:bg-slate-50 transition cursor-pointer"
+                      >
+                        Đóng
+                      </button>
+                      <button
+                        onClick={handleBookingSubmit}
+                        className="flex-1 py-2.5 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-semibold hover:bg-brand-700 transition shadow-soft cursor-pointer flex items-center justify-center gap-1.5"
+                      >
+                        <span>Gửi Booking</span>
+                        <ArrowRight className="size-3.5" />
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-center py-2">
+                    <div className="mx-auto size-14 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-3 shadow-xs">
+                      <CheckCircle2 className="size-8" />
+                    </div>
+                    <h3 className="text-lg font-bold text-ink">Gửi yêu cầu Booking thành công!</h3>
+                    <p className="mt-1.5 text-xs text-muted leading-relaxed">
+                      Yêu cầu thuê tài sản <strong className="text-ink">{selectedItem.title}</strong> đã được chuyển tới đối tác <strong className="text-brand-600">{selectedItem.provider}</strong>. Khoản cọc ({selectedItem.deposit}) được bảo chứng an toàn qua Smart Lock.
+                    </p>
+
+                    <div className="mt-4 p-3.5 rounded-xl bg-brand-50/70 border border-brand-100 text-left text-xs space-y-1 text-brand-900">
+                      <div className="font-semibold flex items-center gap-1.5 text-brand-700">
+                        <Sparkles className="size-3.5 text-brand-600" />
+                        <span>Bước tiếp theo trong quy trình:</span>
+                      </div>
+                      <p className="text-muted text-[11px] leading-relaxed">
+                        Chuyển sang <strong>Giai đoạn 02 (Secure Exchange)</strong> bên dưới để thực hiện quy trình bàn giao 4 mốc, đối soát ngoại quan và kích hoạt bảo hiểm.
+                      </p>
+                    </div>
+
+                    <div className="mt-5 flex gap-2.5">
+                      <button
+                        onClick={handleCloseModal}
+                        className="flex-1 py-2.5 rounded-xl border border-line text-xs sm:text-sm font-semibold text-ink hover:bg-slate-50 transition cursor-pointer"
+                      >
+                        Đóng
+                      </button>
+                      <button
+                        onClick={handleGoToStage2}
+                        className="flex-1 py-2.5 rounded-xl bg-brand-600 text-white text-xs sm:text-sm font-semibold hover:bg-brand-700 transition shadow-soft cursor-pointer flex items-center justify-center gap-1.5"
+                      >
+                        <span>Xem Giai đoạn 2</span>
+                        <ArrowRight className="size-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </>
   );
 }
