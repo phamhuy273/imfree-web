@@ -17,6 +17,9 @@ import {
   ChevronLeft,
   ChevronRight,
   Maximize2,
+  Camera,
+  ShieldCheck,
+  Star,
 } from "lucide-react";
 import Button from "../components/Button";
 import Reveal from "../components/Reveal";
@@ -276,7 +279,8 @@ export default function Home() {
             </motion.span>
 
             <motion.h1 variants={item} className="h1">
-              Biến Nguồn Lực Nhàn Rỗi Thành Giá Trị Thực
+              Biến nguồn lực nhàn rỗi thành{" "}
+              <span className="grad-text">giá trị thực</span>
             </motion.h1>
 
             <motion.p variants={item} className="lead mt-4">
@@ -293,121 +297,78 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Khung xem trước với hiệu ứng 3D Parallax Tilt & Cánh logo trôi bồng bềnh */}
+          {/* Cột phải: Điện thoại 3D Tilt + 3 Chip nổi lơ lửng lệch pha (Image 2) */}
           <motion.div
-            className="relative mx-auto w-full max-w-lg lg:max-w-none perspective-1000"
+            className="relative mx-auto w-full max-w-[420px] lg:max-w-none flex items-center justify-center py-6 select-none perspective-1000"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            onMouseMove={handleCardMouseMove}
+            onMouseLeave={handleCardMouseLeave}
           >
-            {/* 2 Cánh logo chuyển màu trôi nhẹ nhàng với hiệu ứng Parallax chuyển động theo chuột */}
-            <motion.div
-              style={{ x: wingBlueX, y: wingBlueY }}
-              className="absolute -left-9 -top-9 sm:-left-11 sm:-top-11 z-20 w-22 sm:w-26 pointer-events-none drop-shadow-md"
-            >
-              <Wing variant="blue" className="w-full animate-float" />
-            </motion.div>
-
-            <motion.div
-              style={{ x: wingPinkX, y: wingPinkY }}
-              className="absolute -bottom-9 -right-8 sm:-bottom-10 sm:-right-9 z-20 w-20 sm:w-24 pointer-events-none drop-shadow-md"
-            >
-              <Wing variant="pink" className="w-full animate-float-slow" />
-            </motion.div>
-
-            {/* Khung Card chính: Nghiêng 3D theo con trỏ chuột (3D Mouse Tilt) */}
+            {/* Khung điện thoại thông minh nghiêng 3D theo chuột */}
             <motion.div
               style={{
                 rotateX,
                 rotateY,
                 transformStyle: "preserve-3d",
               }}
-              onMouseMove={handleCardMouseMove}
-              onMouseLeave={handleCardMouseLeave}
-              className="relative z-10 rounded-3xl bg-white border border-line/80 shadow-[0_20px_50px_-10px_rgba(15,26,51,0.09),0_10px_20px_-5px_rgba(15,26,51,0.04)] p-4 sm:p-5 flex items-center gap-4 sm:gap-5 overflow-hidden transition-shadow duration-300 hover:shadow-[0_25px_60px_-10px_rgba(42,86,204,0.16)] cursor-pointer"
+              onClick={() => setSelectedMockupIndex(0)}
+              className="relative w-[235px] sm:w-[265px] md:w-[280px] aspect-[393/852] rounded-[38px] p-2 bg-[#0F1A33] shadow-[0_30px_70px_-15px_rgba(47,85,212,0.32)] ring-1 ring-slate-800 cursor-zoom-in group z-10 transition-transform duration-300"
             >
-              {/* Lớp ánh kim lướt nhẹ theo chuột (Specular Glare) */}
-              <motion.div
-                className="pointer-events-none absolute -inset-full opacity-0 hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  background: `radial-gradient(350px circle at ${glareX} ${glareY}, rgba(255,255,255,0.6), transparent 70%)`,
-                }}
-              />
-
-              {/* Hình ảnh máy ảnh thực tế */}
-              <div className="size-28 sm:size-32 rounded-2xl overflow-hidden shrink-0 bg-slate-100 border border-slate-100 shadow-xs">
+              {/* Màn hình điện thoại hiển thị App ImFree */}
+              <div className="relative w-full h-full rounded-[30px] overflow-hidden bg-white shadow-inner">
                 <img
-                  src="/camera.png"
-                  alt="Máy ảnh"
-                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  src={mockupAssetSharing}
+                  alt="Giao diện ứng dụng ImFree"
+                  className="w-full h-full object-cover object-top pointer-events-none transition-transform duration-300 group-hover:scale-[1.02]"
                 />
-              </div>
-
-              {/* Thông tin chi tiết tài sản */}
-              <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch py-0.5">
-                <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-base sm:text-lg font-bold text-ink truncate">
-                      Máy ảnh
-                    </h3>
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 shrink-0">
-                      Còn trống
-                    </span>
-                  </div>
-
-                  <p className="text-xs sm:text-sm font-medium text-slate-500 mt-1">
-                    Quận 1, TP.HCM
-                  </p>
-
-                  <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1.5">
-                    <Clock className="size-3.5 text-slate-400 shrink-0" />
-                    <span>Cập nhật 2 giờ trước</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between mt-3 pt-1">
-                  <div className="text-lg sm:text-xl font-extrabold text-brand-600">
-                    500.000đ/ngày
-                  </div>
-
-                  {/* Nút Yêu thích có tương tác thả tim & hoạt ảnh nổi bọt */}
-                  <div className="relative">
-                    <motion.button
-                      whileHover={{ scale: 1.15 }}
-                      whileTap={{ scale: 0.85 }}
-                      onClick={handleLikeClick}
-                      className={`size-8 sm:size-9 rounded-full border flex items-center justify-center transition-all duration-300 shadow-2xs cursor-pointer ${
-                        liked
-                          ? "bg-rose-50 border-rose-200 text-rose-500 shadow-xs"
-                          : "bg-slate-50 hover:bg-rose-50/70 border-slate-200/70 text-slate-400 hover:text-rose-500"
-                      }`}
-                      aria-label="Yêu thích"
-                    >
-                      <Heart
-                        className={`size-4 sm:size-4.5 transition-all duration-300 ${
-                          liked ? "fill-rose-500 text-rose-500 scale-110" : ""
-                        }`}
-                      />
-                    </motion.button>
-
-                    {/* Hoạt ảnh thông báo nổi bọt khi thả tim */}
-                    <AnimatePresence>
-                      {showLikeToast && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 0, scale: 0.6 }}
-                          animate={{ opacity: 1, y: -28, scale: 1 }}
-                          exit={{ opacity: 0, y: -36 }}
-                          transition={{ duration: 0.8, ease: "easeOut" }}
-                          className="absolute -top-1 left-1/2 -translate-x-1/2 whitespace-nowrap text-[11px] font-bold text-rose-500 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-full shadow-xs pointer-events-none"
-                        >
-                          {liked ? "+1 Thích!" : "Bỏ thích"}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                <div className="absolute inset-0 bg-[#0F1A33]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span className="text-[11px] font-bold text-white bg-[#0F1A33]/90 px-3 py-1.5 rounded-full shadow-md backdrop-blur-xs">
+                    Nhấn phóng to
+                  </span>
                 </div>
               </div>
             </motion.div>
+
+            {/* Chip 1 (Trên - Trái): Canon EOS 80D · Còn trống 100k/ngày (Trôi lệch pha 1) */}
+            <div className="chip-float-1 pointer-events-none absolute -top-1 sm:top-4 -left-2 sm:-left-8 md:-left-12 z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 sm:p-3 border border-line/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.14)] min-w-[170px] sm:min-w-[190px]">
+              <div className="flex items-center gap-2 text-xs font-bold text-ink">
+                <div className="size-6 rounded-md bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+                  <Camera className="size-3.5" />
+                </div>
+                <span className="truncate">Canon EOS 80D</span>
+              </div>
+              <div className="mt-1.5 flex items-center justify-between text-[11px] font-semibold">
+                <span className="text-emerald-600 flex items-center gap-1">
+                  <span className="size-1.5 rounded-full bg-emerald-500" />
+                  Còn trống
+                </span>
+                <span className="text-ink font-bold">100k/ngày</span>
+              </div>
+            </div>
+
+            {/* Chip 2 (Dưới - Trái): Đã xác thực UIT · Email @gm.uit.edu.vn (Trôi lệch pha 2) */}
+            <div className="chip-float-2 pointer-events-none absolute bottom-6 sm:bottom-10 -left-2 sm:-left-6 md:-left-8 z-20 bg-white/95 backdrop-blur-md rounded-2xl py-2 sm:py-2.5 px-3 sm:px-3.5 border border-line/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.14)] flex items-center gap-2.5">
+              <div className="size-7 sm:size-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                <ShieldCheck className="size-4 sm:size-4.5" />
+              </div>
+              <div>
+                <div className="text-xs font-bold text-ink">Đã xác thực UIT</div>
+                <div className="text-[10px] text-muted">Email @gm.uit.edu.vn</div>
+              </div>
+            </div>
+
+            {/* Chip 3 (Phải): Hoàn trả đúng hạn · +5.0 Sao Trust Profile (Trôi lệch pha 3) */}
+            <div className="chip-float-3 pointer-events-none absolute top-24 sm:top-28 -right-2 sm:-right-6 md:-right-8 z-20 bg-white/95 backdrop-blur-md rounded-2xl py-2 sm:py-2.5 px-3 sm:px-3.5 border border-line/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.14)] flex items-center gap-2.5">
+              <div className="size-7 sm:size-8 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+                <Star className="size-4 sm:size-4.5 fill-brand-600" />
+              </div>
+              <div>
+                <div className="text-xs font-bold text-ink">Hoàn trả đúng hạn</div>
+                <div className="text-[10px] text-emerald-600 font-semibold">+5.0 Sao Trust Profile</div>
+              </div>
+            </div>
           </motion.div>
         </div>
 

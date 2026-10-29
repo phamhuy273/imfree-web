@@ -114,7 +114,9 @@ export default function Features() {
           <span className="inline-block rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-4">
             Transaction Flow • Luồng giao dịch 3 giai đoạn
           </span>
-          <h1 className="h1 mx-auto max-w-3xl">Khám phá các tính năng</h1>
+          <h1 className="h1 mx-auto max-w-3xl">
+            Trải nghiệm <span className="grad-text">quy trình ImFree</span>
+          </h1>
           <p className="lead mx-auto mt-4">
             Mô phỏng trải nghiệm giao diện và toàn bộ quy trình giao dịch khép kín từ lúc tìm kiếm đến bàn giao, hoàn trả và xử lý tranh chấp của ImFree.
           </p>

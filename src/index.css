@@ -70,3 +70,33 @@
   animation: shimmer 1.8s linear infinite;
 }
 @keyframes shimmer { to { background-position: -200% 0; } }
+
+
+/* Chữ gradient sắc sảo theo màu thương hiệu */
+.grad-text {
+  background: linear-gradient(120deg, #2F55D4 0%, #4C7DFF 45%, #9055FD 80%, #C44AC8 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Hiệu ứng trôi lơ lửng lệch pha cho các chip quanh điện thoại Hero */
+@keyframes floatChip1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes floatChip2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes floatChip3 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+.chip-float-1 { animation: floatChip1 5s ease-in-out infinite; }
+.chip-float-2 { animation: floatChip2 6.5s ease-in-out infinite -1.5s; }
+.chip-float-3 { animation: floatChip3 5.8s ease-in-out infinite -3s; }
+@media (prefers-reduced-motion: reduce) {
+  .chip-float-1, .chip-float-2, .chip-float-3 { animation: none; }
+}
