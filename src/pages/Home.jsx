@@ -269,19 +269,19 @@ export default function Home() {
     <>
       {/* ───────── HERO ───────── */}
       <section className="relative overflow-hidden bg-[radial-gradient(60%_50%_at_85%_0%,var(--color-brand-100),transparent)] pb-16 pt-24 sm:pt-28 lg:pt-32">
-        <div className="container-x grid items-center gap-10 lg:gap-14 lg:grid-cols-[1.02fr_0.98fr]">
-          <motion.div variants={container} initial="hidden" animate="show">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10 grid items-center gap-12 lg:gap-16 xl:gap-20 lg:grid-cols-2">
+          <motion.div variants={container} initial="hidden" animate="show" className="max-w-xl">
             {/* Pill Badge chuẩn theo slide tiêu đề đề tài AISC2026 */}
             <motion.span
               variants={item}
-              className="inline-block rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-4"
+              className="inline-flex max-w-full items-center rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-4"
             >
               Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi dành cho sinh viên
             </motion.span>
 
             <motion.h1 variants={item} className="h1">
-              Biến nguồn lực nhàn rỗi thành{" "}
-              <span className="grad-text">giá trị thực</span>
+              Biến nguồn lực nhàn rỗi <br className="hidden sm:inline" />
+              thành <span className="grad-text whitespace-nowrap">giá trị thực</span>
             </motion.h1>
 
             <motion.p variants={item} className="lead mt-4">
@@ -299,7 +299,7 @@ export default function Home() {
           </motion.div>
 
           {/* Cột phải: Khung hiển thị sản phẩm cao cấp (Clean SaaS Showcase) */}
-          <div className="relative mx-auto w-full max-w-[460px] lg:max-w-none flex flex-col items-center justify-center py-4 select-none">
+          <div className="relative mx-auto w-full max-w-[460px] lg:max-w-none flex flex-col items-center justify-center lg:pl-10 xl:pl-6 py-4 select-none">
             {/* Vùng sáng mờ radial dịu nhẹ tôn vinh chiếc điện thoại */}
             <div
               aria-hidden="true"
@@ -324,7 +324,7 @@ export default function Home() {
               {/* Cánh xanh dương (Blue Wing) - Góc Trên - Trái */}
               <motion.div
                 style={{ x: wingBlueX, y: wingBlueY }}
-                className="absolute -top-7 sm:-top-10 -left-6 sm:-left-10 lg:-left-12 z-0 w-16 sm:w-22 lg:w-26 pointer-events-none drop-shadow-md select-none opacity-90"
+                className="absolute -top-7 sm:-top-9 -left-4 sm:-left-7 lg:-left-9 z-0 w-16 sm:w-20 lg:w-24 pointer-events-none drop-shadow-md select-none opacity-90"
               >
                 <Wing variant="blue" className="w-full animate-float -rotate-6" />
               </motion.div>
@@ -332,7 +332,7 @@ export default function Home() {
               {/* Cánh hồng (Pink Wing) - Góc Dưới - Phải */}
               <motion.div
                 style={{ x: wingPinkX, y: wingPinkY }}
-                className="absolute -bottom-6 sm:-bottom-8 -right-6 sm:-right-9 lg:-right-11 z-0 w-16 sm:w-20 lg:w-24 pointer-events-none drop-shadow-md select-none opacity-90"
+                className="absolute -bottom-6 sm:-bottom-8 -right-4 sm:-right-7 lg:-right-9 z-0 w-16 sm:w-19 lg:w-22 pointer-events-none drop-shadow-md select-none opacity-90"
               >
                 <Wing variant="pink" className="w-full animate-float-slow rotate-12" />
               </motion.div>
@@ -369,54 +369,54 @@ export default function Home() {
                   TUYỆT ĐỐI KHÔNG che khuất màn hình hay nội dung bên trong điện thoại!
                  ────────────────────────────────────────────────────────── */}
               {/* Card 1 (Trên - Trái): Quy trình bàn giao 4 mốc (Nằm ngoài bên trái) */}
-              <div className="hidden md:block chip-float-1 pointer-events-none absolute top-4 lg:top-6 right-[calc(100%-8px)] lg:right-[calc(100%-12px)] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] w-[215px] lg:w-[230px]">
-                <div className="flex items-center gap-2 lg:gap-2.5">
-                  <div className="size-8 lg:size-8.5 rounded-xl bg-blue-50 text-[#3569DF] border border-blue-100/80 flex items-center justify-center shrink-0 shadow-2xs">
-                    <ClipboardCheck className="size-4 lg:size-4.5" />
+              <div className="hidden md:block chip-float-1 pointer-events-none absolute top-5 lg:top-7 right-[calc(100%-18px)] lg:right-[calc(100%-24px)] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] w-[195px] lg:w-[212px]">
+                <div className="flex items-center gap-2">
+                  <div className="size-7.5 lg:size-8 rounded-xl bg-blue-50 text-[#3569DF] border border-blue-100/80 flex items-center justify-center shrink-0 shadow-2xs">
+                    <ClipboardCheck className="size-4" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs lg:text-[13px] font-bold text-ink tracking-tight truncate">Quy trình bàn giao 4 mốc</div>
-                    <div className="text-[10px] lg:text-[11px] text-muted truncate">Checklist đối soát 2 chiều</div>
+                    <div className="text-xs lg:text-[12.5px] font-bold text-ink tracking-tight truncate">Quy trình bàn giao 4 mốc</div>
+                    <div className="text-[10px] text-muted truncate">Checklist đối soát 2 chiều</div>
                   </div>
                 </div>
-                <div className="mt-2 lg:mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] lg:text-[11px]">
-                  <span className="text-[#3569DF] font-semibold flex items-center gap-1.5">
+                <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[10px]">
+                  <span className="text-[#3569DF] font-semibold flex items-center gap-1">
                     <span className="size-1.5 rounded-full bg-[#3569DF] animate-pulse" />
                     Minh bạch phụ kiện
                   </span>
-                  <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md font-bold text-[9px] lg:text-[10px]">100% Số hóa</span>
+                  <span className="text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-bold text-[9px]">100% Số hóa</span>
                 </div>
               </div>
 
               {/* Card 2 (Bên phải): Hoàn trả đúng hạn (Nằm ngoài bên phải) */}
-              <div className="hidden md:block chip-float-3 pointer-events-none absolute top-28 lg:top-32 left-[calc(100%-8px)] lg:left-[calc(100%-12px)] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] w-[190px] lg:w-[205px]">
-                <div className="flex items-center gap-2 lg:gap-2.5">
-                  <div className="size-8 lg:size-8.5 rounded-xl bg-amber-50 text-amber-500 border border-amber-100/80 flex items-center justify-center shrink-0 shadow-2xs">
-                    <Star className="size-4 lg:size-4.5 fill-amber-400 text-amber-400" />
+              <div className="hidden md:block chip-float-3 pointer-events-none absolute top-30 lg:top-34 left-[calc(100%-18px)] lg:left-[calc(100%-24px)] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] w-[185px] lg:w-[200px]">
+                <div className="flex items-center gap-2">
+                  <div className="size-7.5 lg:size-8 rounded-xl bg-amber-50 text-amber-500 border border-amber-100/80 flex items-center justify-center shrink-0 shadow-2xs">
+                    <Star className="size-4 fill-amber-400 text-amber-400" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs lg:text-[13px] font-bold text-ink tracking-tight truncate">Hoàn trả đúng hạn</div>
-                    <div className="text-[10px] lg:text-[11px] font-bold text-[#3569DF] truncate">+5.0 Sao Trust Profile</div>
+                    <div className="text-xs lg:text-[12.5px] font-bold text-ink tracking-tight truncate">Hoàn trả đúng hạn</div>
+                    <div className="text-[10px] font-bold text-[#3569DF] truncate">+5.0 Sao Trust Profile</div>
                   </div>
                 </div>
-                <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center gap-1.5 text-[10px] lg:text-[11px] text-muted">
+                <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center gap-1 text-[10px] text-muted">
                   <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
                   <span className="truncate">Tích lũy uy tín sinh viên</span>
                 </div>
               </div>
 
               {/* Card 3 (Dưới - Trái): Xác thực sinh viên (Nằm ngoài bên trái) */}
-              <div className="hidden md:block chip-float-2 pointer-events-none absolute bottom-8 lg:bottom-12 right-[calc(100%-8px)] lg:right-[calc(100%-12px)] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] w-[200px] lg:w-[215px]">
-                <div className="flex items-center gap-2 lg:gap-2.5">
-                  <div className="size-8 lg:size-8.5 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100/80 flex items-center justify-center shrink-0 shadow-2xs">
-                    <ShieldCheck className="size-4 lg:size-4.5" />
+              <div className="hidden md:block chip-float-2 pointer-events-none absolute bottom-10 lg:bottom-14 right-[calc(100%-18px)] lg:right-[calc(100%-24px)] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] w-[185px] lg:w-[200px]">
+                <div className="flex items-center gap-2">
+                  <div className="size-7.5 lg:size-8 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100/80 flex items-center justify-center shrink-0 shadow-2xs">
+                    <ShieldCheck className="size-4" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs lg:text-[13px] font-bold text-ink tracking-tight truncate">Xác thực sinh viên</div>
-                    <div className="text-[10px] lg:text-[11px] text-muted truncate">Định danh tài khoản trường</div>
+                    <div className="text-xs lg:text-[12.5px] font-bold text-ink tracking-tight truncate">Xác thực sinh viên</div>
+                    <div className="text-[10px] text-muted truncate">Định danh tài khoản trường</div>
                   </div>
                 </div>
-                <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center gap-1.5 text-[10px] lg:text-[11px] text-emerald-600 font-semibold">
+                <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center gap-1 text-[10px] text-emerald-600 font-semibold">
                   <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
                   <span className="truncate">Bảo mật 2 chiều an tâm</span>
                 </div>
