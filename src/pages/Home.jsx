@@ -564,10 +564,7 @@ export default function Home() {
             />
 
             {/* Nút đóng ở góc trên bên phải */}
-            <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-30 flex items-center gap-2">
-              <span className="text-xs text-white/70 font-medium hidden sm:inline bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-xs border border-white/10">
-                Nhấn ESC để đóng • Phím ← → chuyển ảnh
-              </span>
+            <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-30 flex items-center">
               <button
                 type="button"
                 onClick={() => setSelectedMockupIndex(null)}
