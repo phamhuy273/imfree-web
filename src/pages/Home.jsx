@@ -58,7 +58,7 @@ const MOCKUP_DETAILS = [
   {
     index: 2,
     title: "Xây dựng niềm tin",
-    subtitle: "Hệ thống Trust Profile",
+    subtitle: "Hệ thống đánh giá sau giao dịch",
     image: mockupTrustProfile,
     description:
       "Chu trình uy tín khép kín: Đánh giá sao và nhận xét khách quan sau khi hoàn trả. Điểm uy tín được tích lũy vào hồ sơ cá nhân của sinh viên.",

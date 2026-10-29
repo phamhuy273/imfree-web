@@ -84,7 +84,7 @@ export const modules = [
   {
     icon: Star,
     title: "Xây dựng niềm tin",
-    subtitle: "Hệ thống Trust Profile",
+    subtitle: "Hệ thống đánh giá sau giao dịch",
     text: "Tích lũy điểm tín nhiệm sau mỗi lượt mượn, tạo cơ sở bảo chứng vững chắc giữa cộng đồng sinh viên.",
     highlights: [
       "Hồ sơ Trust Profile 5 sao minh bạch",
