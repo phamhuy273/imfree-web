@@ -276,18 +276,18 @@ export default function Home() {
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10 grid items-center gap-12 lg:gap-16 xl:gap-20 lg:grid-cols-2">
           <motion.div variants={container} initial="hidden" animate="show" className="relative max-w-xl">
             {/* 2 Cánh logo chuyển màu thương hiệu (Lá xanh & Lá hồng) trôi bồng bềnh nghệ thuật quanh Tiêu Đề */}
-            {/* Cánh xanh dương (Blue Wing) - Góc Trên - Trái Tiêu đề (z-10 nổi bật trên nền) */}
+            {/* Cánh xanh dương (Blue Wing) - Đặt cao hẳn ở góc Trên - Trái, hoàn toàn không chạm badge hay chữ */}
             <motion.div
               style={{ x: wingBlueX, y: wingBlueY }}
-              className="absolute -top-10 sm:-top-13 -left-4 sm:-left-8 z-10 w-18 sm:w-22 lg:w-26 pointer-events-none drop-shadow-md select-none opacity-90"
+              className="absolute -top-14 sm:-top-18 -left-6 sm:-left-10 lg:-left-12 z-0 w-16 sm:w-20 lg:w-24 pointer-events-none drop-shadow-md select-none opacity-85"
             >
               <Wing variant="blue" className="w-full animate-float -rotate-12" />
             </motion.div>
 
-            {/* Cánh hồng (Pink Wing) - Góc Bên Phải của dòng 'giá trị thực' (z-10 nổi bật trên nền) */}
+            {/* Cánh hồng (Pink Wing) - Đặt ở khoảng trống bên phải dòng 'giá trị thực', nằm thấp dưới dòng 1 hoàn toàn không che chữ */}
             <motion.div
               style={{ x: wingPinkX, y: wingPinkY }}
-              className="absolute top-14 sm:top-18 lg:top-22 right-2 sm:right-6 lg:right-4 z-10 w-16 sm:w-20 lg:w-24 pointer-events-none drop-shadow-md select-none opacity-90"
+              className="absolute top-[120px] sm:top-[138px] lg:top-[150px] right-2 sm:right-6 lg:right-4 z-0 w-14 sm:w-18 lg:w-20 pointer-events-none drop-shadow-md select-none opacity-85"
             >
               <Wing variant="pink" className="w-full animate-float-slow rotate-12" />
             </motion.div>
@@ -295,7 +295,7 @@ export default function Home() {
             {/* Pill Badge chuẩn theo slide tiêu đề đề tài AISC2026 */}
             <motion.span
               variants={item}
-              className="inline-flex max-w-full items-center rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-4"
+              className="relative z-10 inline-flex max-w-full items-center rounded-full border border-brand-200 bg-white/90 px-3.5 py-1 text-xs sm:text-sm font-medium text-brand-700 shadow-xs mb-4"
             >
               Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi dành cho sinh viên
             </motion.span>
@@ -303,7 +303,7 @@ export default function Home() {
             {/* Tiêu đề H1 CHUẨN 2 DÒNG DUY NHẤT: Biến nguồn lực nhàn rỗi / thành giá trị thực (Cỡ chữ lớn đầy đặn) */}
             <motion.h1
               variants={item}
-              className="text-[28px] sm:text-[38px] md:text-[44px] lg:text-[48px] xl:text-[54px] font-extrabold text-ink tracking-tight leading-[1.14]"
+              className="relative z-10 text-[28px] sm:text-[38px] md:text-[44px] lg:text-[48px] xl:text-[54px] font-extrabold text-ink tracking-tight leading-[1.14]"
             >
               <span className="block whitespace-nowrap">Biến nguồn lực nhàn rỗi</span>
               <span className="block mt-1 sm:mt-2 whitespace-nowrap">
@@ -311,11 +311,11 @@ export default function Home() {
               </span>
             </motion.h1>
 
-            <motion.p variants={item} className="lead mt-5 sm:mt-6">
+            <motion.p variants={item} className="relative z-10 lead mt-5 sm:mt-6">
               ImFree kết nối sinh viên có tài sản nhàn rỗi với người đang có nhu cầu sử dụng. Giao dịch an tâm với quy trình kiểm soát rủi ro 3 giai đoạn, đối chiếu hiện trạng và bảo chứng đặt cọc.
             </motion.p>
 
-            <motion.div variants={item} className="mt-8 flex flex-wrap gap-3.5">
+            <motion.div variants={item} className="relative z-10 mt-8 flex flex-wrap gap-3.5">
               <Button to="/tinh-nang">
                 Khám phá tính năng <ArrowRight className="size-4" />
               </Button>
