@@ -227,13 +227,21 @@ export default function Home() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const mouseX = useSpring(x, { stiffness: 220, damping: 22 });
-  const mouseY = useSpring(y, { stiffness: 220, damping: 22 });
+  const mouseX = useSpring(x, { stiffness: 200, damping: 20 });
+  const mouseY = useSpring(y, { stiffness: 200, damping: 20 });
 
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["3.5deg", "-3.5deg"]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-4deg", "4deg"]);
+  // Hiệu ứng nghiêng 3D rõ nét, sống động hơn khi tương tác chuột (7.5deg - 8.5deg)
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["7.5deg", "-7.5deg"]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-8.5deg", "8.5deg"]);
   const glareX = useTransform(mouseX, [-0.5, 0.5], ["0%", "100%"]);
   const glareY = useTransform(mouseY, [-0.5, 0.5], ["0%", "100%"]);
+
+  // Ánh sáng lướt kính phản chiếu 3D chân thực trên màn hình điện thoại
+  const glareBackground = useTransform(
+    [glareX, glareY],
+    ([gx, gy]) =>
+      `radial-gradient(380px circle at ${gx} ${gy}, rgba(255,255,255,0.4), transparent 70%)`
+  );
 
   // Parallax đa tầng cho 2 cánh logo bồng bềnh
   const wingBlueX = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
@@ -347,13 +355,31 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               className="relative perspective-1000 flex justify-center"
             >
-              {/* Thân máy điện thoại viền Titanium mỏng cao cấp */}
+              {/* Đổ bóng tiếp xúc 3D có chiều sâu ở phía sau */}
               <div
+                style={{ transform: "translateZ(-25px)" }}
+                className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[80%] h-8 bg-slate-950/30 blur-xl rounded-full pointer-events-none"
+              />
+
+              {/* Thân máy điện thoại viền Titanium mỏng cao cấp nâng nổi trong không gian 3D */}
+              <div
+                style={{ transform: "translateZ(25px)", transformStyle: "preserve-3d" }}
                 onClick={() => setSelectedMockupIndex(0)}
-                className="relative w-[215px] sm:w-[250px] md:w-[270px] lg:w-[285px] aspect-[393/852] rounded-[38px] sm:rounded-[42px] p-2 bg-gradient-to-b from-slate-800 via-slate-900 to-slate-950 shadow-[0_24px_60px_-12px_rgba(15,26,51,0.28),0_12px_24px_-8px_rgba(47,85,212,0.18)] ring-1 ring-white/15 cursor-zoom-in group z-10 transition-transform duration-300"
+                className="relative w-[215px] sm:w-[250px] md:w-[270px] lg:w-[285px] aspect-[393/852] rounded-[38px] sm:rounded-[42px] p-2 bg-gradient-to-b from-slate-700 via-slate-900 to-slate-950 shadow-[0_32px_80px_-15px_rgba(15,26,51,0.38),0_16px_36px_-8px_rgba(47,85,212,0.25),inset_0_1px_1px_rgba(255,255,255,0.25)] ring-1 ring-white/20 cursor-zoom-in group z-10 transition-transform duration-300"
               >
                 {/* Màn hình app ImFree với góc bo chuẩn xác và ánh sáng phản chiếu nhẹ */}
                 <div className="relative w-full h-full rounded-[30px] sm:rounded-[34px] overflow-hidden bg-white shadow-inner">
+                  {/* Dynamic Island 3D thanh mảnh cao cấp */}
+                  <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-16 h-3.5 bg-black rounded-full z-30 flex items-center justify-end pr-1.5 shadow-xs pointer-events-none">
+                    <span className="size-1.5 rounded-full bg-slate-900 border border-slate-700/60" />
+                  </div>
+
+                  {/* Lớp ánh sáng phản chiếu 3D chân thực lướt theo chuột */}
+                  <motion.div
+                    className="pointer-events-none absolute -inset-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
+                    style={{ background: glareBackground }}
+                  />
+
                   {/* Vệt ánh sáng mỏng phản chiếu trên mặt kính */}
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/15 to-transparent z-10" />
 
@@ -375,61 +401,76 @@ export default function Home() {
 
               {/* ──────────────────────────────────────────────────────────
                   3 FLOATING CARDS NỔI XUNG QUANH TRÊN DESKTOP & TABLET (≥ md)
-                  Được căn chỉnh nằm HOÀN TOÀN BÊN NGOÀI thân máy, chỉ tựa nhẹ vào viền Titanium
+                  Được căn chỉnh nằm HOÀN TOÀN BÊN NGOÀI thân máy, nâng nổi tầng Z (translateZ 55px)
                   TUYỆT ĐỐI KHÔNG che khuất màn hình hay nội dung bên trong điện thoại!
                   CHỮ HIỂN THỊ TRỌN VẸN 100%, KHÔNG BỊ RÚT GỌN BA CHẤM (...)
                  ────────────────────────────────────────────────────────── */}
               {/* Card 1 (Trên - Trái): Quy trình bàn giao 4 mốc (Nằm ngoài bên trái) */}
-              <div className="hidden md:block chip-float-1 pointer-events-none absolute top-5 lg:top-7 right-[calc(100%-16px)] lg:right-[calc(100%-22px)] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] w-[218px] lg:w-[232px]">
-                <div className="flex items-center gap-2">
-                  <div className="size-7.5 lg:size-8 rounded-xl bg-blue-50 text-[#3569DF] border border-blue-100/80 flex items-center justify-center shrink-0 shadow-2xs">
-                    <ClipboardCheck className="size-4" />
+              <div
+                style={{ transform: "translateZ(55px)" }}
+                className="hidden md:block pointer-events-none absolute top-5 lg:top-7 right-[calc(100%-16px)] lg:right-[calc(100%-22px)] z-20 w-[218px] lg:w-[232px]"
+              >
+                <div className="chip-float-1 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_16px_36px_-6px_rgba(15,26,51,0.12),0_4px_12px_rgba(15,26,51,0.04)]">
+                  <div className="flex items-center gap-2">
+                    <div className="size-7.5 lg:size-8 rounded-xl bg-blue-50 text-[#3569DF] border border-blue-100/80 flex items-center justify-center shrink-0 shadow-2xs">
+                      <ClipboardCheck className="size-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[12.5px] font-bold text-ink tracking-tight whitespace-nowrap">Quy trình bàn giao 4 mốc</div>
+                      <div className="text-[10.5px] text-muted whitespace-nowrap">Checklist đối soát 2 chiều</div>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <div className="text-[12.5px] font-bold text-ink tracking-tight whitespace-nowrap">Quy trình bàn giao 4 mốc</div>
-                    <div className="text-[10.5px] text-muted whitespace-nowrap">Checklist đối soát 2 chiều</div>
+                  <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[10.5px]">
+                    <span className="text-[#3569DF] font-semibold flex items-center gap-1.5 whitespace-nowrap">
+                      <span className="size-1.5 rounded-full bg-[#3569DF] animate-pulse" />
+                      Minh bạch phụ kiện
+                    </span>
+                    <span className="text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-bold text-[9.5px] whitespace-nowrap">100% Số hóa</span>
                   </div>
-                </div>
-                <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[10.5px]">
-                  <span className="text-[#3569DF] font-semibold flex items-center gap-1.5 whitespace-nowrap">
-                    <span className="size-1.5 rounded-full bg-[#3569DF] animate-pulse" />
-                    Minh bạch phụ kiện
-                  </span>
-                  <span className="text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-bold text-[9.5px] whitespace-nowrap">100% Số hóa</span>
                 </div>
               </div>
 
               {/* Card 2 (Bên phải): Hoàn trả đúng hạn (Nằm ngoài bên phải) */}
-              <div className="hidden md:block chip-float-3 pointer-events-none absolute top-30 lg:top-34 left-[calc(100%-16px)] lg:left-[calc(100%-22px)] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] w-[196px] lg:w-[210px]">
-                <div className="flex items-center gap-2">
-                  <div className="size-7.5 lg:size-8 rounded-xl bg-amber-50 text-amber-500 border border-amber-100/80 flex items-center justify-center shrink-0 shadow-2xs">
-                    <Star className="size-4 fill-amber-400 text-amber-400" />
+              <div
+                style={{ transform: "translateZ(55px)" }}
+                className="hidden md:block pointer-events-none absolute top-30 lg:top-34 left-[calc(100%-16px)] lg:left-[calc(100%-22px)] z-20 w-[196px] lg:w-[210px]"
+              >
+                <div className="chip-float-3 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_16px_36px_-6px_rgba(15,26,51,0.12),0_4px_12px_rgba(15,26,51,0.04)]">
+                  <div className="flex items-center gap-2">
+                    <div className="size-7.5 lg:size-8 rounded-xl bg-amber-50 text-amber-500 border border-amber-100/80 flex items-center justify-center shrink-0 shadow-2xs">
+                      <Star className="size-4 fill-amber-400 text-amber-400" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[12.5px] font-bold text-ink tracking-tight whitespace-nowrap">Hoàn trả đúng hạn</div>
+                      <div className="text-[10.5px] font-bold text-[#3569DF] whitespace-nowrap">+5.0 Sao Trust Profile</div>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <div className="text-[12.5px] font-bold text-ink tracking-tight whitespace-nowrap">Hoàn trả đúng hạn</div>
-                    <div className="text-[10.5px] font-bold text-[#3569DF] whitespace-nowrap">+5.0 Sao Trust Profile</div>
+                  <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center gap-1 text-[10.5px] text-muted whitespace-nowrap">
+                    <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    <span>Tích lũy uy tín sinh viên</span>
                   </div>
-                </div>
-                <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center gap-1 text-[10.5px] text-muted whitespace-nowrap">
-                  <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
-                  <span>Tích lũy uy tín sinh viên</span>
                 </div>
               </div>
 
               {/* Card 3 (Dưới - Trái): Xác thực sinh viên (Nằm ngoài bên trái) */}
-              <div className="hidden md:block chip-float-2 pointer-events-none absolute bottom-10 lg:bottom-14 right-[calc(100%-16px)] lg:right-[calc(100%-22px)] z-20 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] w-[196px] lg:w-[210px]">
-                <div className="flex items-center gap-2">
-                  <div className="size-7.5 lg:size-8 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100/80 flex items-center justify-center shrink-0 shadow-2xs">
-                    <ShieldCheck className="size-4" />
+              <div
+                style={{ transform: "translateZ(55px)" }}
+                className="hidden md:block pointer-events-none absolute bottom-10 lg:bottom-14 right-[calc(100%-16px)] lg:right-[calc(100%-22px)] z-20 w-[196px] lg:w-[210px]"
+              >
+                <div className="chip-float-2 bg-white/95 backdrop-blur-md rounded-2xl p-2.5 lg:p-3 border border-slate-200/80 shadow-[0_16px_36px_-6px_rgba(15,26,51,0.12),0_4px_12px_rgba(15,26,51,0.04)]">
+                  <div className="flex items-center gap-2">
+                    <div className="size-7.5 lg:size-8 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100/80 flex items-center justify-center shrink-0 shadow-2xs">
+                      <ShieldCheck className="size-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-[12.5px] font-bold text-ink tracking-tight whitespace-nowrap">Xác thực sinh viên</div>
+                      <div className="text-[10.5px] text-muted whitespace-nowrap">Định danh tài khoản trường</div>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <div className="text-[12.5px] font-bold text-ink tracking-tight whitespace-nowrap">Xác thực sinh viên</div>
-                    <div className="text-[10.5px] text-muted whitespace-nowrap">Định danh tài khoản trường</div>
+                  <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center gap-1 text-[10.5px] text-emerald-600 font-semibold whitespace-nowrap">
+                    <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    <span>Bảo mật 2 chiều an tâm</span>
                   </div>
-                </div>
-                <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center gap-1 text-[10.5px] text-emerald-600 font-semibold whitespace-nowrap">
-                  <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
-                  <span>Bảo mật 2 chiều an tâm</span>
                 </div>
               </div>
             </motion.div>
