@@ -320,6 +320,23 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               className="relative perspective-1000 flex justify-center"
             >
+              {/* 2 Cánh logo chuyển màu thương hiệu (Lá xanh & Lá hồng) bồng bềnh chuyển động theo chuột */}
+              {/* Cánh xanh dương (Blue Wing) - Góc Trên - Trái */}
+              <motion.div
+                style={{ x: wingBlueX, y: wingBlueY }}
+                className="absolute -top-7 sm:-top-10 -left-6 sm:-left-10 lg:-left-12 z-0 w-16 sm:w-22 lg:w-26 pointer-events-none drop-shadow-md select-none opacity-90"
+              >
+                <Wing variant="blue" className="w-full animate-float -rotate-6" />
+              </motion.div>
+
+              {/* Cánh hồng (Pink Wing) - Góc Dưới - Phải */}
+              <motion.div
+                style={{ x: wingPinkX, y: wingPinkY }}
+                className="absolute -bottom-6 sm:-bottom-8 -right-6 sm:-right-9 lg:-right-11 z-0 w-16 sm:w-20 lg:w-24 pointer-events-none drop-shadow-md select-none opacity-90"
+              >
+                <Wing variant="pink" className="w-full animate-float-slow rotate-12" />
+              </motion.div>
+
               {/* Thân máy điện thoại viền Titanium mỏng cao cấp */}
               <div
                 onClick={() => setSelectedMockupIndex(0)}
