@@ -230,8 +230,8 @@ export default function Home() {
   const mouseX = useSpring(x, { stiffness: 220, damping: 22 });
   const mouseY = useSpring(y, { stiffness: 220, damping: 22 });
 
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["7deg", "-7deg"]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-7deg", "7deg"]);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["3.5deg", "-3.5deg"]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-4deg", "4deg"]);
   const glareX = useTransform(mouseX, [-0.5, 0.5], ["0%", "100%"]);
   const glareY = useTransform(mouseY, [-0.5, 0.5], ["0%", "100%"]);
 
@@ -298,90 +298,166 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Cột phải: Điện thoại 3D Tilt + 3 Chip nổi lơ lửng lệch pha (Image 2 - Tối ưu mobile) */}
-          <motion.div
-            className="relative mx-auto w-full max-w-[420px] lg:max-w-none flex items-center justify-center py-4 sm:py-6 select-none perspective-1000"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            onMouseMove={handleCardMouseMove}
-            onMouseLeave={handleCardMouseLeave}
-          >
-            {/* Khung điện thoại thông minh nghiêng 3D theo chuột */}
+          {/* Cột phải: Khung hiển thị sản phẩm cao cấp (Clean SaaS Showcase) */}
+          <div className="relative mx-auto w-full max-w-[460px] lg:max-w-none flex flex-col items-center justify-center py-4 select-none">
+            {/* Vùng sáng mờ radial dịu nhẹ tôn vinh chiếc điện thoại */}
+            <div
+              aria-hidden="true"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-72 sm:size-96 rounded-full bg-brand-400/15 blur-3xl pointer-events-none -z-10"
+            />
+
+            {/* Khung điện thoại nghiêng 3D mượt mà (Desktop) */}
             <motion.div
               style={{
                 rotateX,
                 rotateY,
                 transformStyle: "preserve-3d",
               }}
-              onClick={() => setSelectedMockupIndex(0)}
-              className="relative w-[215px] sm:w-[260px] md:w-[275px] aspect-[393/852] rounded-[36px] sm:rounded-[40px] p-2 bg-[#0F1A33] shadow-[0_30px_70px_-15px_rgba(47,85,212,0.32)] ring-1 ring-slate-800 cursor-zoom-in group z-10 transition-transform duration-300"
+              onMouseMove={handleCardMouseMove}
+              onMouseLeave={handleCardMouseLeave}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="relative perspective-1000 flex justify-center"
             >
-              {/* Màn hình điện thoại hiển thị App ImFree */}
-              <div className="relative w-full h-full rounded-[28px] sm:rounded-[32px] overflow-hidden bg-white shadow-inner">
-                <img
-                  src={mockupAssetSharing}
-                  alt="Giao diện ứng dụng ImFree"
-                  className="w-full h-full object-cover object-top pointer-events-none transition-transform duration-300 group-hover:scale-[1.02]"
-                />
-                <div className="absolute inset-0 bg-[#0F1A33]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="text-[11px] font-bold text-white bg-[#0F1A33]/90 px-3 py-1.5 rounded-full shadow-md backdrop-blur-xs">
-                    Nhấn phóng to
+              {/* Thân máy điện thoại viền Titanium mỏng cao cấp */}
+              <div
+                onClick={() => setSelectedMockupIndex(0)}
+                className="relative w-[215px] sm:w-[250px] md:w-[270px] lg:w-[285px] aspect-[393/852] rounded-[38px] sm:rounded-[42px] p-2 bg-gradient-to-b from-slate-800 via-slate-900 to-slate-950 shadow-[0_24px_60px_-12px_rgba(15,26,51,0.28),0_12px_24px_-8px_rgba(47,85,212,0.18)] ring-1 ring-white/15 cursor-zoom-in group z-10 transition-transform duration-300"
+              >
+                {/* Màn hình app ImFree với góc bo chuẩn xác và ánh sáng phản chiếu nhẹ */}
+                <div className="relative w-full h-full rounded-[30px] sm:rounded-[34px] overflow-hidden bg-white shadow-inner">
+                  {/* Vệt ánh sáng mỏng phản chiếu trên mặt kính */}
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/15 to-transparent z-10" />
+
+                  <img
+                    src={mockupAssetSharing}
+                    alt="Giao diện ứng dụng ImFree"
+                    className="w-full h-full object-cover object-top pointer-events-none transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+
+                  {/* Nút phóng to nhẹ nhàng khi hover trên Desktop */}
+                  <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-20">
+                    <span className="text-xs font-bold text-white bg-slate-900/90 px-3.5 py-1.5 rounded-full shadow-lg backdrop-blur-xs flex items-center gap-1.5">
+                      <Maximize2 className="size-3.5" />
+                      <span>Phóng to xem rõ</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* ──────────────────────────────────────────────────────────
+                  3 FLOATING CARDS NỔI XUNG QUANH TRÊN DESKTOP & TABLET (≥ md)
+                 ────────────────────────────────────────────────────────── */}
+              {/* Card 1 (Trên - Trái): Quy trình bàn giao 4 mốc */}
+              <div className="hidden md:block chip-float-1 pointer-events-none absolute top-3 -left-8 lg:-left-12 z-20 bg-white/95 backdrop-blur-md rounded-2xl p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] min-w-[210px] max-w-[235px]">
+                <div className="flex items-center gap-2.5">
+                  <div className="size-8.5 rounded-xl bg-blue-50 text-[#3569DF] border border-blue-100/80 flex items-center justify-center shrink-0 shadow-2xs">
+                    <ClipboardCheck className="size-4.5" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-[13px] font-bold text-ink tracking-tight truncate">Quy trình bàn giao 4 mốc</div>
+                    <div className="text-[11px] text-muted truncate">Checklist đối soát 2 chiều</div>
+                  </div>
+                </div>
+                <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                  <span className="text-[#3569DF] font-semibold flex items-center gap-1.5">
+                    <span className="size-1.5 rounded-full bg-[#3569DF] animate-pulse" />
+                    Minh bạch phụ kiện
                   </span>
+                  <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md font-bold text-[10px]">100% Số hóa</span>
+                </div>
+              </div>
+
+              {/* Card 2 (Bên phải): Hoàn trả đúng hạn */}
+              <div className="hidden md:block chip-float-3 pointer-events-none absolute top-28 -right-6 lg:-right-10 z-20 bg-white/95 backdrop-blur-md rounded-2xl p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] min-w-[195px]">
+                <div className="flex items-center gap-2.5">
+                  <div className="size-8.5 rounded-xl bg-amber-50 text-amber-500 border border-amber-100/80 flex items-center justify-center shrink-0 shadow-2xs">
+                    <Star className="size-4.5 fill-amber-400 text-amber-400" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-[13px] font-bold text-ink tracking-tight">Hoàn trả đúng hạn</div>
+                    <div className="text-[11px] font-bold text-[#3569DF]">+5.0 Sao Trust Profile</div>
+                  </div>
+                </div>
+                <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center gap-1.5 text-[11px] text-muted">
+                  <span className="size-1.5 rounded-full bg-emerald-500" />
+                  <span>Tích lũy uy tín sinh viên</span>
+                </div>
+              </div>
+
+              {/* Card 3 (Dưới - Trái): Xác thực sinh viên */}
+              <div className="hidden md:block chip-float-2 pointer-events-none absolute bottom-10 -left-6 lg:-left-10 z-20 bg-white/95 backdrop-blur-md rounded-2xl p-3 border border-slate-200/80 shadow-[0_12px_32px_-6px_rgba(15,26,51,0.09),0_2px_8px_rgba(15,26,51,0.03)] min-w-[200px]">
+                <div className="flex items-center gap-2.5">
+                  <div className="size-8.5 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100/80 flex items-center justify-center shrink-0 shadow-2xs">
+                    <ShieldCheck className="size-4.5" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-[13px] font-bold text-ink tracking-tight">Xác thực sinh viên</div>
+                    <div className="text-[11px] text-muted">Định danh tài khoản trường</div>
+                  </div>
+                </div>
+                <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center gap-1.5 text-[11px] text-emerald-600 font-semibold">
+                  <span className="size-1.5 rounded-full bg-emerald-500" />
+                  <span>Bảo mật 2 chiều an tâm</span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Chip 1 (Trên - Trái): Quy trình bàn giao 4 mốc (Trôi lệch pha 1) */}
-            <div className="chip-float-1 pointer-events-none absolute -top-2 sm:top-3 -left-3 sm:-left-10 lg:-left-14 z-20 bg-white/95 backdrop-blur-xl rounded-2xl p-2.5 sm:p-3 border border-slate-200/80 shadow-[0_16px_36px_-6px_rgba(15,26,51,0.14),0_2px_8px_rgba(0,0,0,0.04)] min-w-[175px] sm:min-w-[200px] scale-[0.82] sm:scale-100 origin-top-left transition-transform">
-              <div className="flex items-center gap-2.5">
-                <div className="size-8 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-100 text-[#2F55D4] border border-blue-200/60 flex items-center justify-center shrink-0 shadow-2xs">
-                  <ClipboardCheck className="size-4" />
+            {/* ──────────────────────────────────────────────────────────
+                TRÊN MOBILE (< md): 3 CARD SẮP XẾP GỌN GÀNG DƯỚI ĐIỆN THOẠI
+                (Khắc phục triệt để lỗi che khuất màn hình hoặc tràn viền ngang)
+               ────────────────────────────────────────────────────────── */}
+            <div className="md:hidden mt-6 w-full max-w-[330px] space-y-2.5">
+              {/* Mobile Card 1 */}
+              <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 border border-slate-200/80 shadow-xs flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="size-8 rounded-xl bg-blue-50 text-[#3569DF] border border-blue-100/80 flex items-center justify-center shrink-0">
+                    <ClipboardCheck className="size-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold text-ink truncate">Quy trình bàn giao 4 mốc</div>
+                    <div className="text-[10px] text-muted truncate">Checklist đối soát 2 chiều</div>
+                  </div>
                 </div>
-                <div className="min-w-0">
-                  <div className="text-xs font-bold text-ink truncate">Quy trình bàn giao 4 mốc</div>
-                  <div className="text-[10px] text-muted truncate">Checklist đối soát 2 chiều</div>
-                </div>
-              </div>
-              <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[10px] font-semibold">
-                <span className="text-[#2F55D4] flex items-center gap-1">
-                  <span className="size-1.5 rounded-full bg-[#2F55D4] animate-pulse" />
-                  Minh bạch phụ kiện
+                <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[10px] font-bold shrink-0">
+                  100% Số hóa
                 </span>
-                <span className="text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded font-bold">100% Số hóa</span>
               </div>
-            </div>
 
-            {/* Chip 2 (Dưới - Trái): Xác thực sinh viên (Trôi lệch pha 2) */}
-            <div className="chip-float-2 pointer-events-none absolute -bottom-3 sm:bottom-8 -left-3 sm:-left-8 lg:-left-12 z-20 bg-white/95 backdrop-blur-xl rounded-2xl py-2 sm:py-2.5 px-3 sm:px-3.5 border border-slate-200/80 shadow-[0_16px_36px_-6px_rgba(15,26,51,0.14),0_2px_8px_rgba(0,0,0,0.04)] flex items-center gap-2.5 scale-[0.82] sm:scale-100 origin-bottom-left transition-transform">
-              <div className="size-8 sm:size-9 rounded-xl bg-gradient-to-br from-emerald-50 to-teal-100 text-emerald-600 border border-emerald-200/60 flex items-center justify-center shrink-0 shadow-2xs">
-                <ShieldCheck className="size-4.5" />
-              </div>
-              <div>
-                <div className="text-xs font-bold text-ink">Xác thực sinh viên</div>
-                <div className="text-[10px] text-muted">Định danh tài khoản trường</div>
-                <div className="text-[10px] text-emerald-600 font-semibold flex items-center gap-1 mt-0.5">
-                  <span className="size-1.5 rounded-full bg-emerald-500" />
-                  Bảo mật 2 chiều
+              {/* Mobile Card 2 */}
+              <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 border border-slate-200/80 shadow-xs flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="size-8 rounded-xl bg-amber-50 text-amber-500 border border-amber-100/80 flex items-center justify-center shrink-0">
+                    <Star className="size-4 fill-amber-400 text-amber-400" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold text-ink truncate">Hoàn trả đúng hạn</div>
+                    <div className="text-[11px] font-bold text-[#3569DF]">+5.0 Sao Trust Profile</div>
+                  </div>
                 </div>
+                <span className="text-muted text-[10px] font-medium shrink-0 flex items-center gap-1">
+                  <span className="size-1.5 rounded-full bg-emerald-500" /> Tín nhiệm
+                </span>
               </div>
-            </div>
 
-            {/* Chip 3 (Phải): Hoàn trả đúng hạn (Trôi lệch pha 3) */}
-            <div className="chip-float-3 pointer-events-none absolute top-24 sm:top-28 -right-3 sm:-right-8 lg:-right-12 z-20 bg-white/95 backdrop-blur-xl rounded-2xl py-2 sm:py-2.5 px-3 sm:px-3.5 border border-slate-200/80 shadow-[0_16px_36px_-6px_rgba(15,26,51,0.14),0_2px_8px_rgba(0,0,0,0.04)] flex items-center gap-2.5 scale-[0.82] sm:scale-100 origin-top-right transition-transform">
-              <div className="size-8 sm:size-9 rounded-xl bg-gradient-to-br from-amber-50 to-amber-100 text-amber-500 border border-amber-200/60 flex items-center justify-center shrink-0 shadow-2xs">
-                <Star className="size-4.5 fill-amber-400 text-amber-400" />
-              </div>
-              <div>
-                <div className="text-xs font-bold text-ink">Hoàn trả đúng hạn</div>
-                <div className="text-[10px] text-[#2F55D4] font-bold">+5.0 Sao Trust Profile</div>
-                <div className="text-[10px] text-muted flex items-center gap-1 mt-0.5">
-                  <span className="size-1.5 rounded-full bg-emerald-500" />
-                  Tích lũy uy tín
+              {/* Mobile Card 3 */}
+              <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 border border-slate-200/80 shadow-xs flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="size-8 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100/80 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="size-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold text-ink truncate">Xác thực sinh viên</div>
+                    <div className="text-[10px] text-muted truncate">Định danh tài khoản trường</div>
+                  </div>
                 </div>
+                <span className="text-emerald-600 text-[10px] font-semibold shrink-0 flex items-center gap-1">
+                  <span className="size-1.5 rounded-full bg-emerald-500" /> Bảo mật
+                </span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Hàng 4 chip: 4 giá trị cốt lõi slide 1 với tương tác nhấp nháy nhẹ */}

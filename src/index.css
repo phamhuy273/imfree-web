@@ -85,22 +85,22 @@
   color: transparent;
 }
 
-/* Hiệu ứng trôi lơ lửng lệch pha cho các chip quanh điện thoại Hero */
+/* Hiệu ứng trôi lơ lửng tinh tế cho các chip quanh điện thoại Hero (Biên độ 3-4.5px, chu kỳ 5-7s) */
 @keyframes floatChip1 {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-7px); }
+  50% { transform: translateY(-4px); }
 }
 @keyframes floatChip2 {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  50% { transform: translateY(-3.5px); }
 }
 @keyframes floatChip3 {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-4.5px); }
 }
-.chip-float-1 { animation: floatChip1 5s ease-in-out infinite; }
-.chip-float-2 { animation: floatChip2 6.5s ease-in-out infinite -1.5s; }
-.chip-float-3 { animation: floatChip3 5.8s ease-in-out infinite -3s; }
+.chip-float-1 { animation: floatChip1 5.8s ease-in-out infinite; }
+.chip-float-2 { animation: floatChip2 6.8s ease-in-out infinite -2s; }
+.chip-float-3 { animation: floatChip3 6.2s ease-in-out infinite -3.5s; }
 @media (prefers-reduced-motion: reduce) {
-  .chip-float-1, .chip-float-2, .chip-float-3 { animation: none; }
+  .chip-float-1, .chip-float-2, .chip-float-3 { animation: none !important; }
 }
