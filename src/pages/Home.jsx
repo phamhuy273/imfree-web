@@ -33,7 +33,13 @@ import assetSharing2 from "../assets/asset-sharing-2-chi-tiet.png";
 import assetSharing3 from "../assets/asset-sharing-3-yeu-cau-thue.png";
 import assetSharing4 from "../assets/asset-sharing-4-usage.png";
 
-import mockupRiskControl from "../assets/mockup-risk-control.png";
+import risk1Confirmed from "../assets/risk-1-confirmed.png";
+import risk2BeforeVerification from "../assets/risk-2-before-verification.png";
+import risk3ConfirmHandover from "../assets/risk-3-confirm-handover.png";
+import risk4GracePeriod from "../assets/risk-4-grace-period.png";
+import risk5ConfirmReturn from "../assets/risk-5-confirm-return.png";
+import risk6ProviderGracePeriod from "../assets/risk-6-provider-grace-period.png";
+
 import mockupTrustProfile from "../assets/mockup-trust-profile.png";
 import mockupSkillSharing from "../assets/mockup-skill-sharing.png";
 
@@ -85,15 +91,55 @@ const MODULE_SHOWCASES = [
     title: "Kiểm soát rủi ro",
     subtitle: "Quy trình an toàn 4 mốc",
     description:
-      "Bảo vệ 2 chiều minh bạch: Bên cho thuê và bên thuê cùng kiểm tra danh mục phụ kiện, ghi chú hiện trạng và đối soát trước khi bàn giao.",
+      "Bảo vệ 2 chiều minh bạch: Từ thỏa thuận thuê, kiểm tra phụ kiện trước bàn giao, đối soát khi nhận máy, đến thời gian kiểm tra lỗi ẩn và xác nhận hoàn trả an toàn.",
     screens: [
       {
-        id: "risk-1",
+        id: "confirmed",
         num: "01",
-        label: "Checklist bàn giao",
-        title: "Checklist bàn giao",
-        subtitle: "Đối soát phụ kiện và ảnh xác nhận trước khi sử dụng",
-        image: mockupRiskControl,
+        label: "Confirmed",
+        title: "1. Confirmed",
+        subtitle: "Thỏa thuận thuê máy ảnh (Sony A7R IV) • Đặt cọc 500.000đ & xác nhận thời gian",
+        image: risk1Confirmed,
+      },
+      {
+        id: "before-verification",
+        num: "02",
+        label: "Before Verif.",
+        title: "2. Before Verification",
+        subtitle: "Checklist bàn giao phụ kiện • Chụp ảnh hiện trạng trước khi bàn giao",
+        image: risk2BeforeVerification,
+      },
+      {
+        id: "confirm-handover",
+        num: "03",
+        label: "Confirm Handover",
+        title: "3. Confirm Handover",
+        subtitle: "Kiểm tra tình trạng thiết bị • Đối soát ảnh và xác nhận bàn giao",
+        image: risk3ConfirmHandover,
+      },
+      {
+        id: "grace-period",
+        num: "04",
+        label: "Grace Period",
+        title: "4. Grace Period",
+        subtitle: "Thời gian kiểm tra lỗi ẩn 02:00:00 • Báo cáo bất thường kịp thời",
+        image: risk4GracePeriod,
+      },
+      {
+        id: "confirm-return",
+        num: "05",
+        label: "Confirm Return",
+        title: "5. Provider Confirm Return",
+        subtitle: "Kiểm tra hoàn trả • Đối soát checklist phụ kiện và ảnh từ người thuê",
+        image: risk5ConfirmReturn,
+      },
+      {
+        id: "provider-grace-period",
+        num: "06",
+        label: "Provider Grace",
+        title: "6. Provider Grace Period",
+        subtitle: "Kiểm tra vận hành sau hoàn trả 04:00:00 • Thử máy và xác nhận hoàn tất",
+        image: risk6ProviderGracePeriod,
       },
     ],
   },
@@ -729,7 +775,7 @@ export default function Home() {
                         {/* Thanh mini tab chuyển màn hình trên Card nếu có nhiều hơn 1 màn hình */}
                         {hasMultipleScreens && (
                           <div className="mt-2.5 flex flex-col items-center gap-1 w-full max-w-[185px]">
-                            <div className="flex items-center justify-center gap-1 w-full">
+                            <div className="flex items-center justify-center gap-0.5 sm:gap-1 w-full">
                               {mShowcase.screens.map((sc, scIdx) => {
                                 const isActive = activeScreenIdx === scIdx;
                                 return (
@@ -741,7 +787,7 @@ export default function Home() {
                                       setCardScreenIndices((prev) => ({ ...prev, [i]: scIdx }));
                                     }}
                                     title={sc.title}
-                                    className={`flex-1 py-1 rounded-md text-[10px] font-bold transition-all cursor-pointer ${
+                                    className={`flex-1 py-1 px-0.5 rounded-md text-[9px] sm:text-[10px] font-bold transition-all cursor-pointer text-center ${
                                       isActive
                                         ? "bg-brand-600 text-white shadow-2xs scale-102"
                                         : "bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-ink"
