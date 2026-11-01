@@ -728,11 +728,6 @@ export default function Home() {
                                 <h3 className="text-lg sm:text-xl font-bold tracking-tight text-ink group-hover:text-brand-600 transition-colors">
                                   {m.title}
                                 </h3>
-                                {hasMultipleScreens && (
-                                  <span className="text-[10px] font-bold text-brand-700 bg-brand-50 px-2 py-0.5 rounded-full border border-brand-200/80">
-                                    {mShowcase.screens.length} màn hình
-                                  </span>
-                                )}
                               </div>
                               {m.subtitle && (
                                 <p className="text-xs font-semibold text-brand-600 mt-0.5">
@@ -765,11 +760,7 @@ export default function Home() {
                             className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 transition-colors cursor-pointer group/btn"
                           >
                             <Maximize2 className="size-3.5 transition-transform group-hover/btn:scale-110" />
-                            <span>
-                              {hasMultipleScreens
-                                ? `Xem ${mShowcase.screens.length} màn hình chi tiết`
-                                : "Xem giao diện"}
-                            </span>
+                            <span>Xem giao diện</span>
                           </button>
                         </div>
                       </div>
@@ -805,33 +796,28 @@ export default function Home() {
 
                         {/* Thanh mini tab chuyển màn hình trên Card nếu có nhiều hơn 1 màn hình */}
                         {hasMultipleScreens && (
-                          <div className="mt-2.5 flex flex-col items-center gap-1 w-full max-w-[185px]">
-                            <div className="flex items-center justify-center gap-0.5 sm:gap-1 w-full">
-                              {mShowcase.screens.map((sc, scIdx) => {
-                                const isActive = activeScreenIdx === scIdx;
-                                return (
-                                  <button
-                                    key={sc.id}
-                                    type="button"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      setCardScreenIndices((prev) => ({ ...prev, [i]: scIdx }));
-                                    }}
-                                    title={sc.title}
-                                    className={`flex-1 py-1 px-0.5 rounded-md text-[9px] sm:text-[10px] font-bold transition-all cursor-pointer text-center ${
-                                      isActive
-                                        ? "bg-brand-600 text-white shadow-2xs scale-102"
-                                        : "bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-ink"
-                                    }`}
-                                  >
-                                    {sc.num}
-                                  </button>
-                                );
-                              })}
-                            </div>
-                            <span className="text-[10px] font-medium text-slate-500 truncate max-w-full text-center">
-                              {activeScreen.num}. {activeScreen.label}
-                            </span>
+                          <div className="mt-2.5 flex items-center justify-center gap-0.5 sm:gap-1 w-full max-w-[185px]">
+                            {mShowcase.screens.map((sc, scIdx) => {
+                              const isActive = activeScreenIdx === scIdx;
+                              return (
+                                <button
+                                  key={sc.id}
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setCardScreenIndices((prev) => ({ ...prev, [i]: scIdx }));
+                                  }}
+                                  title={sc.title}
+                                  className={`flex-1 py-1 px-0.5 rounded-md text-[9px] sm:text-[10px] font-bold transition-all cursor-pointer text-center ${
+                                    isActive
+                                      ? "bg-brand-600 text-white shadow-2xs scale-102"
+                                      : "bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-ink"
+                                  }`}
+                                >
+                                  {sc.num}
+                                </button>
+                              );
+                            })}
                           </div>
                         )}
                       </div>
@@ -912,20 +898,14 @@ export default function Home() {
                   className="relative z-20 flex flex-col items-center max-h-[96vh] select-none"
                 >
                   {/* Tiêu đề ngắn gọn dạng Pill phía trên điện thoại */}
-                  <div className="mb-2 text-center flex flex-col items-center">
-                    <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-white/15 text-white border border-white/20 backdrop-blur-md shadow-lg">
-                      <span className="size-2 rounded-full bg-brand-400 animate-pulse" />
+                  <div className="mb-2.5 text-center flex flex-col items-center">
+                    <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs sm:text-sm font-semibold bg-white/15 text-white border border-white/20 backdrop-blur-md shadow-lg">
                       <span>{currentMod.title}</span>
-                      <span className="text-white/50">•</span>
+                      <span className="text-white/40">•</span>
                       <span className="text-white/90 font-medium">
-                        {currentScr.num}/{String(screens.length).padStart(2, "0")}: {currentScr.label}
+                        {currentScr.label}
                       </span>
                     </span>
-                    {currentScr.subtitle && (
-                      <p className="text-white/70 text-[11px] sm:text-xs mt-1.5 max-w-[340px] truncate">
-                        {currentScr.subtitle}
-                      </p>
-                    )}
                   </div>
 
                   {/* Hàng chứa Nút Trái + Điện thoại lớn + Nút Phải */}
@@ -1002,9 +982,6 @@ export default function Home() {
                         }`}
                       >
                         <span>{item.title}</span>
-                        {item.screens.length > 1 && (
-                          <span className="ml-1 text-[10px] text-brand-300 font-bold">({item.screens.length})</span>
-                        )}
                       </button>
                     ))}
                   </div>
