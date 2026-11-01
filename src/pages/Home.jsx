@@ -40,8 +40,12 @@ import risk4GracePeriod from "../assets/risk-4-grace-period.png";
 import risk5ConfirmReturn from "../assets/risk-5-confirm-return.png";
 import risk6ProviderGracePeriod from "../assets/risk-6-provider-grace-period.png";
 
-import mockupTrustProfile from "../assets/mockup-trust-profile.png";
-import mockupSkillSharing from "../assets/mockup-skill-sharing.png";
+import trust1Profile from "../assets/trust-1-profile.png";
+import trust2Reviews from "../assets/trust-2-reviews.png";
+import trust3Rating from "../assets/trust-3-rating.png";
+
+import skill1Homepage from "../assets/skill-1-homepage.png";
+import skill2Explore from "../assets/skill-2-explore.png";
 
 // Danh sách dữ liệu Mockup App chi tiết theo từng phân hệ (Hỗ trợ nhiều màn hình)
 const MODULE_SHOWCASES = [
@@ -148,15 +152,31 @@ const MODULE_SHOWCASES = [
     title: "Xây dựng niềm tin",
     subtitle: "Hệ thống đánh giá sau giao dịch",
     description:
-      "Chu trình uy tín khép kín: Đánh giá sao và nhận xét khách quan sau khi hoàn trả. Điểm uy tín được tích lũy vào hồ sơ cá nhân của sinh viên.",
+      "Chu trình uy tín khép kín: Hồ sơ cá nhân minh bạch, tỷ lệ hoàn tất giao dịch, phản hồi từ sinh viên cùng trường và cơ chế chấm điểm sao sau hoàn trả.",
     screens: [
       {
-        id: "trust-1",
+        id: "trust-profile-1",
         num: "01",
-        label: "Đánh giá giao dịch",
-        title: "Đánh giá giao dịch",
-        subtitle: "Chấm điểm uy tín 5 sao và đánh giá thực tế từ người dùng",
-        image: mockupTrustProfile,
+        label: "Trust profile 1",
+        title: "1. Trust profile 1",
+        subtitle: "Hồ sơ người dùng • Đánh giá 4.8/5, tỷ lệ hoàn tất 9/10 và tài sản cho thuê",
+        image: trust1Profile,
+      },
+      {
+        id: "trust-profile-2",
+        num: "02",
+        label: "Trust profile 2",
+        title: "2. Trust profile 2",
+        subtitle: "Chi tiết nhận xét uy tín từ sinh viên cùng trường & thông tin liên hệ",
+        image: trust2Reviews,
+      },
+      {
+        id: "rating",
+        num: "03",
+        label: "Rating",
+        title: "3. Rating",
+        subtitle: "Đánh giá giao dịch sau hoàn trả • Chấm sao và phản hồi chất lượng",
+        image: trust3Rating,
       },
     ],
   },
@@ -165,15 +185,23 @@ const MODULE_SHOWCASES = [
     title: "Skill & Time Sharing",
     subtitle: "Định hướng mở rộng",
     description:
-      "Tầm nhìn tương lai: Mở rộng chia sẻ kỹ năng học tập (Gia sư CNTT, Thiết kế Slide) và thời gian rảnh mỗi ngày của sinh viên.",
+      "Tầm nhìn mở rộng tương lai: Kết nối kỹ năng chuyên môn (gia sư, thiết kế, lập trình) và chia sẻ thời gian rảnh theo lịch học linh hoạt.",
     screens: [
       {
-        id: "skill-1",
+        id: "homepage",
         num: "01",
-        label: "Khám phá kỹ năng",
-        title: "Khám phá kỹ năng & Dịch vụ",
-        subtitle: "Gợi ý các dịch vụ thiết kế, gia sư và hỗ trợ học tập",
-        image: mockupSkillSharing,
+        label: "Homepage",
+        title: "1. Homepage",
+        subtitle: "Trang chủ dịch vụ • Nền tảng chia sẻ thiết bị học tập và kỹ năng sinh viên",
+        image: skill1Homepage,
+      },
+      {
+        id: "explore",
+        num: "02",
+        label: "Khám phá",
+        title: "2. Khám phá",
+        subtitle: "Bộ lọc khám phá: Tất cả, Tài sản, Kỹ năng, Thời gian & Gợi ý cho bạn",
+        image: skill2Explore,
       },
     ],
   },
