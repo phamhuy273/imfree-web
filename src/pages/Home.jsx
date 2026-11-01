@@ -477,7 +477,10 @@ export default function Home() {
               {/* Thân máy điện thoại viền Titanium mỏng cao cấp nâng nổi trong không gian 3D */}
               <div
                 style={{ transform: "translateZ(25px)", transformStyle: "preserve-3d" }}
-                onClick={() => setSelectedMockupIndex(0)}
+                role="button"
+                tabIndex={0}
+                onClick={() => handleOpenModal(0, 0)}
+                onKeyDown={(e) => e.key === "Enter" && handleOpenModal(0, 0)}
                 className="relative w-[215px] sm:w-[250px] md:w-[270px] lg:w-[285px] aspect-[393/852] rounded-[38px] sm:rounded-[42px] p-2 bg-gradient-to-b from-slate-700 via-slate-900 to-slate-950 shadow-[0_32px_80px_-15px_rgba(15,26,51,0.38),0_16px_36px_-8px_rgba(47,85,212,0.25),inset_0_1px_1px_rgba(255,255,255,0.25)] ring-1 ring-white/20 cursor-zoom-in group z-10 transition-transform duration-300"
               >
                 {/* Màn hình app ImFree với góc bo chuẩn xác và ánh sáng phản chiếu nhẹ */}
@@ -497,7 +500,7 @@ export default function Home() {
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/15 to-transparent z-10" />
 
                   <img
-                    src={mockupAssetSharing}
+                    src={assetSharing1}
                     alt="Giao diện ứng dụng ImFree"
                     className="w-full h-full object-cover object-top pointer-events-none transition-transform duration-300 group-hover:scale-[1.02]"
                   />
