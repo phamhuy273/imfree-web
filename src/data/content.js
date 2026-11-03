@@ -31,6 +31,15 @@ export const brand = {
   footerText: "ImFree — Nền tảng kết nối và chia sẻ nguồn lực nhàn rỗi dành cho sinh viên. Bắt đầu từ việc giúp sinh viên chia sẻ tài sản nhàn rỗi một cách thuận tiện và đáng tin cậy.",
 };
 
+export const competition = {
+  badge: "Đề tài dự thi DBC",
+  name: "Cuộc thi Sinh viên Kinh doanh số",
+  code: "Digital Business Contest (DBC)",
+  organizer: "Hiệp hội Thương mại điện tử Việt Nam (VECOM) & VecomNet",
+  url: "https://dbc.vecomnet.vn/",
+  description: "ImFree là giải pháp công nghệ chia sẻ nguồn lực nhàn rỗi trong cộng đồng sinh viên, được phát triển và tham gia tranh tài tại Cuộc thi Sinh viên Kinh doanh số toàn quốc do VECOM & VecomNet chủ trì tổ chức.",
+};
+
 export const navLinks = [
   { to: "/", label: "Trang chủ" },
   { to: "/tinh-nang", label: "Tính năng" },
